@@ -1,14 +1,10 @@
 
 export class Optional<A> {
 
-    public static flatten(o: {[k: string]: Optional<any>}): {[k: string]: any} {
-        const result: {[k: string]: any} = {};
-        Object.keys(o).forEach((k) => {
-            if(!o[k].isEmpty()) {
-                result[k] = o[k].get();
-            }
-        })
-        return result;
+    public static flatten(o: { readonly [k: string]: Optional<any>}): {readonly [k: string]: any} {
+        return Object.keys(o).reduce((result, key) => {
+            return o[key].isEmpty() ? result : { ...result, key: o[key].get() };
+        }, {});
     }
 
     public static of<B>(v: B): Optional<B> {
