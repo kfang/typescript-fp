@@ -11,6 +11,10 @@ export class Optional<A> {
         return result;
     }
 
+    public static of<B>(v: B): Optional<B> {
+        return new Optional(v);
+    }
+
     public static empty<B>(): Optional<B> {
         return new Optional(null as unknown as B);
     }
