@@ -50,8 +50,7 @@
   "engines": {
     "node": ">=8.9"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "1.0.0-beta.7",
     "codecov": "^3.1.0",
