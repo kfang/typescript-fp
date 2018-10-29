@@ -8,6 +8,7 @@
   "repository": "https://github.com/kfang/typescript-fp",
   "license": "MIT",
   "keywords": [],
+  "access": "public",
   "scripts": {
     "info": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
