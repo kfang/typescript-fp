@@ -1,5 +1,5 @@
 {
-  "name": "typescript-fp",
+  "name": "@kfang/typescript-fp",
   "version": "1.0.0",
   "description": "utilities to deal with fp in typescript",
   "main": "build/main/index.js",
