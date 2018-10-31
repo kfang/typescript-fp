@@ -13,5 +13,4 @@ build/docs
 coverage
 .nyc_output
 *.log
-*.md
 *.lock
