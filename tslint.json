@@ -11,6 +11,7 @@
     "no-let": true,
     "no-object-mutation": true,
     "no-delete": true,
-    "no-method-signature": true
+    "no-method-signature": true,
+    "max-classes-per-file": false
   }
 }
