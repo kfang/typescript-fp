@@ -7,8 +7,10 @@ tslint.json
 .github
 .prettierignore
 .vscode
+.circleci
 build/docs
 **/*.spec.*
 coverage
 .nyc_output
 *.log
+*.lock
