@@ -1,0 +1,129 @@
+// tslint:disable:no-expression-statement
+import test from 'ava';
+import { Try } from './try';
+
+test('isSuccess() should return true on non error', t => {
+  const res = Try.of(() => 'foobar');
+  t.truthy(res.isSuccess());
+  t.truthy(Try.isSuccess(res));
+});
+
+test('isSuccess() should return false on error', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  });
+  t.falsy(res.isSuccess());
+  t.falsy(Try.isSuccess(res));
+});
+
+test('isFailure() should return false on non error', t => {
+  const res = Try.of(() => 'foobar');
+  t.falsy(res.isFailure());
+  t.falsy(Try.isFailure(res));
+});
+
+test('isFailure() should return true on error', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  });
+  t.truthy(res.isFailure());
+  t.truthy(Try.isFailure(res));
+});
+
+test('get() should return the value on non error', t => {
+  const res = Try.of(() => 'foobar');
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('get() should throw error on error', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  });
+  t.throws(() => res.get());
+});
+
+test('getOrElse() should return the value on non error', t => {
+  const res = Try.of(() => 'foobar');
+  t.deepEqual(res.getOrElse('deadbeef'), 'foobar');
+});
+
+test('getOrElse() should return the default value on error', t => {
+  const res = Try.of<string>(() => {
+    throw new Error();
+  });
+  t.deepEqual(res.getOrElse('deadbeef'), 'deadbeef');
+});
+
+test('toOptional() should return a nonempty Optional with the value', t => {
+  const res = Try.of(() => 'foobar').toOptional();
+  t.falsy(res.isEmpty());
+  t.truthy(res.contains('foobar'));
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('toOptional() should return an empty Optional', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  }).toOptional();
+  t.truthy(res.isEmpty());
+  t.throws(() => res.get());
+});
+
+test('pOf should return a Success on successful Promise', async t => {
+  const res = await Try.pOf(() => Promise.resolve('foobar'));
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('pOf should returna Failure on rejected Promise', async t => {
+  const res = await Try.pOf(() => Promise.reject(new Error()));
+  t.falsy(res.isSuccess());
+  t.throws(() => res.get());
+});
+
+test('pOf should return Failure if function throws before Promise', async t => {
+  const res = await Try.pOf(() => {
+    throw new Error();
+  });
+  t.falsy(res.isSuccess());
+  t.throws(() => res.get());
+});
+
+test('recover should run and return success if try failed', t => {
+  const res = Try.of<string>(() => {
+    throw new Error();
+  }).recover(() => {
+    return 'foobar';
+  });
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('recover should not run if try succeeded', t => {
+  const res = Try.of(() => 'foobar').recover(() => {
+    t.fail();
+    return 'deadbeef';
+  });
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('recoverWith() should not run if try succeeded', t => {
+  const res = Try.of(() => 'foobar').recoverWith(() => {
+    t.fail();
+    return Try.of(() => 'deadbeef');
+  });
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'foobar');
+});
+
+test('recoverWith() should run if try failed', t => {
+  const res = Try.of<string>(() => {
+    throw new Error('error');
+  }).recoverWith(e => {
+    t.deepEqual(e, new Error('error'));
+    return Try.of(() => 'deadbeef');
+  });
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'deadbeef');
+});

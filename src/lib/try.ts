@@ -32,7 +32,7 @@ export abstract class Try<A> {
   public abstract readonly isFailure: () => boolean;
   public abstract readonly get: () => A;
   public abstract readonly getOrElse: (defaultValue: A) => A;
-  public abstract readonly toOption: () => Optional<A>;
+  public abstract readonly toOptional: () => Optional<A>;
 
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
@@ -52,7 +52,7 @@ export class Failure<A> extends Try<A> {
     throw this.error;
   };
   public readonly getOrElse = (defaultValue: A) => defaultValue;
-  public readonly toOption: () => Optional<A> = () => Optional.empty();
+  public readonly toOptional: () => Optional<A> = () => Optional.empty();
   public readonly recover = (fn: (e: Error) => A) =>
     new Success(fn(this.error));
   public readonly recoverWith = (fn: (e: Error) => Try<A>) => fn(this.error);
@@ -70,7 +70,7 @@ export class Success<A> extends Try<A> {
   public readonly isFailure = () => false;
   public readonly get = () => this.value;
   public readonly getOrElse = () => this.value;
-  public readonly toOption = () => Optional.of(this.value);
+  public readonly toOptional = () => Optional.of(this.value);
   public readonly recover = () => this;
   public readonly recoverWith = () => this;
 }
