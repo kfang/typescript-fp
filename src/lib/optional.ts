@@ -3,7 +3,7 @@ export class Optional<A> {
     readonly [k: string]: Optional<any>;
   }): { readonly [k: string]: any } {
     return Object.keys(o).reduce((result, key) => {
-      return o[key].isEmpty() ? result : { ...result, key: o[key].get() };
+      return o[key].isEmpty() ? result : { ...result, [key]: o[key].get() };
     }, {});
   }
 
