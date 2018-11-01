@@ -1,7 +1,6 @@
 import { Optional } from './optional';
 
 export abstract class Try<A> {
-
   public static isSuccess<B>(t: Try<B>): boolean {
     return t.isSuccess();
   }
@@ -49,15 +48,18 @@ export class Failure<A> extends Try<A> {
 
   public readonly isSuccess = () => false;
   public readonly isFailure = () => true;
-  public readonly get = () => { throw this.error}
+  public readonly get = () => {
+    throw this.error;
+  };
   public readonly getOrElse = (defaultValue: A) => defaultValue;
   public readonly toOption: () => Optional<A> = () => Optional.empty();
-  public readonly recover = (fn: (e: Error) => A) => new Success(fn(this.error));
+  public readonly recover = (fn: (e: Error) => A) =>
+    new Success(fn(this.error));
   public readonly recoverWith = (fn: (e: Error) => Try<A>) => fn(this.error);
 }
 
 export class Success<A> extends Try<A> {
-  public readonly value: A
+  public readonly value: A;
 
   constructor(v: A) {
     super();
