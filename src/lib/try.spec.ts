@@ -141,3 +141,20 @@ test('map() should not convert value on failure', t => {
 
   t.truthy(res.isFailure());
 });
+
+test('flatMap() should convert value on success', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).flatMap(o => Try.of(() => o.foo));
+
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'bar');
+});
+
+test('flatMap should return failure on failure', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).flatMap(() =>
+    Try.of(() => {
+      throw new Error();
+    })
+  );
+
+  t.truthy(res.isFailure());
+});
