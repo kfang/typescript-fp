@@ -158,3 +158,14 @@ test('flatMap should return failure on failure', t => {
 
   t.truthy(res.isFailure());
 });
+
+test('flatMap should return failure from a failure', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  }).flatMap(() => {
+    t.fail("this shouldn't run");
+    return Try.of(() => ({ foo: 'bar' }));
+  });
+
+  t.truthy(res.isFailure());
+});
