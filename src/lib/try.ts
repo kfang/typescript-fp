@@ -34,6 +34,9 @@ export abstract class Try<A> {
   public abstract readonly getOrElse: (defaultValue: A) => A;
   public abstract readonly toOptional: () => Optional<A>;
 
+  public abstract readonly map: <B>(fn: ((a: A) => B)) => Try<B>;
+  public abstract readonly flatMap: <B>(fn: ((a: A) => Try<B>)) => Try<B>;
+
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
 }
@@ -56,6 +59,14 @@ export class Failure<A> extends Try<A> {
   public readonly recover = (fn: (e: Error) => A) =>
     new Success(fn(this.error));
   public readonly recoverWith = (fn: (e: Error) => Try<A>) => fn(this.error);
+
+  public readonly map = <B>() => {
+    return new Failure<B>(this.error);
+  };
+
+  public readonly flatMap = <B>() => {
+    return new Failure<B>(this.error);
+  };
 }
 
 export class Success<A> extends Try<A> {
@@ -73,4 +84,12 @@ export class Success<A> extends Try<A> {
   public readonly toOptional = () => Optional.of(this.value);
   public readonly recover = () => this;
   public readonly recoverWith = () => this;
+
+  public readonly map = <B>(fn: (a: A) => B) => {
+    return new Success<B>(fn(this.value));
+  };
+
+  public readonly flatMap = <B>(fn: (a: A) => Try<B>) => {
+    return fn(this.value);
+  };
 }

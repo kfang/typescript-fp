@@ -127,3 +127,45 @@ test('recoverWith() should run if try failed', t => {
   t.truthy(res.isSuccess());
   t.deepEqual(res.get(), 'deadbeef');
 });
+
+test('map() should convert value on success', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).map(o => o.foo);
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'bar');
+});
+
+test('map() should not convert value on failure', t => {
+  const res = Try.of<any>(() => {
+    throw new Error();
+  }).map(o => o.foo);
+
+  t.truthy(res.isFailure());
+});
+
+test('flatMap() should convert value on success', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).flatMap(o => Try.of(() => o.foo));
+
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'bar');
+});
+
+test('flatMap should return failure on failure', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).flatMap(() =>
+    Try.of(() => {
+      throw new Error();
+    })
+  );
+
+  t.truthy(res.isFailure());
+});
+
+test('flatMap should return failure from a failure', t => {
+  const res = Try.of(() => {
+    throw new Error();
+  }).flatMap(() => {
+    t.fail("this shouldn't run");
+    return Try.of(() => ({ foo: 'bar' }));
+  });
+
+  t.truthy(res.isFailure());
+});
