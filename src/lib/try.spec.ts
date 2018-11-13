@@ -127,3 +127,17 @@ test('recoverWith() should run if try failed', t => {
   t.truthy(res.isSuccess());
   t.deepEqual(res.get(), 'deadbeef');
 });
+
+test('map() should convert value on success', t => {
+  const res = Try.of(() => ({ foo: 'bar' })).map(o => o.foo);
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'bar');
+});
+
+test('map() should not convert value on failure', t => {
+  const res = Try.of<any>(() => {
+    throw new Error();
+  }).map(o => o.foo);
+
+  t.truthy(res.isFailure());
+});
