@@ -22,3 +22,8 @@ test('should return world', t => {
 test('should return empty', t => {
   return testfn('ab').then(o => t.truthy(o.isEmpty()));
 });
+
+test('should return empty over flatmap', async t => {
+  const p = await OptionalP.empty().get();
+  t.truthy(p.isEmpty());
+});
