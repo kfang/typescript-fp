@@ -34,8 +34,8 @@ export abstract class Try<A> {
   public abstract readonly getOrElse: (defaultValue: A) => A;
   public abstract readonly toOptional: () => Optional<A>;
 
-  public abstract readonly map: <B>(fn: ((a: A) => B)) => Try<B>;
-  public abstract readonly flatMap: <B>(fn: ((a: A) => Try<B>)) => Try<B>;
+  public abstract readonly map: <B>(fn: (a: A) => B) => Try<B>;
+  public abstract readonly flatMap: <B>(fn: (a: A) => Try<B>) => Try<B>;
 
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
