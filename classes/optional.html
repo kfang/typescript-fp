@@ -66,6 +66,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A container object which may or may not contain a non-null value.
+						If a value is present, isEmpty() will return true and get() will return the value.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -128,7 +136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L18">lib/optional.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L22">lib/optional.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -150,7 +158,7 @@
 					<div class="tsd-signature tsd-kind-icon">v<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L18">lib/optional.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L22">lib/optional.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,13 +175,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L49">lib/optional.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L91">lib/optional.ts:91</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns whether or not the Optional&#39;s inner value is equal to what is
+									passed in. Uses <code>===</code></p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>v: <span class="tsd-signature-type">A</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -190,9 +206,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L34">lib/optional.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L63">lib/optional.ts:63</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the function to the inner value if it exists.
+										similar to <code>map</code> except the function should return an Optional and the final
+									result will be empty if the function returns an empty Optional.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -237,9 +260,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L38">lib/optional.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L71">lib/optional.ts:71</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns the inner value</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{Error} when trying to get a value of an empty Optional</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
 						</li>
 					</ul>
@@ -254,13 +287,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L45">lib/optional.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L82">lib/optional.ts:82</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns the inner value if it exists, otherwise returns the passed in value</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>d: <span class="tsd-signature-type">A</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the default value to return if the Optional is empty</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
@@ -277,9 +318,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L53">lib/optional.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L98">lib/optional.ts:98</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns true if this Optional contains <code>undefined</code> or <code>null</code>, false otherwise</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -294,9 +340,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L24">lib/optional.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L40">lib/optional.ts:40</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the function to the inner value if it exists.</p>
+								</div>
+								<pre><code><span class="hljs-keyword">const</span> square = (v) =&gt; v * v;
+<span class="hljs-keyword">const</span> squareOf11 = Optional.of(<span class="hljs-number">11</span>).map(square)
+squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comment">// =&gt; true</span></code></pre>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -341,9 +395,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L28">lib/optional.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L50">lib/optional.ts:50</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the async function to the inner value if it exists. Swaps what
+									would have been an inner Promise to the outside.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -388,7 +448,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L14">lib/optional.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L18">lib/optional.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -411,7 +471,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L2">lib/optional.ts:2</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L6">lib/optional.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -444,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/015da7c/src/lib/optional.ts#L10">lib/optional.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L14">lib/optional.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -524,10 +584,16 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="optionalp.html" class="tsd-kind-icon">OptionalP</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="success.html" class="tsd-kind-icon">Success</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="try.html" class="tsd-kind-icon">Try</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="../globals.html#testfn" class="tsd-kind-icon">testfn</a>
 					</li>
 				</ul>
 			</nav>
