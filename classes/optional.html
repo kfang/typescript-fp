@@ -72,6 +72,22 @@
 						<p>A container object which may or may not contain a non-null value.
 						If a value is present, isEmpty() will return true and get() will return the value.</p>
 					</div>
+					<p>Some operations you can do:</p>
+					<pre><code>const result = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-number">1</span>)
+  .map(i =&gt; i + <span class="hljs-number">1</span>)                   <span class="hljs-comment">// =&gt; Some(2)</span>
+  .map(i =&gt; i<span class="hljs-operator"> * </span>i)                   <span class="hljs-comment">// =&gt; Some(4)</span>
+  .flat<span class="hljs-constructor">Map(<span class="hljs-params">i</span> =&gt; Optional.<span class="hljs-params">of</span>(<span class="hljs-params">i</span> - 1)</span>)  <span class="hljs-comment">// =&gt; Some(3)</span>
+  .p<span class="hljs-constructor">Map(<span class="hljs-params">i</span> =&gt; Promise.<span class="hljs-params">resolve</span>(<span class="hljs-params">i</span>)</span>);    <span class="hljs-comment">// =&gt; Promise(Some(3))</span>
+
+const result2 = await result;        <span class="hljs-comment">// =&gt; Some(3)</span>
+result2.is<span class="hljs-constructor">Empty()</span>                    <span class="hljs-comment">// =&gt; false</span>
+result2.contains(<span class="hljs-number">3</span>)                  <span class="hljs-comment">// =&gt; true</span>
+result2.get<span class="hljs-literal">()</span>                        <span class="hljs-comment">// =&gt; 3</span>
+
+const result3 = result2              <span class="hljs-comment">// =&gt; Some(3)</span>
+  .flat<span class="hljs-constructor">Map(<span class="hljs-params">i</span> =&gt; Optional.<span class="hljs-params">empty</span>()</span>)    <span class="hljs-comment">// =&gt; None</span>
+result3.get<span class="hljs-literal">()</span>                        <span class="hljs-comment">// =&gt; throws Error()</span>
+result3.get<span class="hljs-constructor">OrElse(4)</span>                 <span class="hljs-comment">// =&gt; 4</span></code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -136,7 +152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L22">lib/optional.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L41">lib/optional.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">v<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L22">lib/optional.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L41">lib/optional.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L91">lib/optional.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L134">lib/optional.ts:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -183,6 +199,8 @@
 									<p>returns whether or not the Optional&#39;s inner value is equal to what is
 									passed in. Uses <code>===</code></p>
 								</div>
+								<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">"hello world"</span>).contains(<span class="hljs-string">"hello world"</span>)   <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span>empty<span class="hljs-literal">()</span>.contains(<span class="hljs-string">"hello world"</span>)             <span class="hljs-comment">// =&gt; false</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -206,7 +224,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L63">lib/optional.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L88">lib/optional.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -215,6 +233,9 @@
 										similar to <code>map</code> except the function should return an Optional and the final
 									result will be empty if the function returns an empty Optional.</p>
 								</div>
+								<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">"hello"</span>)
+  .flat<span class="hljs-constructor">Map(<span class="hljs-params">str</span> =&gt; Optional.<span class="hljs-params">of</span>(<span class="hljs-params">str</span> + <span class="hljs-string">" world"</span>)</span>) <span class="hljs-comment">// =&gt; Some("hello world")</span>
+  .flat<span class="hljs-constructor">Map(<span class="hljs-params">str</span> =&gt; Optional.<span class="hljs-params">of</span>(<span class="hljs-params">null</span>)</span>)           <span class="hljs-comment">// =&gt; None</span></code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -260,13 +281,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L71">lib/optional.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L103">lib/optional.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>returns the inner value</p>
 								</div>
+								<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(undefined).get<span class="hljs-literal">()</span>     <span class="hljs-comment">// =&gt; throws Error</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(null).get<span class="hljs-literal">()</span>          <span class="hljs-comment">// =&gt; throws Error</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">"hello world"</span>).get<span class="hljs-literal">()</span> <span class="hljs-comment">// =&gt; "hello world"</span></code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
 									<dd><p>{Error} when trying to get a value of an empty Optional</p>
@@ -287,13 +311,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L82">lib/optional.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L120">lib/optional.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>returns the inner value if it exists, otherwise returns the passed in value</p>
 								</div>
+								<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span>empty<span class="hljs-literal">()</span>.get<span class="hljs-constructor">OrElse(<span class="hljs-string">"default"</span>)</span>            <span class="hljs-comment">// =&gt; "default"</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">"hello world"</span>).get<span class="hljs-constructor">OrElse(<span class="hljs-string">"default"</span>)</span>  <span class="hljs-comment">// =&gt; "hello world"</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -318,13 +344,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L98">lib/optional.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L152">lib/optional.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>returns true if this Optional contains <code>undefined</code> or <code>null</code>, false otherwise</p>
+									<p>returns true if this Optional contains <code>undefined</code> or <code>null</code>, false otherwise.</p>
 								</div>
+								<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">"hello world"</span>).is<span class="hljs-constructor">Empty()</span> <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-number">0</span>).is<span class="hljs-constructor">Empty()</span>             <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>({}).is<span class="hljs-constructor">Empty()</span>            <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-literal">[]</span>).is<span class="hljs-constructor">Empty()</span>            <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span>empty<span class="hljs-literal">()</span>.is<span class="hljs-constructor">Empty()</span>           <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(null).is<span class="hljs-constructor">Empty()</span>          <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span>(undefined).is<span class="hljs-constructor">Empty()</span>     <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
@@ -340,7 +374,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L40">lib/optional.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L59">lib/optional.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -395,7 +429,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L50">lib/optional.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L69">lib/optional.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -448,7 +482,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L18">lib/optional.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L37">lib/optional.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -471,7 +505,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L6">lib/optional.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L25">lib/optional.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -504,7 +538,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/dd50570/src/lib/optional.ts#L14">lib/optional.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b170a07/src/lib/optional.ts#L33">lib/optional.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
