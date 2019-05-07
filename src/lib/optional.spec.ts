@@ -110,3 +110,18 @@ test('flatten() should return object without nulls', t => {
     b: 'deadbeef'
   });
 });
+
+test('exists() should return false on a None', t => {
+  const res = Optional.empty().exists(() => true);
+  t.false(res);
+});
+
+test('exists() should return true if the function passed returns true', t => {
+  const res = Optional.of('foobar').exists(s => s === 'foobar');
+  t.true(res);
+});
+
+test('exists() should return false if the function passed returns false', t => {
+  const res = Optional.of('foobar').exists(s => s === 'hello world');
+  t.false(res);
+});

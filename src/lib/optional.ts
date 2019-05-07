@@ -152,4 +152,17 @@ export class Optional<A> {
   public isEmpty(): boolean {
     return this.v === undefined || this.v === null;
   }
+
+  /**
+   * returns true if this Optional is not empty and the function passed in returns true. Otherwise
+   * returns false
+   * @param {(A) => boolean} fn - existance function
+   */
+  public exists(fn: (v: A) => boolean): boolean {
+    if (this.isEmpty()) {
+      return false;
+    } else {
+      return fn(this.v);
+    }
+  }
 }
