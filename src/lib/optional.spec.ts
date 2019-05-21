@@ -132,6 +132,6 @@ test('exists() should return false if the function passed returns false', t => {
 });
 
 test('constructing a Some with null throws', t => {
-  const fn = () => new Some<string>(null as unknown as string);
+  const fn = () => new Some<string>((null as unknown) as string);
   t.throws(fn);
 });
