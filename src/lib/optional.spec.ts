@@ -1,6 +1,6 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
-import { Optional } from './optional';
+import { Optional, Some } from './optional';
 
 test('isEmpty() should return true for undefined', t => {
   const opt = Optional.of(undefined);
@@ -25,6 +25,11 @@ test('contains() should return true if it contains foobar', t => {
 test('contains() should return false if its the wrong value', t => {
   const opt = Optional.of('foobar');
   t.falsy(opt.contains('deadbeef'));
+});
+
+test('contains() should return false for a none', t => {
+  const opt = Optional.empty<string>();
+  t.falsy(opt.contains('foobar'));
 });
 
 test('getOrElse() should return inner value if nonempty', t => {
@@ -124,4 +129,9 @@ test('exists() should return true if the function passed returns true', t => {
 test('exists() should return false if the function passed returns false', t => {
   const res = Optional.of('foobar').exists(s => s === 'hello world');
   t.false(res);
+});
+
+test('constructing a Some with null throws', t => {
+  const fn = () => new Some<string>((null as unknown) as string);
+  t.throws(fn);
 });
