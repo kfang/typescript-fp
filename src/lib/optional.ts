@@ -34,8 +34,8 @@ export abstract class Optional<A> {
     }, {});
   }
 
-  public static of<B>(v: B): Optional<B> {
-    return isNullOrUndefined(v) ? new None<B>() : new Some(v);
+  public static of<B>(v: B | null | undefined): Optional<B> {
+    return isNullOrUndefined(v) ? new None<B>() : new Some(v!);
   }
 
   public static empty<B>(): Optional<B> {
