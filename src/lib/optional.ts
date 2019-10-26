@@ -105,6 +105,17 @@ export abstract class Optional<A> {
   public abstract getOrElse(d: A): A;
 
   /**
+   * returns the inner value if it exists, otherwise throws with given error
+   * ```
+   * const error = new Error("my descriptive error")
+   * Optional.empty().getOrThrow(error)             // => ERROR: Error: my descriptive error
+   * Optional.of("hellow world").getOrThrow(error)  // => "hello world"
+   * ```
+   * @param {Error} error - error object to throw
+   */
+  public abstract getOrThrow(error: Error): A;
+
+  /**
    * returns whether or not the Optional's inner value is equal to what is
    * passed in. Uses `===`
    *
@@ -171,6 +182,10 @@ export class Some<A> extends Optional<A> {
     return this.a;
   }
 
+  public getOrThrow(): A {
+    return this.a;
+  }
+
   public isEmpty(): boolean {
     return false;
   }
@@ -207,6 +222,10 @@ export class None<A> extends Optional<A> {
 
   public getOrElse(d: A): A {
     return d;
+  }
+
+  public getOrThrow(error: Error): A {
+    throw error;
   }
 
   public isEmpty(): boolean {
