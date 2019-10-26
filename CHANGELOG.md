@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/kfang/typescript-fp/compare/v1.0.20...v1.1.0) (2019-10-26)
+
+
+### Features
+
+* add a get or throw on optionals ([#11](https://github.com/kfang/typescript-fp/issues/11)) ([5ca006d](https://github.com/kfang/typescript-fp/commit/5ca006d))
+
+
+
 ### [1.0.20](https://github.com/kfang/typescript-fp/compare/v1.0.19...v1.0.20) (2019-07-16)
 
 
