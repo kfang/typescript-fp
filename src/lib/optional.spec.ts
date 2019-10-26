@@ -135,3 +135,15 @@ test('constructing a Some with null throws', t => {
   const fn = () => new Some<string>((null as unknown) as string);
   t.throws(fn);
 });
+
+test('should return hello world', t => {
+  const e = new Error();
+  const v: string = Optional.of('hello world').getOrThrow(e);
+  t.is(v, 'hello world');
+});
+
+test('should throw an error', t => {
+  const e = new Error();
+  const o = Optional.empty<string>();
+  t.throws(() => o.getOrThrow(e));
+});
