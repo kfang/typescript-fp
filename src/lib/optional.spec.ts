@@ -147,3 +147,23 @@ test('should throw an error', t => {
   const o = Optional.empty<string>();
   t.throws(() => o.getOrThrow(e));
 });
+
+test('getOrNull() should return inner value', t => {
+  const res = Optional.of('HELLO').getOrNull();
+  t.is(res, 'HELLO');
+});
+
+test('getOrNull() should return null', t => {
+  const res = Optional.empty<string>().getOrNull();
+  t.is(res, null);
+});
+
+test('getOrUndefined() should return inner value', t => {
+  const res = Optional.of('HELLO').getOrUndefined();
+  t.is(res, 'HELLO');
+});
+
+test('getOrUndefeind() should return undefined', t => {
+  const res = Optional.empty<string>().getOrUndefined();
+  t.is(res, undefined);
+});
