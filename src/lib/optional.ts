@@ -116,6 +116,22 @@ export abstract class Optional<A> {
   public abstract getOrThrow(error: Error): A;
 
   /**
+   * returns the inner value if it exists, otherwise returns null
+   * ```
+   * Optional.empty().getOrNull()     // => null
+   * Optional.of("HELLO").getOrNull() // => "HELLO"
+   */
+  public abstract getOrNull(): A | null;
+
+  /**
+   * returns the inner value if it exists, otherwise returns undefined
+   * ```
+   * Optional.empty().getOrNull()     // => undefined
+   * Optional.of("HELLO").getOrNull() // => "HELLO"
+   */
+  public abstract getOrUndefined(): A | undefined;
+
+  /**
    * returns whether or not the Optional's inner value is equal to what is
    * passed in. Uses `===`
    *
@@ -186,6 +202,14 @@ export class Some<A> extends Optional<A> {
     return this.a;
   }
 
+  public getOrNull(): A | null {
+    return this.a;
+  }
+
+  public getOrUndefined(): A | undefined {
+    return this.a;
+  }
+
   public isEmpty(): boolean {
     return false;
   }
@@ -226,6 +250,14 @@ export class None<A> extends Optional<A> {
 
   public getOrThrow(error: Error): A {
     throw error;
+  }
+
+  public getOrNull(): A | null {
+    return null;
+  }
+
+  public getOrUndefined(): A | undefined {
+    return undefined;
   }
 
   public isEmpty(): boolean {
