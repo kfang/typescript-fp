@@ -105,6 +105,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="none.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#getorelse" class="tsd-kind-icon">get<wbr>OrElse</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#getornull" class="tsd-kind-icon">get<wbr>OrNull</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#getorthrow" class="tsd-kind-icon">get<wbr>OrThrow</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#getorundefined" class="tsd-kind-icon">get<wbr>OrUndefined</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="none.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="none.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="none.html#pmap" class="tsd-kind-icon">p<wbr>Map</a></li>
@@ -128,7 +131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L187">lib/optional.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L226">lib/optional.ts:226</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="none.html" class="tsd-signature-type">None</a></h4>
@@ -149,7 +152,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L192">lib/optional.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L231">lib/optional.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -167,7 +170,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#exists">exists</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L196">lib/optional.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L235">lib/optional.ts:235</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -185,7 +188,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L200">lib/optional.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L239">lib/optional.ts:239</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -209,7 +212,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L204">lib/optional.ts:204</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L243">lib/optional.ts:243</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
@@ -227,7 +230,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorelse">getOrElse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L208">lib/optional.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L247">lib/optional.ts:247</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -237,6 +240,72 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="getornull" class="tsd-anchor"></a>
+					<h3>get<wbr>OrNull</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>OrNull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getornull">getOrNull</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L255">lib/optional.ts:255</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="getorthrow" class="tsd-anchor"></a>
+					<h3>get<wbr>OrThrow</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>OrThrow<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorthrow">getOrThrow</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L251">lib/optional.ts:251</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="getorundefined" class="tsd-anchor"></a>
+					<h3>get<wbr>OrUndefined</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>OrUndefined<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorundefined">getOrUndefined</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L259">lib/optional.ts:259</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 						</li>
 					</ul>
 				</section>
@@ -251,7 +320,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L212">lib/optional.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L263">lib/optional.ts:263</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -269,7 +338,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L216">lib/optional.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L267">lib/optional.ts:267</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -293,7 +362,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#pmap">pMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L220">lib/optional.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L271">lib/optional.ts:271</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -317,7 +386,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#empty">empty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L41">lib/optional.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L41">lib/optional.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -341,7 +410,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#flatten">flatten</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L29">lib/optional.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L29">lib/optional.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -375,7 +444,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#of">of</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/7dfedfd/src/lib/optional.ts#L37">lib/optional.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/11d3b6e/src/lib/optional.ts#L37">lib/optional.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -431,6 +500,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="none.html#getorelse" class="tsd-kind-icon">get<wbr>OrElse</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="none.html#getornull" class="tsd-kind-icon">get<wbr>OrNull</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="none.html#getorthrow" class="tsd-kind-icon">get<wbr>OrThrow</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="none.html#getorundefined" class="tsd-kind-icon">get<wbr>OrUndefined</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="none.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
