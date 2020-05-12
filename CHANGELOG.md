@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/kfang/typescript-fp/compare/v1.3.0...v1.3.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* add type guards for isFailure and isSuccess ([#17](https://github.com/kfang/typescript-fp/issues/17)) ([61054d5](https://github.com/kfang/typescript-fp/commit/61054d5))
+
+
+
 ## [1.3.0](https://github.com/kfang/typescript-fp/compare/v1.2.0...v1.3.0) (2020-05-12)
 
 
