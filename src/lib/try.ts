@@ -28,6 +28,14 @@ export abstract class Try<A> {
     }
   }
 
+  public static failure<B>(error: Error): Try<B> {
+    return new Failure(error);
+  }
+
+  public static success<B>(b: B): Try<B> {
+    return new Success(b);
+  }
+
   public abstract readonly isSuccess: () => boolean;
   public abstract readonly isFailure: () => boolean;
   public abstract readonly get: () => A;
