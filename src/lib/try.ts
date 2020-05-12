@@ -1,11 +1,11 @@
 import { Optional } from './optional';
 
 export abstract class Try<A> {
-  public static isSuccess<B>(t: Try<B>): boolean {
+  public static isSuccess<B>(t: Try<B>): t is Success<B> {
     return t.isSuccess();
   }
 
-  public static isFailure<B>(t: Try<B>): boolean {
+  public static isFailure<B>(t: Try<B>): t is Failure<B> {
     return t.isFailure();
   }
 
@@ -36,8 +36,8 @@ export abstract class Try<A> {
     return new Success(b);
   }
 
-  public abstract readonly isSuccess: () => boolean;
-  public abstract readonly isFailure: () => boolean;
+  public abstract readonly isSuccess: () => this is Success<A>;
+  public abstract readonly isFailure: () => this is Failure<A>;
   public abstract readonly get: () => A;
   public abstract readonly getOrElse: (defaultValue: A) => A;
   public abstract readonly toOptional: () => Optional<A>;
