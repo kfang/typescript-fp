@@ -1,6 +1,7 @@
 import { Optional } from './optional';
 
 export abstract class Try<A> {
+
   public static isSuccess<B>(t: Try<B>): boolean {
     return t.isSuccess();
   }
@@ -26,6 +27,14 @@ export abstract class Try<A> {
     } catch (e) {
       return Promise.resolve(new Failure(e));
     }
+  }
+
+  public static failure<B>(error: Error): Try<B> {
+    return new Failure(error);
+  }
+
+  public static success<B>(b: B): Try<B> {
+    return new Success(b);
   }
 
   public abstract readonly isSuccess: () => boolean;
