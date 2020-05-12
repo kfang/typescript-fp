@@ -1,7 +1,6 @@
 import { Optional } from './optional';
 
 export abstract class Try<A> {
-
   public static isSuccess<B>(t: Try<B>): boolean {
     return t.isSuccess();
   }
