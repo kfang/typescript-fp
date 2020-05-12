@@ -1,11 +1,11 @@
 import { Optional } from './optional';
 
 export abstract class Try<A> {
-  public static isSuccess<B>(t: Try<B>): t is Success<B>{
+  public static isSuccess<B>(t: Try<B>): t is Success<B> {
     return t.isSuccess();
   }
 
-  public static isFailure<B>(t: Try<B>): t is Failure<B>{
+  public static isFailure<B>(t: Try<B>): t is Failure<B> {
     return t.isFailure();
   }
 
