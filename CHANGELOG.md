@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/kfang/typescript-fp/compare/v1.3.2...v1.4.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* linting ([f56c035](https://github.com/kfang/typescript-fp/commit/f56c035))
+
+
+### Features
+
+* add pMap and pFlatMap to try ([ea8f95e](https://github.com/kfang/typescript-fp/commit/ea8f95e))
+
+
+
 ### [1.3.2](https://github.com/kfang/typescript-fp/compare/v1.3.0...v1.3.2) (2020-05-12)
 
 
