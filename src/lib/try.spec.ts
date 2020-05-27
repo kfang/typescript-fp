@@ -169,3 +169,26 @@ test('flatMap should return failure from a failure', t => {
 
   t.truthy(res.isFailure());
 });
+
+test('pMap() should return a wrapped failure on exception not in promise', async t => {
+  const res = await Try.success('hello').pMap(() => {
+    throw new Error();
+  });
+  t.truthy(res.isFailure());
+});
+
+test('pMap() should return a wrapped failure on failed promise', async t => {
+  const res = await Try.success('hello').pMap(() => Promise.reject('FAILED'));
+  t.truthy(res.isFailure());
+});
+
+test('pMap() returns a success on successful promise', async t => {
+  const res = await Try.success('HELLO').pMap(() => Promise.resolve('WORLD'));
+  t.truthy(res.isSuccess());
+  t.deepEqual(res.get(), 'WORLD');
+});
+
+test('pMap() passes along the error', async t => {
+  const res = await Try.failure(new Error()).pMap(() => Promise.resolve('foobar'));
+  t.truthy(res.isFailure());
+})

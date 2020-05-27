@@ -45,6 +45,13 @@ export abstract class Try<A> {
   public abstract readonly map: <B>(fn: (a: A) => B) => Try<B>;
   public abstract readonly flatMap: <B>(fn: (a: A) => Try<B>) => Try<B>;
 
+  public abstract readonly pMap: <B>(
+    fn: (a: A) => Promise<B>
+  ) => Promise<Try<B>>;
+  public abstract readonly pFlatMap: <B>(
+      fn: (a: A) => Promise<Try<B>>
+  ) => Promise<Try<B>>;
+
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
 }
@@ -75,6 +82,14 @@ export class Failure<A> extends Try<A> {
   public readonly flatMap = <B>() => {
     return new Failure<B>(this.error);
   };
+
+  public readonly pMap = <B>(): Promise<Try<B>> => {
+    return Promise.resolve(Try.failure(this.error));
+  };
+
+  public readonly pFlatMap = <B>(): Promise<Try<B>> => {
+    return Promise.resolve(Try.failure(this.error));
+  };
 }
 
 export class Success<A> extends Try<A> {
@@ -99,5 +114,24 @@ export class Success<A> extends Try<A> {
 
   public readonly flatMap = <B>(fn: (a: A) => Try<B>) => {
     return fn(this.value);
+  };
+
+  public readonly pMap = <B>(fn: (a: A) => Promise<B>): Promise<Try<B>> => {
+    try {
+      return fn(this.value)
+        .then(b => Try.success(b))
+        .catch(e => Try.failure(e));
+    } catch (e) {
+      return Promise.resolve(Try.failure(e));
+    }
+  };
+
+  public readonly pFlatMap = <B>(fn: (a: A) => Promise<Try<B>>): Promise<Try<B>> => {
+    try {
+      return fn(this.value)
+          .catch(e => Try.failure(e));
+    } catch (e) {
+      return Promise.resolve(Try.failure(e));
+    }
   };
 }
