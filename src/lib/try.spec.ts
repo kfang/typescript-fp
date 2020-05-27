@@ -189,6 +189,8 @@ test('pMap() returns a success on successful promise', async t => {
 });
 
 test('pMap() passes along the error', async t => {
-  const res = await Try.failure(new Error()).pMap(() => Promise.resolve('foobar'));
+  const res = await Try.failure(new Error()).pMap(() =>
+    Promise.resolve('foobar')
+  );
   t.truthy(res.isFailure());
-})
+});

@@ -49,7 +49,7 @@ export abstract class Try<A> {
     fn: (a: A) => Promise<B>
   ) => Promise<Try<B>>;
   public abstract readonly pFlatMap: <B>(
-      fn: (a: A) => Promise<Try<B>>
+    fn: (a: A) => Promise<Try<B>>
   ) => Promise<Try<B>>;
 
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
@@ -126,10 +126,11 @@ export class Success<A> extends Try<A> {
     }
   };
 
-  public readonly pFlatMap = <B>(fn: (a: A) => Promise<Try<B>>): Promise<Try<B>> => {
+  public readonly pFlatMap = <B>(
+    fn: (a: A) => Promise<Try<B>>
+  ): Promise<Try<B>> => {
     try {
-      return fn(this.value)
-          .catch(e => Try.failure(e));
+      return fn(this.value).catch(e => Try.failure(e));
     } catch (e) {
       return Promise.resolve(Try.failure(e));
     }
