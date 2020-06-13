@@ -32,9 +32,15 @@ export class TryAsync<A> {
     return new TryAsync<B>(pTryB);
   }
 
-  public flatMapAsync<B>(fn: (value: A) => Promise<Try<B>>): TryAsync<B> {
+  public flatMapAsync<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
     const pTryB = this.value
-      .then(tryA => tryA.pFlatMap(fn))
+      .then(tryA => {
+        if (tryA.isFailure()) {
+          return Try.failure<B>(tryA.error);
+        } else {
+          return fn(tryA.get()).promise();
+        }
+      })
       .catch(error => Try.failure<B>(error));
     return new TryAsync<B>(pTryB);
   }

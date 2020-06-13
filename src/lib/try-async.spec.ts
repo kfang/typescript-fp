@@ -87,3 +87,30 @@ test('mapAsync() wraps failed promise', async t => {
     .promise();
   t.deepEqual(result.isFailure(), true);
 });
+
+test('mapAsync() wraps failed fn', async t => {
+  const tryA = Try.success('Hello');
+  const res = await TryAsync.of(Promise.resolve(tryA))
+    .mapAsync(() => {
+      throw new Error('expected errro');
+    })
+    .promise();
+  t.deepEqual(res.isFailure(), true);
+});
+
+test('flatMapAsync() wraps a failed promise', async t => {
+  const tryA = Try.success(100);
+  const tryF = Try.failure(new Error('expected failure'));
+  const res = await TryAsync.of(Promise.resolve(tryA))
+    .flatMapAsync(() => TryAsync.of(Promise.resolve(tryF)))
+    .promise();
+  t.truthy(res.isFailure());
+});
+
+test('flatMapAsync() maps inner fn', async t => {
+  const tryA = Try.success(100);
+  const res = await TryAsync.of(Promise.resolve(tryA))
+    .flatMapAsync(a => TryAsync.of(Promise.resolve(Try.success(a + 100))))
+    .promise();
+  t.deepEqual(res.get(), 200);
+});
