@@ -71,3 +71,19 @@ test('flatMap() returns failure on inner throw', async t => {
   t.truthy(result.isFailure());
   t.throws(() => result.get(), error.message);
 });
+
+test('mapAsync() wraps resolved promise', async t => {
+  const tryA = Try.success('hello');
+  const result = await TryAsync.of(Promise.resolve(tryA))
+    .mapAsync(str => Promise.resolve(str + ' world'))
+    .promise();
+  t.deepEqual(result.get(), 'hello world');
+});
+
+test('mapAsync() wraps failed promise', async t => {
+  const tryA = Try.success('hello');
+  const result = await TryAsync.of(Promise.resolve(tryA))
+    .mapAsync(() => Promise.reject('expected error'))
+    .promise();
+  t.deepEqual(result.isFailure(), true);
+});
