@@ -118,7 +118,9 @@ test('flatMapAsync() maps inner fn', async t => {
 test('flatMapAsync() catches exceptions', async t => {
   const tryA = Try.success(100);
   const res = await TryAsync.of(Promise.resolve(tryA))
-      .flatMapAsync(() => { throw new Error('expected error'); })
-      .promise();
+    .flatMapAsync(() => {
+      throw new Error('expected error');
+    })
+    .promise();
   t.deepEqual(res.isFailure(), true);
-})
+});
