@@ -21,11 +21,11 @@
     "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
     "test:unit": "nyc --silent ava",
     "watch": "run-s clean build:main && run-p \"build:main -- -w\" \"test:unit -- --watch --verbose\"",
-    "cov": "run-s build test:unit cov:html && opn coverage/index.html",
+    "cov": "run-s build test:unit cov:html && open-cli coverage/index.html",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "cov:check": "nyc report && nyc check-coverage --lines 0 --functions 0 --branches 0",
-    "doc": "run-s doc:html && opn build/docs/index.html",
+    "doc": "run-s doc:html && open-cli build/docs/index.html",
     "doc:html": "typedoc src/ --target ES6 --mode file --out build/docs",
     "doc:json": "typedoc src/ --target ES6 --mode file --json build/docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
@@ -54,12 +54,12 @@
   "dependencies": {},
   "devDependencies": {
     "ava": "2.2.0",
-    "codecov": "^3.5.0",
+    "codecov": "^3.7.0",
     "cz-conventional-changelog": "^2.1.0",
     "gh-pages": "^2.0.0",
     "npm-run-all": "^4.1.3",
     "nyc": "^14.1.1",
-    "opn-cli": "^5.0.0",
+    "open-cli": "^6.0.1",
     "prettier": "^1.18.2",
     "standard-version": "^6.0.1",
     "trash-cli": "^3.0.0",
@@ -67,7 +67,7 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-immutable": "^6.0.1",
     "typedoc": "^0.14.2",
-    "typescript": "^3.5.3"
+    "typescript": "^3.9.5"
   },
   "ava": {
     "failFast": true,
