@@ -73,9 +73,6 @@
     "failFast": true,
     "files": [
       "build/main/**/*.spec.js"
-    ],
-    "sources": [
-      "build/main/**/*.js"
     ]
   },
   "config": {
