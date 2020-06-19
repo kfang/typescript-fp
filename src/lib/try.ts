@@ -21,8 +21,8 @@ export abstract class Try<A> {
   public static pOf<B>(fn: () => Promise<B>): Promise<Try<B>> {
     try {
       return fn()
-        .then(v => new Success(v))
-        .catch(e => new Failure(e));
+        .then((v) => new Success(v))
+        .catch((e) => new Failure(e));
     } catch (e) {
       return Promise.resolve(new Failure(e));
     }
@@ -119,8 +119,8 @@ export class Success<A> extends Try<A> {
   public readonly pMap = <B>(fn: (a: A) => Promise<B>): Promise<Try<B>> => {
     try {
       return fn(this.value)
-        .then(b => Try.success(b))
-        .catch(e => Try.failure(e));
+        .then((b) => Try.success(b))
+        .catch((e) => Try.failure(e));
     } catch (e) {
       return Promise.resolve(Try.failure(e));
     }
@@ -130,7 +130,7 @@ export class Success<A> extends Try<A> {
     fn: (a: A) => Promise<Try<B>>
   ): Promise<Try<B>> => {
     try {
-      return fn(this.value).catch(e => Try.failure(e));
+      return fn(this.value).catch((e) => Try.failure(e));
     } catch (e) {
       return Promise.resolve(Try.failure(e));
     }

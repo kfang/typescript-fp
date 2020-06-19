@@ -219,7 +219,7 @@ export class Some<A> extends Optional<A> {
   }
 
   public pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>> {
-    return fn(this.a).then(b => Optional.of(b));
+    return fn(this.a).then((b) => Optional.of(b));
   }
 }
 
