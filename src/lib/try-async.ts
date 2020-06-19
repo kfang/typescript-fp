@@ -5,6 +5,14 @@ export class TryAsync<A> {
     return new TryAsync<B>(value);
   }
 
+  public static success<B>(value: B): TryAsync<B> {
+    return TryAsync.of(Promise.resolve(Try.success(value)));
+  }
+
+  public static failure<B>(error: Error): TryAsync<B> {
+    return TryAsync.of(Promise.resolve(Try.failure(error)));
+  }
+
   private readonly value: Promise<Try<A>>;
 
   private constructor(value: Promise<Try<A>>) {
@@ -18,21 +26,7 @@ export class TryAsync<A> {
     return new TryAsync<B>(pTryB);
   }
 
-  public flatMap<B>(fn: (value: A) => Try<B>): TryAsync<B> {
-    const pTryB = this.value
-      .then((tryA) => tryA.flatMap(fn))
-      .catch((error) => Try.failure<B>(error));
-    return new TryAsync<B>(pTryB);
-  }
-
-  public mapAsync<B>(fn: (value: A) => Promise<B>): TryAsync<B> {
-    const pTryB = this.value
-      .then((tryA) => tryA.pMap(fn))
-      .catch((error) => Try.failure<B>(error));
-    return new TryAsync<B>(pTryB);
-  }
-
-  public flatMapAsync<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
+  public flatMap<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
     const pTryB = this.value
       .then((tryA) => {
         if (tryA.isFailure()) {
@@ -41,6 +35,13 @@ export class TryAsync<A> {
           return fn(tryA.get()).promise();
         }
       })
+      .catch((error) => Try.failure<B>(error));
+    return new TryAsync<B>(pTryB);
+  }
+
+  public mapAsync<B>(fn: (value: A) => Promise<B>): TryAsync<B> {
+    const pTryB = this.value
+      .then((tryA) => tryA.pMap(fn))
       .catch((error) => Try.failure<B>(error));
     return new TryAsync<B>(pTryB);
   }

@@ -35,7 +35,7 @@ test('map() catches exceptions and converts them to failures', async (t) => {
 test('flatMap() returns inner success', async (t) => {
   const tryA = Try.success('HELLO');
   const result = await TryAsync.of(Promise.resolve(tryA))
-    .flatMap((str) => Try.success(str + ' WORLD!!!'))
+    .flatMap((str) => TryAsync.success(str + ' WORLD!!!'))
     .promise();
   t.deepEqual(result.get(), 'HELLO WORLD!!!');
 });
@@ -44,7 +44,7 @@ test('flatMap() returns inner failure', async (t) => {
   const error = new Error('expected failure');
   const tryA = Try.success('HELLO');
   const result = await TryAsync.of(Promise.resolve(tryA))
-    .flatMap(() => Try.failure(error))
+    .flatMap(() => TryAsync.failure(error))
     .promise();
   t.truthy(result.isFailure());
   t.throws(() => result.get(), null, error.message);
@@ -54,7 +54,7 @@ test('flatMap() does not run fn on inner failure', async (t) => {
   const error = new Error('expected failure');
   const tryA = Try.failure(error);
   const result = await TryAsync.of(Promise.resolve(tryA))
-    .flatMap(() => Try.success('foobar'))
+    .flatMap(() => TryAsync.success('foobar'))
     .promise();
   t.truthy(result.isFailure());
   t.throws(() => result.get(), null, error.message);
@@ -93,33 +93,6 @@ test('mapAsync() wraps failed fn', async (t) => {
   const res = await TryAsync.of(Promise.resolve(tryA))
     .mapAsync(() => {
       throw new Error('expected errro');
-    })
-    .promise();
-  t.deepEqual(res.isFailure(), true);
-});
-
-test('flatMapAsync() wraps a failed promise', async (t) => {
-  const tryA = Try.success(100);
-  const tryF = Try.failure(new Error('expected failure'));
-  const res = await TryAsync.of(Promise.resolve(tryA))
-    .flatMapAsync(() => TryAsync.of(Promise.resolve(tryF)))
-    .promise();
-  t.truthy(res.isFailure());
-});
-
-test('flatMapAsync() maps inner fn', async (t) => {
-  const tryA = Try.success(100);
-  const res = await TryAsync.of(Promise.resolve(tryA))
-    .flatMapAsync((a) => TryAsync.of(Promise.resolve(Try.success(a + 100))))
-    .promise();
-  t.deepEqual(res.get(), 200);
-});
-
-test('flatMapAsync() catches exceptions', async (t) => {
-  const tryA = Try.success(100);
-  const res = await TryAsync.of(Promise.resolve(tryA))
-    .flatMapAsync(() => {
-      throw new Error('expected error');
     })
     .promise();
   t.deepEqual(res.isFailure(), true);
