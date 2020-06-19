@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/kfang/typescript-fp/compare/v1.5.0...v1.5.1) (2020-06-19)
+
+
+### Bug Fixes
+
+* add async helpers on try ([ec3cbb3](https://github.com/kfang/typescript-fp/commit/ec3cbb31ac3e7f2653f3d5bd236e07f6a2cfe61c))
+
 ## [1.5.0](https://github.com/kfang/typescript-fp/compare/v1.4.0...v1.5.0) (2020-06-19)
 
 
