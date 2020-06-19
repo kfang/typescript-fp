@@ -29,6 +29,10 @@ export abstract class Try<A> {
     }
   }
 
+  public static async<B>(fn: () => Promise<B>): TryAsync<B> {
+    return TryAsync.of<B>(Try.pOf<B>(fn));
+  }
+
   public static failure<B>(error: Error): Try<B> {
     return new Failure(error);
   }
