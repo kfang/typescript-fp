@@ -1,4 +1,5 @@
 import { Optional } from './optional';
+import { TryAsync } from './try-async';
 
 export abstract class Try<A> {
   public static isSuccess<B>(t: Try<B>): t is Success<B> {
@@ -54,6 +55,8 @@ export abstract class Try<A> {
 
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
+
+  public abstract readonly async: () => TryAsync<A>;
 }
 
 export class Failure<A> extends Try<A> {
@@ -90,6 +93,8 @@ export class Failure<A> extends Try<A> {
   public readonly pFlatMap = <B>(): Promise<Try<B>> => {
     return Promise.resolve(Try.failure(this.error));
   };
+
+  public readonly async = () => TryAsync.failure<A>(this.error);
 }
 
 export class Success<A> extends Try<A> {
@@ -135,4 +140,6 @@ export class Success<A> extends Try<A> {
       return Promise.resolve(Try.failure(e));
     }
   };
+
+  public readonly async = () => TryAsync.success<A>(this.value);
 }
