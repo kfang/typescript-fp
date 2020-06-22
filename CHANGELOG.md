@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.5](https://github.com/kfang/typescript-fp/compare/v1.5.4...v1.5.5) (2020-06-22)
+
+
+### Bug Fixes
+
+* convenience functions for try ([8064788](https://github.com/kfang/typescript-fp/commit/806478843fbd0516b986b1d868091e15c74e383f))
+
 ### [1.5.4](https://github.com/kfang/typescript-fp/compare/v1.5.3...v1.5.4) (2020-06-22)
 
 ### [1.5.3](https://github.com/kfang/typescript-fp/compare/v1.5.2...v1.5.3) (2020-06-19)
