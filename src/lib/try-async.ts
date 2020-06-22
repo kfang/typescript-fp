@@ -1,16 +1,17 @@
 import { Try } from './try';
 
 export class TryAsync<A> {
-  public static of<B>(value: Promise<Try<B>>): TryAsync<B> {
-    return new TryAsync<B>(value);
+  public static of<B>(value: Promise<B>): TryAsync<B> {
+    const promiseTry = value.then(Try.success).catch((e) => Try.failure<B>(e));
+    return new TryAsync<B>(promiseTry);
   }
 
   public static success<B>(value: B): TryAsync<B> {
-    return TryAsync.of(Promise.resolve(Try.success(value)));
+    return new TryAsync<B>(Promise.resolve(Try.success(value)));
   }
 
   public static failure<B>(error: Error): TryAsync<B> {
-    return TryAsync.of(Promise.resolve(Try.failure(error)));
+    return new TryAsync<B>(Promise.resolve(Try.failure(error)));
   }
 
   private readonly value: Promise<Try<A>>;

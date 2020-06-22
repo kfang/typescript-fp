@@ -3,7 +3,7 @@ import { Try } from './try';
 import { TryAsync } from './try-async';
 
 test('map() runs fn on inner try', async (t) => {
-  const tryA = Try.success('HELLO');
+  const tryA = 'HELLO';
   const result = await TryAsync.of(Promise.resolve(tryA))
     .map((str) => str + ' WORLD!!!')
     .promise();
@@ -12,8 +12,7 @@ test('map() runs fn on inner try', async (t) => {
 
 test('map() leaves the inner failure', async (t) => {
   const error = new Error('Expected Failure');
-  const tryA = Try.failure<string>(error);
-  const result = await TryAsync.of(Promise.resolve(tryA))
+  const result = await TryAsync.of(Promise.reject(error))
     .map((str) => str + ' WORLD!!!')
     .promise();
   t.truthy(result.isFailure());
@@ -33,7 +32,7 @@ test('map() catches exceptions and converts them to failures', async (t) => {
 });
 
 test('flatMap() returns inner success', async (t) => {
-  const tryA = Try.success('HELLO');
+  const tryA = 'HELLO';
   const result = await TryAsync.of(Promise.resolve(tryA))
     .flatMap((str) => TryAsync.success(str + ' WORLD!!!'))
     .promise();
@@ -52,8 +51,7 @@ test('flatMap() returns inner failure', async (t) => {
 
 test('flatMap() does not run fn on inner failure', async (t) => {
   const error = new Error('expected failure');
-  const tryA = Try.failure(error);
-  const result = await TryAsync.of(Promise.resolve(tryA))
+  const result = await TryAsync.of(Promise.reject(error))
     .flatMap(() => TryAsync.success('foobar'))
     .promise();
   t.truthy(result.isFailure());
@@ -73,7 +71,7 @@ test('flatMap() returns failure on inner throw', async (t) => {
 });
 
 test('mapAsync() wraps resolved promise', async (t) => {
-  const tryA = Try.success('hello');
+  const tryA = 'hello';
   const result = await TryAsync.of(Promise.resolve(tryA))
     .mapAsync((str) => Promise.resolve(str + ' world'))
     .promise();

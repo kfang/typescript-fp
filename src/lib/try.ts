@@ -1,5 +1,4 @@
 import { Optional } from './optional';
-import { TryAsync } from './try-async';
 
 export abstract class Try<A> {
   public static isSuccess<B>(t: Try<B>): t is Success<B> {
@@ -29,10 +28,6 @@ export abstract class Try<A> {
     }
   }
 
-  public static async<B>(fn: () => Promise<B>): TryAsync<B> {
-    return TryAsync.of<B>(Try.pOf<B>(fn));
-  }
-
   public static failure<B>(error: Error): Try<B> {
     return new Failure(error);
   }
@@ -56,13 +51,6 @@ export abstract class Try<A> {
   public abstract readonly pFlatMap: <B>(
     fn: (a: A) => Promise<Try<B>>
   ) => Promise<Try<B>>;
-
-  public abstract readonly mapAsync: <B>(
-    fn: (a: A) => Promise<B>
-  ) => TryAsync<B>;
-  public abstract readonly flatMapAsync: <B>(
-    fn: (a: A) => Promise<Try<B>>
-  ) => TryAsync<B>;
 
   public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
   public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
@@ -101,14 +89,6 @@ export class Failure<A> extends Try<A> {
 
   public readonly pFlatMap = <B>(): Promise<Try<B>> => {
     return Promise.resolve(Try.failure(this.error));
-  };
-
-  public readonly flatMapAsync = <B>(): TryAsync<B> => {
-    return TryAsync.of(Promise.resolve(Try.failure(this.error)));
-  };
-
-  public readonly mapAsync = <B>(): TryAsync<B> => {
-    return TryAsync.of(Promise.resolve(Try.failure(this.error)));
   };
 }
 
@@ -154,15 +134,5 @@ export class Success<A> extends Try<A> {
     } catch (e) {
       return Promise.resolve(Try.failure(e));
     }
-  };
-
-  public readonly flatMapAsync = <B>(
-    fn: (a: A) => Promise<Try<B>>
-  ): TryAsync<B> => {
-    return TryAsync.of(fn(this.value));
-  };
-
-  public readonly mapAsync = <B>(fn: (a: A) => Promise<B>): TryAsync<B> => {
-    return TryAsync.of(Try.pOf(() => fn(this.value)));
   };
 }
