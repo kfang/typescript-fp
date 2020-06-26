@@ -1,7 +1,3 @@
-function isNullOrUndefined(value: any): boolean {
-    return value === null || value === undefined;
-}
-
 /**
  * A container object which may or may not contain a non-null value.
  * If a value is present, isEmpty() will return true and get() will return the value.
@@ -26,14 +22,16 @@ function isNullOrUndefined(value: any): boolean {
  * ```
  */
 export abstract class Optional<A> {
-    public static flatten(o: { readonly [k: string]: Optional<any> }): { readonly [k: string]: any } {
-        return Object.keys(o).reduce((result, key) => {
-            return o[key].isEmpty() ? result : { ...result, [key]: o[key].get() };
-        }, {});
-    }
-
     public static of<B>(v: B | null | undefined): Optional<B> {
-        return isNullOrUndefined(v) ? new None<B>() : new Some(v!);
+        if (v === null) {
+            return new None<B>();
+        }
+
+        if (v === undefined) {
+            return new None<B>();
+        }
+
+        return new Some<B>(v);
     }
 
     public static empty<B>(): Optional<B> {
@@ -170,7 +168,7 @@ export class Some<A> extends Optional<A> {
 
     constructor(v: A) {
         super();
-        if (isNullOrUndefined(v)) {
+        if (v === null || v === undefined) {
             throw new Error("can't construct a 'Some' with an empty value");
         }
         this.a = v;

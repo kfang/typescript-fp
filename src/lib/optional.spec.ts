@@ -102,20 +102,6 @@ test('flatMap() should work over empty', (t) => {
     t.truthy(res.isEmpty());
 });
 
-test('flatten() should return object without nulls', (t) => {
-    const obj = {
-        a: Optional.of('foobar'),
-        b: Optional.of('deadbeef'),
-        c: Optional.of(null),
-        d: Optional.of(undefined),
-    };
-    const res = Optional.flatten(obj);
-    t.deepEqual(res, {
-        a: 'foobar',
-        b: 'deadbeef',
-    });
-});
-
 test('exists() should return false on a None', (t) => {
     const res = Optional.empty().exists(() => true);
     t.false(res);
