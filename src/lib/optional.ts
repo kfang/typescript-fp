@@ -1,7 +1,3 @@
-function isNullOrUndefined(value: any): boolean {
-  return value === null || value === undefined;
-}
-
 /**
  * A container object which may or may not contain a non-null value.
  * If a value is present, isEmpty() will return true and get() will return the value.
@@ -26,249 +22,249 @@ function isNullOrUndefined(value: any): boolean {
  * ```
  */
 export abstract class Optional<A> {
-  public static flatten(o: {
-    readonly [k: string]: Optional<any>;
-  }): { readonly [k: string]: any } {
-    return Object.keys(o).reduce((result, key) => {
-      return o[key].isEmpty() ? result : { ...result, [key]: o[key].get() };
-    }, {});
-  }
+    public static of<B>(v: B | null | undefined): Optional<B> {
+        if (v === null) {
+            return new None<B>();
+        }
 
-  public static of<B>(v: B | null | undefined): Optional<B> {
-    return isNullOrUndefined(v) ? new None<B>() : new Some(v!);
-  }
+        if (v === undefined) {
+            return new None<B>();
+        }
 
-  public static empty<B>(): Optional<B> {
-    return new None<B>();
-  }
+        return new Some<B>(v);
+    }
 
-  /**
-   * applies the function to the inner value if it exists.
-   *
-   * ```
-   * const square = (v) => v * v;
-   * const squareOf11 = Optional.of(11).map(square)
-   * squareOf11.contains(121) // => true
-   * ```
-   *
-   * @param {(A) => B} fn
-   * @returns {Optional<B>}
-   */
-  public abstract map<B>(fn: (a: A) => B): Optional<B>;
+    public static empty<B>(): Optional<B> {
+        return new None<B>();
+    }
 
-  /**
-   * applies the async function to the inner value if it exists. Swaps what
-   * would have been an inner Promise to the outside.
-   * @param {(A) => Promise<B>} fn
-   * @returns {Promise<Optional<B>>}
-   */
-  public abstract pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>>;
+    /**
+     * applies the function to the inner value if it exists.
+     *
+     * ```
+     * const square = (v) => v * v;
+     * const squareOf11 = Optional.of(11).map(square)
+     * squareOf11.contains(121) // => true
+     * ```
+     *
+     * @param {(A) => B} fn
+     * @returns {Optional<B>}
+     */
+    public abstract map<B>(fn: (a: A) => B): Optional<B>;
 
-  /**
-   * applies the function to the inner value if it exists.
-   * similar to `map` except the function should return an Optional and the final
-   * result will be empty if the function returns an empty Optional.
-   *
-   * ```
-   * Optional.of("hello")
-   *   .flatMap(str => Optional.of(str + " world")) // => Some("hello world")
-   *   .flatMap(str => Optional.of(null))           // => None
-   * ```
-   * @param {(A) => Optional<B>} fn
-   * @returns {Optional<B>}
-   */
-  public abstract flatMap<B>(fn: (a: A) => Optional<B>): Optional<B>;
+    /**
+     * applies the async function to the inner value if it exists. Swaps what
+     * would have been an inner Promise to the outside.
+     * @param {(A) => Promise<B>} fn
+     * @returns {Promise<Optional<B>>}
+     */
+    public abstract pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>>;
 
-  /**
-   * returns the inner value
-   *
-   * ```
-   * Optional.of(undefined).get()     // => throws Error
-   * Optional.of(null).get()          // => throws Error
-   * Optional.of("hello world").get() // => "hello world"
-   * ```
-   *
-   * @throws {Error} when trying to get a value of an empty Optional
-   */
-  public abstract get(): A;
+    /**
+     * applies the function to the inner value if it exists.
+     * similar to `map` except the function should return an Optional and the final
+     * result will be empty if the function returns an empty Optional.
+     *
+     * ```
+     * Optional.of("hello")
+     *   .flatMap(str => Optional.of(str + " world")) // => Some("hello world")
+     *   .flatMap(str => Optional.of(null))           // => None
+     * ```
+     * @param {(A) => Optional<B>} fn
+     * @returns {Optional<B>}
+     */
+    public abstract flatMap<B>(fn: (a: A) => Optional<B>): Optional<B>;
 
-  /**
-   * returns the inner value if it exists, otherwise returns the passed in value
-   *
-   * ```
-   * Optional.empty().getOrElse("default")            // => "default"
-   * Optional.of("hello world").getOrElse("default")  // => "hello world"
-   * ```
-   *
-   * @param d the default value to return if the Optional is empty
-   */
-  public abstract getOrElse(d: A): A;
+    /**
+     * returns the inner value
+     *
+     * ```
+     * Optional.of(undefined).get()     // => throws Error
+     * Optional.of(null).get()          // => throws Error
+     * Optional.of("hello world").get() // => "hello world"
+     * ```
+     *
+     * @throws {Error} when trying to get a value of an empty Optional
+     */
+    public abstract get(): A;
 
-  /**
-   * returns the inner value if it exists, otherwise throws with given error
-   * ```
-   * const error = new Error("my descriptive error")
-   * Optional.empty().getOrThrow(error)             // => ERROR: Error: my descriptive error
-   * Optional.of("hellow world").getOrThrow(error)  // => "hello world"
-   * ```
-   * @param {Error} error - error object to throw
-   */
-  public abstract getOrThrow(error: Error): A;
+    /**
+     * returns the inner value if it exists, otherwise returns the passed in value
+     *
+     * ```
+     * Optional.empty().getOrElse("default")            // => "default"
+     * Optional.of("hello world").getOrElse("default")  // => "hello world"
+     * ```
+     *
+     * @param d the default value to return if the Optional is empty
+     */
+    public abstract getOrElse(d: A): A;
 
-  /**
-   * returns the inner value if it exists, otherwise returns null
-   * ```
-   * Optional.empty().getOrNull()     // => null
-   * Optional.of("HELLO").getOrNull() // => "HELLO"
-   */
-  public abstract getOrNull(): A | null;
+    /**
+     * returns the inner value if it exists, otherwise throws with given error
+     * ```
+     * const error = new Error("my descriptive error")
+     * Optional.empty().getOrThrow(error)             // => ERROR: Error: my descriptive error
+     * Optional.of("hellow world").getOrThrow(error)  // => "hello world"
+     * ```
+     * @param {Error} error - error object to throw
+     */
+    public abstract getOrThrow(error: Error): A;
 
-  /**
-   * returns the inner value if it exists, otherwise returns undefined
-   * ```
-   * Optional.empty().getOrNull()     // => undefined
-   * Optional.of("HELLO").getOrNull() // => "HELLO"
-   */
-  public abstract getOrUndefined(): A | undefined;
+    /**
+     * returns the inner value if it exists, otherwise returns null
+     * ```
+     * Optional.empty().getOrNull()     // => null
+     * Optional.of("HELLO").getOrNull() // => "HELLO"
+     */
+    public abstract getOrNull(): A | null;
 
-  /**
-   * returns whether or not the Optional's inner value is equal to what is
-   * passed in. Uses `===`
-   *
-   * ```
-   * Optional.of("hello world").contains("hello world")   // => true
-   * Optional.empty().contains("hello world")             // => false
-   * ```
-   * @param v
-   */
-  public abstract contains(v: A): boolean;
+    /**
+     * returns the inner value if it exists, otherwise returns undefined
+     * ```
+     * Optional.empty().getOrNull()     // => undefined
+     * Optional.of("HELLO").getOrNull() // => "HELLO"
+     */
+    public abstract getOrUndefined(): A | undefined;
 
-  /**
-   * returns true if this Optional contains `undefined` or `null`, false otherwise.
-   *
-   * ```
-   * Optional.of("hello world").isEmpty() // => false
-   * Optional.of(0).isEmpty()             // => false
-   * Optional.of({}).isEmpty()            // => false
-   * Optional.of([]).isEmpty()            // => false
-   * Optional.empty().isEmpty()           // => true
-   * Optional.of(null).isEmpty()          // => true
-   * Optional.of(undefined).isEmpty()     // => true
-   *
-   * ```
-   */
-  public abstract isEmpty(): boolean;
+    /**
+     * returns whether or not the Optional's inner value is equal to what is
+     * passed in. Uses `===`
+     *
+     * ```
+     * Optional.of("hello world").contains("hello world")   // => true
+     * Optional.empty().contains("hello world")             // => false
+     * ```
+     * @param v
+     */
+    public abstract contains(v: A): boolean;
 
-  /**
-   * returns true if this Optional is not empty and the function passed in returns true. Otherwise
-   * returns false
-   * @param {(A) => boolean} fn - existance function
-   */
-  public abstract exists(fn: (v: A) => boolean): boolean;
+    /**
+     * returns true if this Optional contains `undefined` or `null`, false otherwise.
+     *
+     * ```
+     * Optional.of("hello world").isEmpty() // => false
+     * Optional.of(0).isEmpty()             // => false
+     * Optional.of({}).isEmpty()            // => false
+     * Optional.of([]).isEmpty()            // => false
+     * Optional.empty().isEmpty()           // => true
+     * Optional.of(null).isEmpty()          // => true
+     * Optional.of(undefined).isEmpty()     // => true
+     *
+     * ```
+     */
+    public abstract isEmpty(): boolean;
+
+    /**
+     * returns true if this Optional is not empty and the function passed in returns true. Otherwise
+     * returns false
+     * @param {(A) => boolean} fn - existance function
+     */
+    public abstract exists(fn: (v: A) => boolean): boolean;
 }
 
 export class Some<A> extends Optional<A> {
-  private readonly a: A;
+    private readonly a: A;
 
-  constructor(v: A) {
-    super();
-    if (isNullOrUndefined(v)) {
-      throw new Error("can't construct a 'Some' with an empty value");
+    constructor(v: A) {
+        super();
+        if (v === null || v === undefined) {
+            throw new Error("can't construct a 'Some' with an empty value");
+        }
+        this.a = v;
     }
-    this.a = v;
-  }
 
-  public contains(v: A): boolean {
-    return v === this.a;
-  }
+    public contains(v: A): boolean {
+        return v === this.a;
+    }
 
-  public exists(fn: (v: A) => boolean): boolean {
-    return fn(this.a);
-  }
+    public exists(fn: (v: A) => boolean): boolean {
+        return fn(this.a);
+    }
 
-  public flatMap<B>(fn: (a: A) => Optional<B>): Optional<B> {
-    return fn(this.a);
-  }
+    public flatMap<B>(fn: (a: A) => Optional<B>): Optional<B> {
+        return fn(this.a);
+    }
 
-  public get(): A {
-    return this.a;
-  }
+    public get(): A {
+        return this.a;
+    }
 
-  public getOrElse(): A {
-    return this.a;
-  }
+    public getOrElse(): A {
+        return this.a;
+    }
 
-  public getOrThrow(): A {
-    return this.a;
-  }
+    public getOrThrow(): A {
+        return this.a;
+    }
 
-  public getOrNull(): A | null {
-    return this.a;
-  }
+    public getOrNull(): A | null {
+        return this.a;
+    }
 
-  public getOrUndefined(): A | undefined {
-    return this.a;
-  }
+    public getOrUndefined(): A | undefined {
+        return this.a;
+    }
 
-  public isEmpty(): boolean {
-    return false;
-  }
+    public isEmpty(): boolean {
+        return false;
+    }
 
-  public map<B>(fn: (a: A) => B): Optional<B> {
-    return Optional.of(fn(this.a));
-  }
+    public map<B>(fn: (a: A) => B): Optional<B> {
+        return Optional.of(fn(this.a));
+    }
 
-  public pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>> {
-    return fn(this.a).then((b) => Optional.of(b));
-  }
+    public pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>> {
+        return fn(this.a).then((b) => Optional.of(b));
+    }
 }
 
 export class None<A> extends Optional<A> {
-  constructor() {
-    super();
-  }
+    constructor() {
+        super();
+    }
 
-  public contains(): boolean {
-    return false;
-  }
+    public contains(): boolean {
+        return false;
+    }
 
-  public exists(): boolean {
-    return false;
-  }
+    public exists(): boolean {
+        return false;
+    }
 
-  public flatMap<B>(): Optional<B> {
-    return new None<B>();
-  }
+    public flatMap<B>(): Optional<B> {
+        return new None<B>();
+    }
 
-  public get(): A {
-    throw new Error('called get on an empty Optional');
-  }
+    public get(): A {
+        throw new Error("called get on an empty Optional");
+    }
 
-  public getOrElse(d: A): A {
-    return d;
-  }
+    public getOrElse(d: A): A {
+        return d;
+    }
 
-  public getOrThrow(error: Error): A {
-    throw error;
-  }
+    public getOrThrow(error: Error): A {
+        throw error;
+    }
 
-  public getOrNull(): A | null {
-    return null;
-  }
+    public getOrNull(): A | null {
+        return null;
+    }
 
-  public getOrUndefined(): A | undefined {
-    return undefined;
-  }
+    public getOrUndefined(): A | undefined {
+        return undefined;
+    }
 
-  public isEmpty(): boolean {
-    return true;
-  }
+    public isEmpty(): boolean {
+        return true;
+    }
 
-  public map<B>(): Optional<B> {
-    return new None<B>();
-  }
+    public map<B>(): Optional<B> {
+        return new None<B>();
+    }
 
-  public pMap<B>(): Promise<Optional<B>> {
-    return Promise.resolve(new None<B>());
-  }
+    public pMap<B>(): Promise<Optional<B>> {
+        return Promise.resolve(new None<B>());
+    }
 }
