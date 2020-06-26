@@ -1,4 +1,4 @@
-import { Try } from './try';
+import { Try } from "./try";
 
 export class TryAsync<A> {
     public static of<B>(value: Promise<B>): TryAsync<B> {

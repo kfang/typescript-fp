@@ -237,7 +237,7 @@ export class None<A> extends Optional<A> {
     }
 
     public get(): A {
-        throw new Error('called get on an empty Optional');
+        throw new Error("called get on an empty Optional");
     }
 
     public getOrElse(d: A): A {

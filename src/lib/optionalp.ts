@@ -1,4 +1,4 @@
-import { Optional } from './optional';
+import { Optional } from "./optional";
 
 export class OptionalP<T1> {
     public static empty<T>(): OptionalP<T> {

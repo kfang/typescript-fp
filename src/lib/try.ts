@@ -1,5 +1,5 @@
-import { Optional } from './optional';
-import { TryAsync } from './try-async';
+import { Optional } from "./optional";
+import { TryAsync } from "./try-async";
 
 export abstract class Try<A> {
     public static isSuccess<B>(t: Try<B>): t is Success<B> {
@@ -63,21 +63,21 @@ export class Failure<A> extends Try<A> {
         this.error = e;
     }
 
-    public readonly isSuccess = () => false;
-    public readonly isFailure = () => true;
-    public readonly get = () => {
+    public readonly isSuccess = (): boolean => false;
+    public readonly isFailure = (): boolean => true;
+    public readonly get = (): A => {
         throw this.error;
     };
-    public readonly getOrElse = (defaultValue: A) => defaultValue;
-    public readonly toOptional: () => Optional<A> = () => Optional.empty();
-    public readonly recover = (fn: (e: Error) => A) => new Success(fn(this.error));
-    public readonly recoverWith = (fn: (e: Error) => Try<A>) => fn(this.error);
+    public readonly getOrElse = (defaultValue: A): A => defaultValue;
+    public readonly toOptional = (): Optional<A> => Optional.empty();
+    public readonly recover = (fn: (e: Error) => A): Try<A> => new Success(fn(this.error));
+    public readonly recoverWith = (fn: (e: Error) => Try<A>): Try<A> => fn(this.error);
 
-    public readonly map = <B>() => {
+    public readonly map = <B>(): Try<B> => {
         return new Failure<B>(this.error);
     };
 
-    public readonly flatMap = <B>() => {
+    public readonly flatMap = <B>(): Try<B> => {
         return new Failure<B>(this.error);
     };
 
@@ -89,7 +89,7 @@ export class Failure<A> extends Try<A> {
         return Promise.resolve(Try.failure(this.error));
     };
 
-    public readonly async = () => TryAsync.failure<A>(this.error);
+    public readonly async = (): TryAsync<A> => TryAsync.failure<A>(this.error);
 }
 
 export class Success<A> extends Try<A> {
@@ -100,19 +100,19 @@ export class Success<A> extends Try<A> {
         this.value = v;
     }
 
-    public readonly isSuccess = () => true;
-    public readonly isFailure = () => false;
-    public readonly get = () => this.value;
-    public readonly getOrElse = () => this.value;
-    public readonly toOptional = () => Optional.of(this.value);
-    public readonly recover = () => this;
-    public readonly recoverWith = () => this;
+    public readonly isSuccess = (): boolean => true;
+    public readonly isFailure = (): boolean => false;
+    public readonly get = (): A => this.value;
+    public readonly getOrElse = (): A => this.value;
+    public readonly toOptional = (): Optional<A> => Optional.of(this.value);
+    public readonly recover = (): Try<A> => this;
+    public readonly recoverWith = (): Try<A> => this;
 
-    public readonly map = <B>(fn: (a: A) => B) => {
+    public readonly map = <B>(fn: (a: A) => B): Try<B> => {
         return new Success<B>(fn(this.value));
     };
 
-    public readonly flatMap = <B>(fn: (a: A) => Try<B>) => {
+    public readonly flatMap = <B>(fn: (a: A) => Try<B>): Try<B> => {
         return fn(this.value);
     };
 
@@ -134,5 +134,5 @@ export class Success<A> extends Try<A> {
         }
     };
 
-    public readonly async = () => TryAsync.success<A>(this.value);
+    public readonly async = (): TryAsync<A> => TryAsync.success<A>(this.value);
 }
