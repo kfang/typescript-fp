@@ -1,155 +1,153 @@
-// tslint:disable:no-expression-statement
-import test from "ava";
 import { Optional, Some } from "./optional";
 
-test("isEmpty() should return true for undefined", (t) => {
+test("isEmpty() should return true for undefined", () => {
     const opt = Optional.of(undefined);
-    t.truthy(opt.isEmpty());
+    expect(opt.isEmpty()).toBeTruthy();
 });
 
-test("isEmpty() should return true for null", (t) => {
+test("isEmpty() should return true for null", () => {
     const opt = Optional.of(null);
-    t.truthy(opt.isEmpty());
+    expect(opt.isEmpty()).toBeTruthy();
 });
 
-test("isEmpty() should return true for something mapped to undefined", (t) => {
+test("isEmpty() should return true for something mapped to undefined", () => {
     const opt = Optional.of({ a: undefined }).map((o) => o.a);
-    t.truthy(opt.isEmpty());
+    expect(opt.isEmpty()).toBeTruthy();
 });
 
-test("contains() should return true if it contains foobar", (t) => {
+test("contains() should return true if it contains foobar", () => {
     const opt = Optional.of("foobar");
-    t.truthy(opt.contains("foobar"));
+    expect(opt.contains("foobar")).toBeTruthy();
 });
 
-test("contains() should return false if its the wrong value", (t) => {
+test("contains() should return false if its the wrong value", () => {
     const opt = Optional.of("foobar");
-    t.falsy(opt.contains("deadbeef"));
+    expect(opt.contains("deadbeef")).toBeFalsy();
 });
 
-test("contains() should return false for a none", (t) => {
+test("contains() should return false for a none", () => {
     const opt = Optional.empty<string>();
-    t.falsy(opt.contains("foobar"));
+    expect(opt.contains("foobar")).toBeFalsy();
 });
 
-test("getOrElse() should return inner value if nonempty", (t) => {
+test("getOrElse() should return inner value if nonempty", () => {
     const opt = Optional.of("foobar");
     const res = opt.getOrElse("deadbeef");
-    t.deepEqual(res, "foobar");
+    expect(res).toEqual("foobar");
 });
 
-test("getOrElse() should return default value if empty", (t) => {
+test("getOrElse() should return default value if empty", () => {
     const opt = Optional.empty();
     const res = opt.getOrElse("deadbeef");
-    t.deepEqual(res, "deadbeef");
+    expect(res).toEqual("deadbeef");
 });
 
-test("map() should return the inner value", (t) => {
+test("map() should return the inner value", () => {
     const opt = Optional.of({ a: { b: "foobar" } });
     const res = opt.map((o) => o.a).map((o) => o.b);
-    t.truthy(res.contains("foobar"));
+    expect(res.contains("foobar")).toBeTruthy();
 });
 
-test("map() should be empty if null", (t) => {
+test("map() should be empty if null", () => {
     const opt = Optional.of({ a: null });
     const res = opt.map((o) => o.a);
-    t.truthy(res.isEmpty());
+    expect(res.isEmpty()).toBeTruthy();
 });
 
-test("map() should map over empty", (t) => {
+test("map() should map over empty", () => {
     const opt = Optional.of(null);
     const res = opt.map((o) => o);
-    t.truthy(res.isEmpty());
+    expect(res.isEmpty()).toBeTruthy();
 });
 
-test("pMap() should wrap a nonempty promise", async (t) => {
+test("pMap() should wrap a nonempty promise", async () => {
     const opt = Optional.of("foobar");
     const res = await opt.pMap((s) => Promise.resolve(s));
-    t.truthy(res.contains("foobar"));
+    expect(res.contains("foobar")).toBeTruthy();
 });
 
-test("pMap() should wrap an empty", async (t) => {
+test("pMap() should wrap an empty", async () => {
     const opt = Optional.empty();
     const res = await opt.pMap((s) => Promise.resolve(s));
-    t.truthy(res.isEmpty());
+    expect(res.isEmpty()).toBeTruthy();
 });
 
-test("get() should throw on empty", (t) => {
+test("get() should throw on empty", () => {
     const opt = Optional.empty();
-    t.throws(() => opt.get());
+    expect(() => opt.get()).toThrow();
 });
 
-test("get() should return inner value", (t) => {
+test("get() should return inner value", () => {
     const opt = Optional.of("foobar");
-    t.deepEqual(opt.get(), "foobar");
+    expect(opt.get()).toEqual("foobar");
 });
 
-test("flatMap() should return inner", (t) => {
+test("flatMap() should return inner", () => {
     const opt = Optional.of({ a: "foobar" });
     const res = opt.flatMap((o) => Optional.of(o.a));
-    t.truthy(res.contains("foobar"));
+    expect(res.contains("foobar")).toBeTruthy();
 });
 
-test("flatMap() should return empty", (t) => {
+test("flatMap() should return empty", () => {
     const opt = Optional.of({ a: null });
     const res = opt.flatMap((o) => Optional.of(o.a));
-    t.truthy(res.isEmpty());
+    expect(res.isEmpty()).toBeTruthy();
 });
 
-test("flatMap() should work over empty", (t) => {
+test("flatMap() should work over empty", () => {
     const opt = Optional.of(null);
     const res = opt.flatMap((a) => Optional.of(a));
-    t.truthy(res.isEmpty());
+    expect(res.isEmpty()).toBeTruthy();
 });
 
-test("exists() should return false on a None", (t) => {
+test("exists() should return false on a None", () => {
     const res = Optional.empty().exists(() => true);
-    t.false(res);
+    expect(res).toBeFalsy();
 });
 
-test("exists() should return true if the function passed returns true", (t) => {
+test("exists() should return true if the function passed returns true", () => {
     const res = Optional.of("foobar").exists((s) => s === "foobar");
-    t.true(res);
+    expect(res).toEqual(true);
 });
 
-test("exists() should return false if the function passed returns false", (t) => {
+test("exists() should return false if the function passed returns false", () => {
     const res = Optional.of("foobar").exists((s) => s === "hello world");
-    t.false(res);
+    expect(res).toEqual(false);
 });
 
-test("constructing a Some with null throws", (t) => {
+test("constructing a Some with null throws", () => {
     const fn = () => new Some<string>((null as unknown) as string);
-    t.throws(fn);
+    expect(fn).toThrow();
 });
 
-test("should return hello world", (t) => {
+test("should return hello world", () => {
     const e = new Error();
     const v: string = Optional.of("hello world").getOrThrow(e);
-    t.is(v, "hello world");
+    expect(v).toEqual("hello world");
 });
 
-test("should throw an error", (t) => {
+test("should throw an error", () => {
     const e = new Error();
     const o = Optional.empty<string>();
-    t.throws(() => o.getOrThrow(e));
+    expect(() => o.getOrThrow(e)).toThrow();
 });
 
-test("getOrNull() should return inner value", (t) => {
+test("getOrNull() should return inner value", () => {
     const res = Optional.of("HELLO").getOrNull();
-    t.is(res, "HELLO");
+    expect(res).toEqual("HELLO");
 });
 
-test("getOrNull() should return null", (t) => {
+test("getOrNull() should return null", () => {
     const res = Optional.empty<string>().getOrNull();
-    t.is(res, null);
+    expect(res).toEqual(null);
 });
 
-test("getOrUndefined() should return inner value", (t) => {
+test("getOrUndefined() should return inner value", () => {
     const res = Optional.of("HELLO").getOrUndefined();
-    t.is(res, "HELLO");
+    expect(res).toEqual("HELLO");
 });
 
-test("getOrUndefeind() should return undefined", (t) => {
+test("getOrUndefeind() should return undefined", () => {
     const res = Optional.empty<string>().getOrUndefined();
-    t.is(res, undefined);
+    expect(res).toEqual(undefined);
 });

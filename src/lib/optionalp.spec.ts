@@ -1,4 +1,3 @@
-import test from "ava";
 import { Optional } from "./optional";
 import { OptionalP } from "./optionalp";
 
@@ -11,19 +10,22 @@ function testfn(str: string): Promise<Optional<string>> {
         .get();
 }
 
-test("should return hello", (t) => {
-    return testfn("").then((o) => t.truthy(o.contains("hello")));
+test("should return hello", async () => {
+    const res = await testfn("")
+    expect(res.contains("hello")).toEqual(true);
 });
 
-test("should return world", (t) => {
-    return testfn("a").then((o) => t.truthy(o.contains("world")));
+test("should return world", async () => {
+    const res = await testfn("a")
+    expect(res.contains("world")).toBeTruthy();
 });
 
-test("should return empty", (t) => {
-    return testfn("ab").then((o) => t.truthy(o.isEmpty()));
+test("should return empty", async () => {
+    const res = await testfn("ab");
+    expect(res.isEmpty()).toEqual(true);
 });
 
-test("should return empty over flatmap", async (t) => {
+test("should return empty over flatmap", async () => {
     const p = await OptionalP.empty().get();
-    t.truthy(p.isEmpty());
+    expect(p.isEmpty()).toEqual(true);
 });
