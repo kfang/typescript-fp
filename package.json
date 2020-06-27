@@ -14,13 +14,8 @@
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
     "fix": "eslint src --fix",
-    "test": "run-s build test:*",
+    "test": "jest",
     "test:lint": "eslint src",
-    "test:unit": "nyc --silent ava",
-    "cov": "run-s build test:unit cov:html",
-    "cov:html": "nyc report --reporter=html",
-    "cov:send": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "cov:check": "nyc report && nyc check-coverage --lines 0 --functions 0 --branches 0",
     "doc": "run-s doc:html",
     "doc:html": "typedoc src/ --target ES6 --mode file --out build/docs",
     "doc:json": "typedoc src/ --target ES6 --mode file --json build/docs/typedoc.json",
@@ -28,7 +23,7 @@
     "version": "standard-version",
     "reset": "git clean -dfx && git reset --hard && yarn",
     "clean": "trash build test",
-    "all": "run-s reset test cov:check doc:html",
+    "all": "run-s reset test doc:html",
     "prepare-release": "run-s all version doc:publish"
   },
   "engines": {
@@ -36,37 +31,26 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^26.0.3",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
-    "ava": "3.9.0",
-    "codecov": "^3.7.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "gh-pages": "^3.0.0",
+    "jest": "^26.1.0",
     "npm-run-all": "^4.1.3",
-    "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "standard-version": "^8.0.0",
     "trash-cli": "^3.0.0",
+    "ts-jest": "^26.1.1",
     "typedoc": "^0.17.7",
     "typescript": "^3.9.5"
-  },
-  "ava": {
-    "failFast": true,
-    "files": [
-      "build/main/**/*.spec.js"
-    ]
   },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "nyc": {
-    "exclude": [
-      "**/*.spec.js"
-    ]
   }
 }

@@ -1,194 +1,190 @@
-// tslint:disable:no-expression-statement
-import test from "ava";
 import { Try } from "./try";
 
-test("isSuccess() should return true on non error", (t) => {
+test("isSuccess() should return true on non error", () => {
     const res = Try.of(() => "foobar");
-    t.truthy(res.isSuccess());
-    t.truthy(Try.isSuccess(res));
+    expect(res.isSuccess()).toBeTruthy();
+    expect(Try.isSuccess(res)).toBeTruthy();
 });
 
-test("isSuccess() should return false on error", (t) => {
+test("isSuccess() should return false on error", () => {
     const res = Try.of(() => {
         throw new Error();
     });
-    t.falsy(res.isSuccess());
-    t.falsy(Try.isSuccess(res));
+    expect(res.isSuccess()).toBeFalsy();
+    expect(Try.isSuccess(res)).toBeFalsy();
 });
 
-test("isFailure() should return false on non error", (t) => {
+test("isFailure() should return false on non error", () => {
     const res = Try.of(() => "foobar");
-    t.falsy(res.isFailure());
-    t.falsy(Try.isFailure(res));
+    expect(res.isFailure()).toBeFalsy();
+    expect(Try.isFailure(res)).toBeFalsy();
 });
 
-test("isFailure() should return true on error", (t) => {
+test("isFailure() should return true on error", () => {
     const res = Try.of(() => {
         throw new Error();
     });
-    t.truthy(res.isFailure());
-    t.truthy(Try.isFailure(res));
+    expect(res.isFailure()).toBeTruthy();
+    expect(Try.isFailure(res)).toBeTruthy();
 });
 
-test("get() should return the value on non error", (t) => {
+test("get() should return the value on non error", () => {
     const res = Try.of(() => "foobar");
-    t.deepEqual(res.get(), "foobar");
+    expect(res.get()).toEqual("foobar");
 });
 
-test("get() should throw error on error", (t) => {
+test("get() should throw error on error", () => {
     const res = Try.of(() => {
         throw new Error();
     });
-    t.throws(() => res.get());
+    expect(() => res.get()).toThrow();
 });
 
-test("getOrElse() should return the value on non error", (t) => {
+test("getOrElse() should return the value on non error", () => {
     const res = Try.of(() => "foobar");
-    t.deepEqual(res.getOrElse("deadbeef"), "foobar");
+    expect(res.getOrElse("deadbeef")).toEqual("foobar");
 });
 
-test("getOrElse() should return the default value on error", (t) => {
+test("getOrElse() should return the default value on error", () => {
     const res = Try.of<string>(() => {
         throw new Error();
     });
-    t.deepEqual(res.getOrElse("deadbeef"), "deadbeef");
+    expect(res.getOrElse("deadbeef")).toEqual("deadbeef");
 });
 
-test("toOptional() should return a nonempty Optional with the value", (t) => {
+test("toOptional() should return a nonempty Optional with the value", () => {
     const res = Try.of(() => "foobar").toOptional();
-    t.falsy(res.isEmpty());
-    t.truthy(res.contains("foobar"));
-    t.deepEqual(res.get(), "foobar");
+    expect(res.isEmpty()).toBeFalsy();
+    expect(res.contains("foobar")).toBeTruthy();
+    expect(res.get()).toEqual("foobar");
 });
 
-test("toOptional() should return an empty Optional", (t) => {
+test("toOptional() should return an empty Optional", () => {
     const res = Try.of(() => {
         throw new Error();
     }).toOptional();
-    t.truthy(res.isEmpty());
-    t.throws(() => res.get());
+    expect(res.isEmpty()).toBeTruthy();
+    expect(() => res.get()).toThrow();
 });
 
-test("pOf should return a Success on successful Promise", async (t) => {
+test("pOf should return a Success on successful Promise", async () => {
     const res = await Try.pOf(() => Promise.resolve("foobar"));
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "foobar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("foobar");
 });
 
-test("pOf should returna Failure on rejected Promise", async (t) => {
+test("pOf should returna Failure on rejected Promise", async () => {
     const res = await Try.pOf(() => Promise.reject(new Error()));
-    t.falsy(res.isSuccess());
-    t.throws(() => res.get());
+    expect(res.isSuccess()).toBeFalsy();
+    expect(() => res.get()).toThrow();
 });
 
-test("pOf should return Failure if function throws before Promise", async (t) => {
+test("pOf should return Failure if function throws before Promise", async () => {
     const res = await Try.pOf(() => {
         throw new Error();
     });
-    t.falsy(res.isSuccess());
-    t.throws(() => res.get());
+    expect(res.isSuccess()).toBeFalsy();
+    expect(() => res.get()).toThrow();
 });
 
-test("recover should run and return success if try failed", (t) => {
+test("recover should run and return success if try failed", () => {
     const res = Try.of<string>(() => {
         throw new Error();
     }).recover(() => {
         return "foobar";
     });
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "foobar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("foobar");
 });
 
-test("recover should not run if try succeeded", (t) => {
+test("recover should not run if try succeeded", () => {
     const res = Try.of(() => "foobar").recover(() => {
-        t.fail();
+        fail();
         return "deadbeef";
     });
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "foobar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("foobar");
 });
 
-test("recoverWith() should not run if try succeeded", (t) => {
+test("recoverWith() should not run if try succeeded", () => {
     const res = Try.of(() => "foobar").recoverWith(() => {
-        t.fail();
+        fail();
         return Try.of(() => "deadbeef");
     });
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "foobar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("foobar");
 });
 
-test("recoverWith() should run if try failed", (t) => {
+test("recoverWith() should run if try failed", () => {
     const res = Try.of<string>(() => {
         throw new Error("error");
     }).recoverWith((e) => {
-        t.deepEqual(e, new Error("error"));
+        expect(e).toEqual(new Error("error"));
         return Try.of(() => "deadbeef");
     });
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "deadbeef");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("deadbeef");
 });
 
-test("map() should convert value on success", (t) => {
+test("map() should convert value on success", () => {
     const res = Try.of(() => ({ foo: "bar" })).map((o) => o.foo);
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "bar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("bar");
 });
 
-test("map() should not convert value on failure", (t) => {
+test("map() should not convert value on failure", () => {
     const res = Try.of<{ foo: unknown }>(() => {
         throw new Error();
     }).map((o) => o.foo);
 
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
 
-test("flatMap() should convert value on success", (t) => {
+test("flatMap() should convert value on success", () => {
     const res = Try.of(() => ({ foo: "bar" })).flatMap((o) => Try.of(() => o.foo));
-
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "bar");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("bar");
 });
 
-test("flatMap should return failure on failure", (t) => {
+test("flatMap should return failure on failure", () => {
     const res = Try.of(() => ({ foo: "bar" })).flatMap(() =>
         Try.of(() => {
             throw new Error();
         }),
     );
-
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
 
-test("flatMap should return failure from a failure", (t) => {
+test("flatMap should return failure from a failure", () => {
     const res = Try.of(() => {
         throw new Error();
     }).flatMap(() => {
-        t.fail("this shouldn't run");
+        fail("this shouldn't run");
         return Try.of(() => ({ foo: "bar" }));
     });
 
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
 
-test("pMap() should return a wrapped failure on exception not in promise", async (t) => {
+test("pMap() should return a wrapped failure on exception not in promise", async () => {
     const res = await Try.success("hello").pMap(() => {
         throw new Error();
     });
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
 
-test("pMap() should return a wrapped failure on failed promise", async (t) => {
+test("pMap() should return a wrapped failure on failed promise", async () => {
     const res = await Try.success("hello").pMap(() => Promise.reject("FAILED"));
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
 
-test("pMap() returns a success on successful promise", async (t) => {
+test("pMap() returns a success on successful promise", async () => {
     const res = await Try.success("HELLO").pMap(() => Promise.resolve("WORLD"));
-    t.truthy(res.isSuccess());
-    t.deepEqual(res.get(), "WORLD");
+    expect(res.isSuccess()).toBeTruthy();
+    expect(res.get()).toEqual("WORLD");
 });
 
-test("pMap() passes along the error", async (t) => {
+test("pMap() passes along the error", async () => {
     const res = await Try.failure(new Error()).pMap(() => Promise.resolve("foobar"));
-    t.truthy(res.isFailure());
+    expect(res.isFailure()).toBeTruthy();
 });
