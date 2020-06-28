@@ -43,6 +43,24 @@ export class TryAsync<A> {
         return new TryAsync<B>(pTryB);
     }
 
+    public recover(fn: (error: Error) => A): TryAsync<A> {
+        const pTryA = this.value.then((tryA) => tryA.recover(fn)).catch((e) => Try.failure<A>(e));
+        return new TryAsync(pTryA);
+    }
+
+    public recoverWith(fn: (error: Error) => TryAsync<A>): TryAsync<A> {
+        const pTryA = this.value
+            .then((tryA: Try<A>) => {
+                if (tryA.isFailure()) {
+                    return fn(tryA.error).promise();
+                } else {
+                    return TryAsync.success(tryA.get()).promise();
+                }
+            })
+            .catch((e) => Try.failure<A>(e));
+        return new TryAsync(pTryA);
+    }
+
     public promise(): Promise<Try<A>> {
         return this.value;
     }
