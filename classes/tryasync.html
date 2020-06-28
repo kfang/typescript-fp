@@ -105,6 +105,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="tryasync.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="tryasync.html#mapasync" class="tsd-kind-icon">map<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tryasync.html#promise" class="tsd-kind-icon">promise</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tryasync.html#recover" class="tsd-kind-icon">recover</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tryasync.html#recoverwith" class="tsd-kind-icon">recover<wbr>With</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tryasync.html#failure" class="tsd-kind-icon">failure</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tryasync.html#of" class="tsd-kind-icon">of</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tryasync.html#success" class="tsd-kind-icon">success</a></li>
@@ -125,7 +127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L17">lib/try-async.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L17">lib/try-async.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -147,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L17">lib/try-async.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L17">lib/try-async.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,7 +166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L28">lib/try-async.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L28">lib/try-async.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -211,7 +213,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L23">lib/try-async.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L23">lib/try-async.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -258,7 +260,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L41">lib/try-async.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L41">lib/try-async.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -305,10 +307,92 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L46">lib/try-async.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L64">lib/try-async.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="recover" class="tsd-anchor"></a>
+					<h3>recover</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L46">lib/try-async.ts:46</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>error: <span class="tsd-signature-type">Error</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="recoverwith" class="tsd-anchor"></a>
+					<h3>recover<wbr>With</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L51">lib/try-async.ts:51</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>error: <span class="tsd-signature-type">Error</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -322,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L13">lib/try-async.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L13">lib/try-async.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -351,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L4">lib/try-async.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L4">lib/try-async.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -380,7 +464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/b41896e/src/lib/try-async.ts#L9">lib/try-async.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try-async.ts#L9">lib/try-async.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -454,6 +538,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tryasync.html#promise" class="tsd-kind-icon">promise</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tryasync.html#recover" class="tsd-kind-icon">recover</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tryasync.html#recoverwith" class="tsd-kind-icon">recover<wbr>With</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="tryasync.html#failure" class="tsd-kind-icon">failure</a>
