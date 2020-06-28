@@ -11,12 +11,12 @@ function testfn(str: string): Promise<Optional<string>> {
 }
 
 test("should return hello", async () => {
-    const res = await testfn("")
+    const res = await testfn("");
     expect(res.contains("hello")).toEqual(true);
 });
 
 test("should return world", async () => {
-    const res = await testfn("a")
+    const res = await testfn("a");
     expect(res.contains("world")).toBeTruthy();
 });
 
