@@ -96,20 +96,17 @@ test("mapAsync() wraps failed fn", async () => {
 });
 
 describe("recover", () => {
-    it("recovers from a failure", async() => {
+    it("recovers from a failure", async () => {
         const error = new Error("foobar");
         const tryA = Try.failure<string>(error);
         const fn = jest.fn().mockImplementation((e) => e.message);
 
-        const result = await tryA
-            .async()
-            .recover(fn)
-            .promise();
+        const result = await tryA.async().recover(fn).promise();
 
         expect(result.isSuccess()).toEqual(true);
         expect(result.get()).toEqual("foobar");
         expect(fn).toHaveBeenCalledWith(error);
-    })
+    });
 });
 
 describe("recoverWith", () => {
@@ -118,10 +115,7 @@ describe("recoverWith", () => {
         const tryA = Try.failure<string>(error);
         const fn = jest.fn().mockImplementation((e) => TryAsync.success(e.message));
 
-        const result = await tryA
-            .async()
-            .recoverWith(fn)
-            .promise();
+        const result = await tryA.async().recoverWith(fn).promise();
 
         expect(result.isSuccess()).toEqual(true);
         expect(result.get()).toEqual("foobar");
@@ -132,10 +126,7 @@ describe("recoverWith", () => {
         const tryA = Try.success("hello");
         const fn = jest.fn().mockImplementation((e) => TryAsync.success(e.message));
 
-        const result = await tryA
-            .async()
-            .recoverWith(fn)
-            .promise();
+        const result = await tryA.async().recoverWith(fn).promise();
 
         expect(result.isSuccess()).toEqual(true);
         expect(result.get()).toEqual("hello");

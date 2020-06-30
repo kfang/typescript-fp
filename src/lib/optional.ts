@@ -1,3 +1,5 @@
+import { OptionalAsync } from "./optional-async";
+
 /**
  * A container object which may or may not contain a non-null value.
  * If a value is present, isEmpty() will return true and get() will return the value.
@@ -161,6 +163,11 @@ export abstract class Optional<A> {
      * @param {(A) => boolean} fn - existance function
      */
     public abstract exists(fn: (v: A) => boolean): boolean;
+
+    /**
+     * converts this Optional into an OptionalAsync to make it easier to work with async functions.
+     */
+    public abstract async(): OptionalAsync<A>;
 }
 
 export class Some<A> extends Optional<A> {
@@ -217,6 +224,10 @@ export class Some<A> extends Optional<A> {
     public pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>> {
         return fn(this.a).then((b) => Optional.of(b));
     }
+
+    public async(): OptionalAsync<A> {
+        return OptionalAsync.of(this.a);
+    }
 }
 
 export class None<A> extends Optional<A> {
@@ -266,5 +277,9 @@ export class None<A> extends Optional<A> {
 
     public pMap<B>(): Promise<Optional<B>> {
         return Promise.resolve(new None<B>());
+    }
+
+    public async(): OptionalAsync<A> {
+        return OptionalAsync.empty<A>();
     }
 }
