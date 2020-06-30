@@ -153,22 +153,19 @@ test("getOrUndefeind() should return undefined", () => {
 });
 
 describe("async", () => {
-
     it("transforms a Some<A> to an OptionalAsync<A>", async () => {
-        const result = await Optional.of("Hello").async()
+        const result = await Optional.of("Hello")
+            .async()
             .map((str) => str + " World!")
             .promise();
         expect(result.isEmpty()).toBeFalsy();
         expect(result.contains("Hello World!")).toBeTruthy();
-    })
+    });
 
     it("transforms a None<A> to an OptionalAsync<A>", async () => {
         const fn = jest.fn();
-        const result = await Optional.empty<string>().async()
-            .map(fn)
-            .promise();
+        const result = await Optional.empty<string>().async().map(fn).promise();
         expect(result.isEmpty()).toBeTruthy();
         expect(fn).not.toHaveBeenCalled();
     });
-
-})
+});

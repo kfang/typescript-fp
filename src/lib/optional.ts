@@ -171,7 +171,6 @@ export abstract class Optional<A> {
 }
 
 export class Some<A> extends Optional<A> {
-    
     private readonly a: A;
 
     constructor(v: A) {

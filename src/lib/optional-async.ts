@@ -1,7 +1,6 @@
 import { Optional } from "./optional";
 
 export class OptionalAsync<A> {
-
     public static of<T>(t: T): OptionalAsync<T> {
         const pOpt = Promise.resolve(Optional.of(t));
         return new OptionalAsync(pOpt);
@@ -74,5 +73,4 @@ export class OptionalAsync<A> {
     public promise(): Promise<Optional<A>> {
         return this.pOptA;
     }
-
 }
