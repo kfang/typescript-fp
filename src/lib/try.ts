@@ -1,6 +1,44 @@
 import { Optional } from "./optional";
 import { TryAsync } from "./try-async";
 
+/**
+ * Try is a monadic container type which represents a computation that may either result in an exception,
+ * or return a successfully computed value. Instances of Try, are either an instance of Success or Failure.
+ *
+ * An important property of Try is its ability to pipeline, or chain, operations, catching exceptions along the way.
+ * The {@link Try.flatMap} and {@link Try.map} combinators each essentially pass off either their successfully completed
+ * value, wrapped in a Success type for it to be further operated upon by the next combinator in the chain, or the
+ * exception wrapped in a Failure type usually to be simply passed on down the chain. Combinators such as
+ * {@link Try.recover} are designed to provide some type of default behavior in the case of failure.
+ *
+ * lets say you have a function that might return an error:
+ * ```
+ * function foobar(): number {
+ *   const n = Math.random();
+ *   return n > 0.5 ? n : throw new Error("you were unlucky");
+ * }
+ * ```
+ *
+ * case 1: foobar() returns 0.7
+ * ```
+ * const result = Try.of(foobar)        // => Success(0.7)
+ *   .map((n) => n + 1)                 // => Success(1.7)
+ *   .flatMap((n) => Try.success(n -2)) // => Success(-1.7)
+ *   .recover((e) => 0.0)               // => Success(-1.7)
+ *   .get();                            // => -1.7
+ *
+ * assert(result, -1.7)
+ * ```
+ *
+ * case 2: foobar() throws an error
+ * ```
+ * const result = Try.of(foobar)        // => Failure("you were unlucky")
+ *   .map((n) => n + 1)                 // => Failure("you were unlucky")
+ *   .flatMap((n) => Try.success(n -2)) // => Failure("you were unlucky")
+ *   .recover((e) => 0.0)               // => Success(0.0)
+ *   .get();                            // => 0.0
+ * ```
+ */
 export abstract class Try<A> {
     public static isSuccess<B>(t: Try<B>): t is Success<B> {
         return t.isSuccess();
@@ -29,10 +67,26 @@ export abstract class Try<A> {
         }
     }
 
+    /**
+     * builds an instance of Failure directly
+     * ```
+     * Try.failure(new Error("error message"));
+     * ```
+     * @param {Error} error
+     * @return {Try<B>}
+     */
     public static failure<B>(error: Error): Try<B> {
         return new Failure(error);
     }
 
+    /**
+     * builds an instance of Success directly
+     * ```
+     * Try.success({foo: "bar"});
+     * ```
+     * @param {B} b
+     * @return {Try<B>}
+     */
     public static success<B>(b: B): Try<B> {
         return new Success(b);
     }
@@ -43,7 +97,30 @@ export abstract class Try<A> {
     public abstract readonly getOrElse: (defaultValue: A) => A;
     public abstract readonly toOptional: () => Optional<A>;
 
+    /**
+     * applies the function to the success value
+     * ```
+     * const fn = (str) => str + " world";
+     * Try.success("hello").map(fn);                // Success("hello world")
+     * Try.failure<string>(new Error()).map(fn);    // Failure()
+     * ```
+     * @param {(a: A) => B} fn - function to apply to the success value
+     * @return {Try<B>}
+     */
     public abstract readonly map: <B>(fn: (a: A) => B) => Try<B>;
+
+    /**
+     * applies the function that returns a `Try` to the success value and flattens over
+     * the result so you don't get a `Try` within a `Try`.
+     *
+     *```
+     * const fn = (str) => Try.success(str + "world");
+     * Try.success("hello").flatMap(fn);                    // Success("hello world");
+     * Try.failure<string>(new Error()).flatMap(fn);        // Failure()
+     *
+     * @param {(a: A) => Try<B>} fn - function to apply to the success value
+     * @return {Try<B>}
+     */
     public abstract readonly flatMap: <B>(fn: (a: A) => Try<B>) => Try<B>;
 
     public abstract readonly pMap: <B>(fn: (a: A) => Promise<B>) => Promise<Try<B>>;
