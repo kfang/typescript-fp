@@ -1,9 +1,9 @@
 # https://circleci.com/docs/2.0/language-javascript/
 version: 2
 jobs:
-  "node-8":
+  "node-10":
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10
     working_directory: ~/typescript-starter
     steps:
       - checkout
@@ -40,5 +40,5 @@ workflows:
   version: 2
   build:
     jobs:
-      - "node-8"
+      - "node-10"
       - "node-latest"
