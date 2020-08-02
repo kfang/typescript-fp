@@ -140,6 +140,14 @@ test("map() should not convert value on failure", () => {
     expect(res.isFailure()).toBeTruthy();
 });
 
+test("map() returns Failure on fn throwing", () => {
+    const res = Try.success("foobar")
+    .map(() => {
+        throw new Error();
+    });
+    expect(res.isFailure()).toBeTruthy();
+})
+
 test("flatMap() should convert value on success", () => {
     const res = Try.of(() => ({ foo: "bar" })).flatMap((o) => Try.of(() => o.foo));
     expect(res.isSuccess()).toBeTruthy();
@@ -165,6 +173,15 @@ test("flatMap should return failure from a failure", () => {
 
     expect(res.isFailure()).toBeTruthy();
 });
+
+test("flatMap catches failed mapping function", () => {
+    const res = Try.success("fooba")
+        .flatMap(() => {
+            throw new Error();
+        });
+
+    expect(res.isFailure()).toBeTruthy();
+})
 
 test("pMap() should return a wrapped failure on exception not in promise", async () => {
     const res = await Try.success("hello").pMap(() => {

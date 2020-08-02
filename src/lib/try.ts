@@ -186,11 +186,19 @@ export class Success<A> extends Try<A> {
     public readonly recoverWith = (): Try<A> => this;
 
     public readonly map = <B>(fn: (a: A) => B): Try<B> => {
-        return new Success<B>(fn(this.value));
+        try {
+            return new Success(fn(this.value));
+        } catch (e) {
+            return new Failure(e);
+        }
     };
 
     public readonly flatMap = <B>(fn: (a: A) => Try<B>): Try<B> => {
-        return fn(this.value);
+        try {
+            return fn(this.value);
+        } catch (e) {
+            return new Failure(e);
+        }
     };
 
     public readonly pMap = <B>(fn: (a: A) => Promise<B>): Promise<Try<B>> => {
