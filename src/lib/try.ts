@@ -123,10 +123,54 @@ export abstract class Try<A> {
      */
     public abstract readonly flatMap: <B>(fn: (a: A) => Try<B>) => Try<B>;
 
+    /**
+     * simliar to map except the function being applied returns a {@link Promise}.
+     * This is useful if you need to return something async inside the mapping function. 
+     * 
+     * ```
+     * const fn = (str: string): Promise<string> => Promise.resolve(str + " world");
+     * Try.success("hello").pMap(fn); // Promise<Sucess("hello world")>
+     * ```
+     * 
+     * If the mapping function throws, the result will automatically converted to a Failure.
+     * If the mapping function's Promise rejects, the result will be converted toa Failure.
+     * ```
+     * Try.success("hello").pMap(async () => throw new Error());        // Promise<Failure>
+     * Try.success("hello").pMap(() => Promise.reject(new Error()));    // Promise<Failure>
+     * ```
+     * 
+     * However, most of the time, you should just use {@link Try.async()} in order to deal with
+     * asynchronous operations.
+     */
     public abstract readonly pMap: <B>(fn: (a: A) => Promise<B>) => Promise<Try<B>>;
+
+    /**
+     * similar to flatMap except the function being applied returns a Promise<Try>.
+     * This is useful if the mapping function returns a Promise<Try>.
+     */
     public abstract readonly pFlatMap: <B>(fn: (a: A) => Promise<Try<B>>) => Promise<Try<B>>;
 
+    /**
+     * applies the function to to an error. The function is only called if this is a Failure.
+     * This is useful if you want to provide a default value on a failure based on the error.
+     * ```
+     * Try.failure(new Error()).recover(() => "Hello World!");  // Success("Hello World!")
+     * ```
+     */
     public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
+
+    /**
+     * similar to {@link Try.recoverWith} except that the function returns a Try. 
+     * This is useful if you want remap the error into a different error or provide
+     * a default value.
+     * ```
+     * const fn = (error: Error) => {
+     *   return error.message === "bad bad bad" ? Try.success("okay") : Try.failure(new Error("not okay"));
+     * }
+     * 
+     * Try.failure(new Error("bad bad bad")).recoverWith(fn);   // Success("okay");
+     * Try.failure(new Error("bad")).recoverWith(fn);           // Failure(new Error("not okay"));
+     */
     public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
 
     public abstract readonly async: () => TryAsync<A>;
