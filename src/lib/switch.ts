@@ -1,24 +1,31 @@
-type Predicate<A> = (a: A) => boolean;
-type Resolver<A, B> = (a: A) => B;
-
-type Reduced<A, B> = A extends unknown ? B : A;
-
-class Switch<I = unknown, O = unknown> {
-    public static on<A>(input: A): Switch<A, unknown> {
-        return new Switch<A, unknown>(input);
+class Match<I, O> {
+    public static on<A>(input: A): Match<A, unknown> {
+        return new Match<A, unknown>(input);
     }
 
     private readonly input: I;
-    private readonly resolvers: [Predicate<I>, Resolver<any, any>][];
+    private readonly cases: Array<{ predicate: (input: I) => boolean; resolver: (input: any) => O }>;
 
     private constructor(input: I) {
         this.input = input;
-        this.resolvers = [];
+        this.cases = [];
     }
 
-    public case<B extends I, C extends O>(predicate: Predicate<I>, resolver: Resolver<B, C>): Switch<I, C> {
-        this.resolvers.push([predicate, resolver]);
-        return this as Switch<I, C>;
+    public case<A extends I, B extends O, Out extends B & O>(
+        predicate: (input: I) => boolean,
+        resolver: (input: A) => B,
+    ): Match<I, Out> {
+        this.cases.push({ predicate, resolver });
+        return (this as unknown) as Match<I, Out>;
+    }
+
+    public default(defaultValue: O): O {
+        for (const c of this.cases) {
+            if (c.predicate(this.input)) {
+                return c.resolver(this.input);
+            }
+        }
+        return defaultValue;
     }
 }
 
@@ -35,13 +42,16 @@ class Blaa {
     public readonly name: string = "";
 }
 
-type NamedError = { name: string; }
+type NamedError = { name: string };
 function isError(spec: NamedError) {
     return (gen: NamedError): boolean => {
         return spec.name === gen.name;
-    }
+    };
 }
 
-const x = Switch.on(new Basic())
+type R = BadThing extends Basic ? true : false;
+
+const x = Match.on(new Basic())
     .case(isError(BadThing), (f: BadThing) => f.name)
-    .case(isError(BadThing), (f: Blaa) => f.foo)
+    .case(isError(Blaa), (f: Blaa) => f.name)
+    .default("kfjl");
