@@ -2,7 +2,9 @@ import { Try } from "./try";
 
 export class TryAsync<A> {
     public static of<B>(value: B | Promise<B>): TryAsync<B> {
-        const promiseTry = Promise.resolve(value).then(Try.success).catch((e) => Try.failure<B>(e));
+        const promiseTry = Promise.resolve(value)
+            .then(Try.success)
+            .catch((e) => Try.failure<B>(e));
         return new TryAsync<B>(promiseTry);
     }
 

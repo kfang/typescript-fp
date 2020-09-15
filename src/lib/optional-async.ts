@@ -17,7 +17,7 @@ export class OptionalAsync<A> {
      * const arr = [1, 2, undefined, 4, null, 6].map(OptionalAsync.of);
      * await OptionalAsync.flatten(arr) // => [1, 2, 4, 6]
      * ```
-     * @param {Optional<B>[]} arr 
+     * @param {Optional<B>[]} arr
      */
     public static flatten<T>(arr: OptionalAsync<T>[]): Promise<T[]> {
         return Promise.all(arr.map((opt) => opt.promise())).then(Optional.flatten);

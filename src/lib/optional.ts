@@ -46,7 +46,7 @@ export abstract class Optional<A> {
      * const arr = [1, 2, undefined, 4, null, 6].map(Optional.of);
      * Optional.flatten(arr) // => [1, 2, 4, 6]
      * ```
-     * @param {Optional<B>[]} arr 
+     * @param {Optional<B>[]} arr
      */
     public static flatten<B>(arr: Optional<B>[]): B[] {
         return arr.filter((o) => !o.isEmpty()).map((o) => o.get());
