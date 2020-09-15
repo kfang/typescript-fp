@@ -11,6 +11,18 @@ export class OptionalAsync<A> {
         return new OptionalAsync(pOpt);
     }
 
+    /**
+     * returns a Promise containing an array that keeps only the non empty values of an array of OptionalAsyncs
+     * ```
+     * const arr = [1, 2, undefined, 4, null, 6].map(OptionalAsync.of);
+     * await OptionalAsync.flatten(arr) // => [1, 2, 4, 6]
+     * ```
+     * @param {Optional<B>[]} arr
+     */
+    public static flatten<T>(arr: OptionalAsync<T>[]): Promise<T[]> {
+        return Promise.all(arr.map((opt) => opt.promise())).then(Optional.flatten);
+    }
+
     private readonly pOptA: Promise<Optional<A>>;
 
     private constructor(pOpt: Promise<Optional<A>>) {

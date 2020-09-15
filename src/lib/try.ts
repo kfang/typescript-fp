@@ -68,6 +68,18 @@ export abstract class Try<A> {
     }
 
     /**
+     * returns an array that keeps only the successful values of an array of Try
+     * ```
+     * const arr = [() => 1, () => throw new Error()].map(Try.of);
+     * Try.flatten(arr) // => [1]
+     * ```
+     * @param {Try<B>[]} arr
+     */
+    public static flatten<B>(arr: Try<B>[]): B[] {
+        return arr.filter((t) => t.isSuccess()).map((t) => t.get());
+    }
+
+    /**
      * builds an instance of Failure directly
      * ```
      * Try.failure(new Error("error message"));
@@ -125,20 +137,20 @@ export abstract class Try<A> {
 
     /**
      * simliar to map except the function being applied returns a {@link Promise}.
-     * This is useful if you need to return something async inside the mapping function. 
-     * 
+     * This is useful if you need to return something async inside the mapping function.
+     *
      * ```
      * const fn = (str: string): Promise<string> => Promise.resolve(str + " world");
      * Try.success("hello").pMap(fn); // Promise<Sucess("hello world")>
      * ```
-     * 
+     *
      * If the mapping function throws, the result will automatically converted to a Failure.
      * If the mapping function's Promise rejects, the result will be converted toa Failure.
      * ```
      * Try.success("hello").pMap(async () => throw new Error());        // Promise<Failure>
      * Try.success("hello").pMap(() => Promise.reject(new Error()));    // Promise<Failure>
      * ```
-     * 
+     *
      * However, most of the time, you should just use {@link Try.async()} in order to deal with
      * asynchronous operations.
      */
@@ -160,14 +172,14 @@ export abstract class Try<A> {
     public abstract readonly recover: (fn: (e: Error) => A) => Try<A>;
 
     /**
-     * similar to {@link Try.recoverWith} except that the function returns a Try. 
+     * similar to {@link Try.recoverWith} except that the function returns a Try.
      * This is useful if you want remap the error into a different error or provide
      * a default value.
      * ```
      * const fn = (error: Error) => {
      *   return error.message === "bad bad bad" ? Try.success("okay") : Try.failure(new Error("not okay"));
      * }
-     * 
+     *
      * Try.failure(new Error("bad bad bad")).recoverWith(fn);   // Success("okay");
      * Try.failure(new Error("bad")).recoverWith(fn);           // Failure(new Error("not okay"));
      */

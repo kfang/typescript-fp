@@ -2,7 +2,9 @@ import { Try } from "./try";
 
 export class TryAsync<A> {
     public static of<B>(value: B | Promise<B>): TryAsync<B> {
-        const promiseTry = Promise.resolve(value).then(Try.success).catch((e) => Try.failure<B>(e));
+        const promiseTry = Promise.resolve(value)
+            .then(Try.success)
+            .catch((e) => Try.failure<B>(e));
         return new TryAsync<B>(promiseTry);
     }
 
@@ -12,6 +14,18 @@ export class TryAsync<A> {
 
     public static failure<B>(error: Error): TryAsync<B> {
         return new TryAsync<B>(Promise.resolve(Try.failure(error)));
+    }
+
+    /**
+     * returns an array that keeps only the successful values of an array of TryAsync
+     * ```
+     * const arr = [Promise.resolve(1), Promise.reject("bad")].map(TryAsync.of);
+     * await TryAsync.flatten(arr) // => [1]
+     * ```
+     * @param {Try<B>[]} arr
+     */
+    public static flatten<B>(arr: TryAsync<B>[]): Promise<B[]> {
+        return Promise.all(arr.map((t) => t.promise())).then(Try.flatten);
     }
 
     private readonly value: Promise<Try<A>>;
