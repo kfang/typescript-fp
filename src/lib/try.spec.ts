@@ -203,3 +203,21 @@ test("pMap() passes along the error", async () => {
     const res = await Try.failure(new Error()).pMap(() => Promise.resolve("foobar"));
     expect(res.isFailure()).toBeTruthy();
 });
+
+describe("flatten()", () => {
+    it("keeps successful values, filters out errors", () => {
+        const arr = [() => 1, () => 2, () => { throw new Error() }, () => 3].map(Try.of);
+        const res = Try.flatten(arr);
+        expect(res).toEqual([1, 2, 3])
+    });
+    it("filters out errors", () => {
+        const arr = [() => { throw new Error() }].map(Try.of);
+        const res = Try.flatten(arr);
+        expect(res).toEqual([]);
+    });
+    it("keeps successful Try", () => {
+        const arr = [() => 1, () => 2, () => 3].map(Try.of);
+        const res = Try.flatten(arr);
+        expect(res).toEqual([1, 2, 3]);
+    });
+})

@@ -133,3 +133,21 @@ describe("recoverWith", () => {
         expect(fn).not.toHaveBeenCalled();
     });
 });
+
+describe("flatten", () => {
+    it("keeps successful values, filters out errors", async () => {
+        const arr = [Promise.resolve(1), Promise.resolve(2), Promise.reject("foobar"), Promise.resolve(4)].map(TryAsync.of);
+        const res = await TryAsync.flatten(arr);
+        expect(res).toEqual([1, 2, 4])
+    });
+    it("filters out errors", async () => {
+        const arr = [Promise.reject("foobar")].map(TryAsync.of);
+        const res = await TryAsync.flatten(arr);
+        expect(res).toEqual([]);
+    });
+    it("keeps successful Try", async () => {
+        const arr = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)].map(TryAsync.of);
+        const res = await TryAsync.flatten(arr);
+        expect(res).toEqual([1, 2, 3]);
+    });
+})

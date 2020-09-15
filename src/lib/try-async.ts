@@ -16,6 +16,18 @@ export class TryAsync<A> {
         return new TryAsync<B>(Promise.resolve(Try.failure(error)));
     }
 
+    /**
+     * returns an array that keeps only the successful values of an array of TryAsync
+     * ```
+     * const arr = [Promise.resolve(1), Promise.reject("bad")].map(TryAsync.of);
+     * await TryAsync.flatten(arr) // => [1]
+     * ```
+     * @param {Try<B>[]} arr 
+     */
+    public static flatten<B>(arr: TryAsync<B>[]): Promise<B[]> {
+        return Promise.all(arr.map((t) => t.promise())).then(Try.flatten);
+    }
+
     private readonly value: Promise<Try<A>>;
 
     private constructor(value: Promise<Try<A>>) {
