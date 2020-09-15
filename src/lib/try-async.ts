@@ -22,7 +22,7 @@ export class TryAsync<A> {
      * const arr = [Promise.resolve(1), Promise.reject("bad")].map(TryAsync.of);
      * await TryAsync.flatten(arr) // => [1]
      * ```
-     * @param {Try<B>[]} arr 
+     * @param {Try<B>[]} arr
      */
     public static flatten<B>(arr: TryAsync<B>[]): Promise<B[]> {
         return Promise.all(arr.map((t) => t.promise())).then(Try.flatten);

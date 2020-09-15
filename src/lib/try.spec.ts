@@ -206,12 +206,23 @@ test("pMap() passes along the error", async () => {
 
 describe("flatten()", () => {
     it("keeps successful values, filters out errors", () => {
-        const arr = [() => 1, () => 2, () => { throw new Error() }, () => 3].map(Try.of);
+        const arr = [
+            () => 1,
+            () => 2,
+            () => {
+                throw new Error();
+            },
+            () => 3,
+        ].map(Try.of);
         const res = Try.flatten(arr);
-        expect(res).toEqual([1, 2, 3])
+        expect(res).toEqual([1, 2, 3]);
     });
     it("filters out errors", () => {
-        const arr = [() => { throw new Error() }].map(Try.of);
+        const arr = [
+            () => {
+                throw new Error();
+            },
+        ].map(Try.of);
         const res = Try.flatten(arr);
         expect(res).toEqual([]);
     });
@@ -220,4 +231,4 @@ describe("flatten()", () => {
         const res = Try.flatten(arr);
         expect(res).toEqual([1, 2, 3]);
     });
-})
+});

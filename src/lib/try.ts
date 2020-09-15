@@ -73,7 +73,7 @@ export abstract class Try<A> {
      * const arr = [() => 1, () => throw new Error()].map(Try.of);
      * Try.flatten(arr) // => [1]
      * ```
-     * @param {Try<B>[]} arr 
+     * @param {Try<B>[]} arr
      */
     public static flatten<B>(arr: Try<B>[]): B[] {
         return arr.filter((t) => t.isSuccess()).map((t) => t.get());
