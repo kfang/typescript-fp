@@ -134,4 +134,22 @@ describe("OptionalAsync", () => {
             expect(result).toBeFalsy();
         });
     });
+
+    describe("flatten", () => {
+        it("filters out empty optionals", async () => {
+            const opts = [1, 2, undefined].map(OptionalAsync.of);
+            const result = await OptionalAsync.flatten(opts);
+            expect(result).toEqual([1, 2]);
+        });
+        it("works on empty arrays", async () => {
+            const opts = [].map(OptionalAsync.of);
+            const result = await OptionalAsync.flatten(opts);
+            expect(result).toEqual([]);
+        });
+        it("keeps non-empty values", async () => {
+            const opts = ["foo", "bar"].map(OptionalAsync.of);
+            const result = await OptionalAsync.flatten(opts);
+            expect(result).toEqual(["foo", "bar"]);
+        });
+    });
 });
