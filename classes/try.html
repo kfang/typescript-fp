@@ -66,6 +66,38 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Try is a monadic container type which represents a computation that may either result in an exception,
+						or return a successfully computed value. Instances of Try, are either an instance of Success or Failure.</p>
+					</div>
+					<p>An important property of Try is its ability to pipeline, or chain, operations, catching exceptions along the way.
+						The <a href="try.html#flatmap">Try.flatMap</a> and <a href="try.html#map">Try.map</a> combinators each essentially pass off either their successfully completed
+						value, wrapped in a Success type for it to be further operated upon by the next combinator in the chain, or the
+						exception wrapped in a Failure type usually to be simply passed on down the chain. Combinators such as
+					<a href="try.html#recover">Try.recover</a> are designed to provide some type of default behavior in the case of failure.</p>
+					<p>lets say you have a function that might return an error:</p>
+					<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foobar</span>(<span class="hljs-params"></span>): <span class="hljs-title">number</span> </span>{
+  <span class="hljs-keyword">const</span> n = <span class="hljs-built_in">Math</span>.random();
+  <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">0.5</span> ? n : <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;you were unlucky&quot;</span>);
+}</code></pre>
+					<p>case 1: foobar() returns 0.7</p>
+					<pre><code><span class="hljs-keyword">const</span> result = Try.of(foobar)        <span class="hljs-comment">// =&gt; Success(0.7)</span>
+  .map(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n + <span class="hljs-number">1</span>)                 <span class="hljs-comment">// =&gt; Success(1.7)</span>
+  .flatMap(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> Try.success(n <span class="hljs-number">-2</span>)) <span class="hljs-comment">// =&gt; Success(-1.7)</span>
+  .recover(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-number">0.0</span>)               <span class="hljs-comment">// =&gt; Success(-1.7)</span>
+  .get();                            <span class="hljs-comment">// =&gt; -1.7</span>
+
+assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
+					<p>case 2: foobar() throws an error</p>
+					<pre><code><span class="hljs-keyword">const</span> result = Try.of(foobar)        <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+  .map(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n + <span class="hljs-number">1</span>)                 <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+  .flatMap(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> Try.success(n <span class="hljs-number">-2</span>)) <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+  .recover(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-number">0.0</span>)               <span class="hljs-comment">// =&gt; Success(0.0)</span>
+  .get();                            <span class="hljs-comment">// =&gt; 0.0</span></code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -115,6 +147,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="try.html#failure" class="tsd-kind-icon">failure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="try.html#flatten" class="tsd-kind-icon">flatten</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="try.html#isfailure-1" class="tsd-kind-icon">is<wbr>Failure</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="try.html#issuccess-1" class="tsd-kind-icon">is<wbr>Success</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="try.html#of" class="tsd-kind-icon">of</a></li>
@@ -133,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L55">lib/try.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L188">lib/try.ts:188</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -158,9 +191,21 @@
 					<div class="tsd-signature tsd-kind-icon">flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L47">lib/try.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L136">lib/try.ts:136</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>applies the function that returns a <code>Try</code> to the success value and flattens over
+							the result so you don&#39;t get a <code>Try</code> within a <code>Try</code>.</p>
+						</div>
+						<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str</span>) =&gt; <span class="hljs-title">Try</span>.<span class="hljs-title">success</span>(<span class="hljs-params">str + <span class="hljs-string">&quot;world&quot;</span></span>)</span>;
+<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).flatMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;                    <span class="hljs-comment">// Success(&quot;hello world&quot;);</span>
+<span class="hljs-keyword">Try</span>.failure&lt;<span class="hljs-keyword">string</span>&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).flatMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;        <span class="hljs-comment">// Failure()</span>
+
+@param {(a: A) =&gt; <span class="hljs-keyword">Try</span>&lt;B&gt;} <span class="hljs-function"><span class="hljs-keyword">fn</span> - <span class="hljs-title">function</span> <span class="hljs-title">to</span> <span class="hljs-title">apply</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">success</span> <span class="hljs-title">value</span>
+@<span class="hljs-title">return</span> </span>{<span class="hljs-keyword">Try</span>&lt;B&gt;}</code></pre>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -213,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L42">lib/try.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L108">lib/try.ts:108</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -238,7 +283,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>OrElse<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L43">lib/try.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L109">lib/try.ts:109</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -269,7 +314,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Failure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L41">lib/try.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L107">lib/try.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -294,7 +339,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L40">lib/try.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L106">lib/try.ts:106</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -319,9 +364,24 @@
 					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L46">lib/try.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L122">lib/try.ts:122</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>applies the function to the success value</p>
+							<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str</span>) =&gt; <span class="hljs-title">str</span> + &quot; <span class="hljs-title">world</span>&quot;</span>;
+<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).map(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;                <span class="hljs-comment">// Success(&quot;hello world&quot;)</span>
+<span class="hljs-keyword">Try</span>.failure&lt;<span class="hljs-keyword">string</span>&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).map(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;    <span class="hljs-comment">// Failure()</span></code></pre>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>function to apply to the success value</p>
+							</dd>
+							<dt>returns</dt>
+							<dd></dd>
+						</dl>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -374,9 +434,15 @@
 					<div class="tsd-signature tsd-kind-icon">p<wbr>Flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L50">lib/try.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L163">lib/try.ts:163</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>similar to flatMap except the function being applied returns a Promise<Try>.
+							This is useful if the mapping function returns a Promise<Try>.</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -429,9 +495,23 @@
 					<div class="tsd-signature tsd-kind-icon">p<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L49">lib/try.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L157">lib/try.ts:157</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>simliar to map except the function being applied returns a {@link Promise}.
+							This is useful if you need to return something async inside the mapping function.</p>
+						</div>
+						<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str: <span class="hljs-keyword">string</span></span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">string</span>&gt; =&gt; <span class="hljs-title">Promise</span>.<span class="hljs-title">resolve</span>(<span class="hljs-params">str + <span class="hljs-string">&quot; world&quot;</span></span>)</span>;
+<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).pMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>; <span class="hljs-comment">// Promise&lt;Sucess(&quot;hello world&quot;)&gt;</span></code></pre>
+						<p>If the mapping function throws, the result will automatically converted to a Failure.
+						If the mapping function&#39;s Promise rejects, the result will be converted toa Failure.</p>
+						<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>success(<span class="hljs-string">&quot;hello&quot;</span>).p<span class="hljs-constructor">Map(<span class="hljs-params">async</span> ()</span> =&gt; throw <span class="hljs-keyword">new</span> <span class="hljs-constructor">Error()</span>);        <span class="hljs-comment">// Promise&lt;Failure&gt;</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>success(<span class="hljs-string">&quot;hello&quot;</span>).p<span class="hljs-constructor">Map(()</span> =&gt; <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error()</span>));    <span class="hljs-comment">// Promise&lt;Failure&gt;</span></code></pre>
+						<p>However, most of the time, you should just use {@link Try.async()} in order to deal with
+						asynchronous operations.</p>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -484,9 +564,16 @@
 					<div class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L52">lib/try.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L172">lib/try.ts:172</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>applies the function to to an error. The function is only called if this is a Failure.
+							This is useful if you want to provide a default value on a failure based on the error.</p>
+							<pre><code>Try.failure(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).recover(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">&quot;Hello World!&quot;</span>);  <span class="hljs-regexp">//</span> Success(<span class="hljs-string">&quot;Hello World!&quot;</span>)</code></pre>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -533,9 +620,22 @@
 					<div class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L53">lib/try.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L186">lib/try.ts:186</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>similar to <a href="try.html#recoverwith">Try.recoverWith</a> except that the function returns a Try.
+								This is useful if you want remap the error into a different error or provide
+							a default value.</p>
+							<p>```
+								const fn = (error: Error) =&gt; {
+								return error.message === &quot;bad bad bad&quot; ? Try.success(&quot;okay&quot;) : Try.failure(new Error(&quot;not okay&quot;));
+							}</p>
+						</div>
+						<p>Try.failure(new Error(&quot;bad bad bad&quot;)).recoverWith(fn);   // Success(&quot;okay&quot;);
+						Try.failure(new Error(&quot;bad&quot;)).recoverWith(fn);           // Failure(new Error(&quot;not okay&quot;));</p>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -582,7 +682,7 @@
 					<div class="tsd-signature tsd-kind-icon">to<wbr>Optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L44">lib/try.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L110">lib/try.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -614,9 +714,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L32">lib/try.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L90">lib/try.ts:90</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>builds an instance of Failure directly</p>
+									<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>failure(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error(<span class="hljs-string">&quot;error message&quot;</span>)</span>);</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -634,6 +740,44 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+					<a name="flatten" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> flatten</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L78">lib/try.ts:78</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns an array that keeps only the successful values of an array of Try</p>
+									<pre><code><span class="hljs-keyword">const</span> arr = [() =&gt; <span class="hljs-number">1</span>, () =&gt; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()].map(<span class="hljs-keyword">Try</span>.of);
+<span class="hljs-keyword">Try</span>.flatten(arr) <span class="hljs-comment">// =&gt; [1]</span></code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>B</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arr: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="isfailure-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Failure</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
@@ -643,7 +787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L9">lib/try.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L47">lib/try.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -672,7 +816,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L5">lib/try.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L43">lib/try.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -701,7 +845,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L13">lib/try.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L51">lib/try.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -742,7 +886,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L22">lib/try.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L60">lib/try.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -783,9 +927,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/try.ts#L36">lib/try.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/try.ts#L102">lib/try.ts:102</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>builds an instance of Success directly</p>
+									<pre><code><span class="hljs-selector-tag">Try</span><span class="hljs-selector-class">.success</span>({<span class="hljs-attribute">foo</span>: <span class="hljs-string">&quot;bar&quot;</span>});</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -824,7 +974,7 @@
 						<a href="optional.html" class="tsd-kind-icon">Optional</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="optionalp.html" class="tsd-kind-icon">OptionalP</a>
+						<a href="optionalasync.html" class="tsd-kind-icon">Optional<wbr>Async</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="some.html" class="tsd-kind-icon">Some</a>
@@ -877,6 +1027,9 @@
 								<a href="try.html#failure" class="tsd-kind-icon">failure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+								<a href="try.html#flatten" class="tsd-kind-icon">flatten</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="try.html#isfailure-1" class="tsd-kind-icon">is<wbr>Failure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
@@ -897,9 +1050,6 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="tryasync.html" class="tsd-kind-icon">Try<wbr>Async</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#testfn" class="tsd-kind-icon">testfn</a>
 					</li>
 				</ul>
 			</nav>
@@ -926,6 +1076,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -121,6 +121,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="optional.html#async" class="tsd-kind-icon">async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="optional.html#contains" class="tsd-kind-icon">contains</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="optional.html#exists" class="tsd-kind-icon">exists</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="optional.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a></li>
@@ -133,6 +134,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="optional.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="optional.html#pmap" class="tsd-kind-icon">p<wbr>Map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="optional.html#empty" class="tsd-kind-icon">empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="optional.html#flatten" class="tsd-kind-icon">flatten</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="optional.html#of" class="tsd-kind-icon">of</a></li>
 							</ul>
 						</section>
@@ -141,6 +143,28 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="async" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optionalasync.html" class="tsd-signature-type">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L182">lib/optional.ts:182</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>converts this Optional into an OptionalAsync to make it easier to work with async functions.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="optionalasync.html" class="tsd-signature-type">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="contains" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> contains</h3>
@@ -151,7 +175,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L140">lib/optional.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L154">lib/optional.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -184,7 +208,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L163">lib/optional.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L177">lib/optional.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,7 +258,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L76">lib/optional.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L90">lib/optional.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +315,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L89">lib/optional.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L103">lib/optional.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,7 +345,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L101">lib/optional.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L115">lib/optional.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -354,7 +378,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L120">lib/optional.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L134">lib/optional.ts:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +403,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L112">lib/optional.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L126">lib/optional.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -413,7 +437,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L128">lib/optional.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L142">lib/optional.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +462,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L156">lib/optional.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L170">lib/optional.ts:170</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -468,7 +492,7 @@ result3.getOrElse(<span class="hljs-number">4</span>)                 <span clas
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L53">lib/optional.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L67">lib/optional.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -523,7 +547,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L61">lib/optional.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L75">lib/optional.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -576,7 +600,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L37">lib/optional.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L39">lib/optional.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -590,6 +614,44 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+					<a name="flatten" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> flatten</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L51">lib/optional.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns an array that keeps only the non empty values of an array of Optionals</p>
+									<pre><code><span class="hljs-string">const</span> <span class="hljs-string">arr</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">undefined</span>, <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">6</span>]<span class="hljs-string">.map(Optional.of);</span>
+<span class="hljs-string">Optional.flatten(arr)</span> <span class="hljs-string">//</span> <span class="hljs-string">=&gt;</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>B</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arr: <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="of" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
@@ -599,7 +661,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/594b8c8/src/lib/optional.ts#L25">lib/optional.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/feb888e/src/lib/optional.ts#L27">lib/optional.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -642,6 +704,9 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 						<a href="optional.html" class="tsd-kind-icon">Optional</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="optional.html#async" class="tsd-kind-icon">async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="optional.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -678,6 +743,9 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 								<a href="optional.html#empty" class="tsd-kind-icon">empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+								<a href="optional.html#flatten" class="tsd-kind-icon">flatten</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="optional.html#of" class="tsd-kind-icon">of</a>
 							</li>
 						</ul>
@@ -685,7 +753,7 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="optionalp.html" class="tsd-kind-icon">OptionalP</a>
+						<a href="optionalasync.html" class="tsd-kind-icon">Optional<wbr>Async</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="some.html" class="tsd-kind-icon">Some</a>
@@ -698,9 +766,6 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="tryasync.html" class="tsd-kind-icon">Try<wbr>Async</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#testfn" class="tsd-kind-icon">testfn</a>
 					</li>
 				</ul>
 			</nav>
@@ -727,6 +792,5 @@ squareOf11.contains(<span class="hljs-number">121</span>) <span class="hljs-comm
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
