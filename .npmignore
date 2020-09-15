@@ -14,3 +14,6 @@ coverage
 .nyc_output
 *.log
 *.lock
+jest.config.json
+.prettierrc.js
+.eslintrc.js
