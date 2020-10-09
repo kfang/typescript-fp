@@ -187,3 +187,24 @@ describe("flatten", () => {
         expect(result).toEqual(["foo", "bar"]);
     });
 });
+
+describe("all", () => {
+    it("returns some", () => {
+        const result = Optional.all({
+            foo: Optional.of("foo"),
+            bar: Optional.of(123),
+        });
+
+        expect(result.isEmpty()).toBeFalsy();
+        expect(result.get()).toEqual({ foo: "foo", bar: 123 });
+    });
+
+    it("returns empty", () => {
+        const result = Optional.all({
+            foo: Optional.of("foo"),
+            bar: Optional.empty<number>(),
+        });
+
+        expect(result.isEmpty()).toBeTruthy();
+    });
+});

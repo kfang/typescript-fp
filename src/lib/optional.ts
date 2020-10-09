@@ -1,5 +1,7 @@
 import { OptionalAsync } from "./optional-async";
 
+type Inner<T> = T extends Optional<infer A> ? A : never;
+
 /**
  * A container object which may or may not contain a non-null value.
  * If a value is present, isEmpty() will return true and get() will return the value.
@@ -38,6 +40,17 @@ export abstract class Optional<A> {
 
     public static empty<B>(): Optional<B> {
         return new None<B>();
+    }
+
+    public static all<
+        T extends { [k: string]: Optional<unknown> },
+        Res extends Optional<{ [k in keyof T]: Inner<T[k]> }>
+    >(obj: T): Res {
+        return Object.keys(obj).reduce((res, key) => {
+            return res.flatMap((final) => {
+                return obj[key].map((value) => ({ ...final, [key]: value }));
+            });
+        }, Optional.of({})) as Res;
     }
 
     /**
