@@ -232,3 +232,24 @@ describe("flatten()", () => {
         expect(res).toEqual([1, 2, 3]);
     });
 });
+
+describe("try()", () => {
+    it("returns a successful object", () => {
+        const foo = Try.success("foo");
+        const bar = Try.success(123);
+
+        const result = Try.all({ foo, bar });
+
+        expect(result.isSuccess()).toBeTruthy();
+        expect(result.get()).toEqual({ foo: "foo", bar: 123 });
+    });
+    it("returns a failed object", () => {
+        const foo = Try.success("foo");
+        const bar = Try.failure(new Error());
+
+        const result = Try.all({ foo, bar });
+
+        expect(result.isSuccess()).toBeFalsy();
+        expect(result.get).toThrow();
+    });
+})

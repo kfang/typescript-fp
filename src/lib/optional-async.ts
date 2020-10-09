@@ -14,7 +14,7 @@ export class OptionalAsync<A> {
     }
 
     public static all<
-        T extends { [k: string]: OptionalAsync<unknown> },
+        T extends { [k: string]: OptionalAsync<any> },
         Res extends OptionalAsync<{ [k in keyof T]: Inner<T[k]> }>
     >(obj: T): Res {
         return Object.keys(obj).reduce((res, key) => {

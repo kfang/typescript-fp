@@ -43,7 +43,7 @@ export abstract class Optional<A> {
     }
 
     public static all<
-        T extends { [k: string]: Optional<unknown> },
+        T extends { [k: string]: Optional<any> },
         Res extends Optional<{ [k in keyof T]: Inner<T[k]> }>
     >(obj: T): Res {
         return Object.keys(obj).reduce((res, key) => {

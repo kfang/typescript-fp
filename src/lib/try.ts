@@ -1,6 +1,8 @@
 import { Optional } from "./optional";
 import { TryAsync } from "./try-async";
 
+type Inner<T> = T extends Try<infer A> ? A : never;
+
 /**
  * Try is a monadic container type which represents a computation that may either result in an exception,
  * or return a successfully computed value. Instances of Try, are either an instance of Success or Failure.
@@ -65,6 +67,17 @@ export abstract class Try<A> {
         } catch (e) {
             return Promise.resolve(new Failure(e));
         }
+    }
+
+    public static all<
+        T extends { [k: string]: Try<any> },
+        Res extends Try<{ [k in keyof T]: Inner<T[k]> }>
+    >(obj: T): Res {
+        return Object.keys(obj).reduce((res, key) => {
+            return res.flatMap((final) => {
+                return obj[key].map((value) => ({ ...final, [key]: value }));
+            });
+        }, Try.success({})) as unknown as Res;
     }
 
     /**
