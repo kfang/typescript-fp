@@ -233,7 +233,7 @@ describe("flatten()", () => {
     });
 });
 
-describe("try()", () => {
+describe("all()", () => {
     it("returns a successful object", () => {
         const foo = Try.success("foo");
         const bar = Try.success(123);

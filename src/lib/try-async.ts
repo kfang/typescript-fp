@@ -1,5 +1,7 @@
 import { Try } from "./try";
 
+type Inner<T> = T extends TryAsync<infer A> ? A : never;
+
 export class TryAsync<A> {
     public static of<B>(value: B | Promise<B>): TryAsync<B> {
         const promiseTry = Promise.resolve(value)
@@ -14,6 +16,17 @@ export class TryAsync<A> {
 
     public static failure<B>(error: Error): TryAsync<B> {
         return new TryAsync<B>(Promise.resolve(Try.failure(error)));
+    }
+
+    public static all<
+        T extends { [k: string]: TryAsync<any> },
+        Res extends TryAsync<{ [k in keyof T]: Inner<T[k]> }>
+    >(obj: T): Res {
+        return Object.keys(obj).reduce((res, key) => {
+            return res.flatMap((final) => {
+                return obj[key].map((value) => ({ ...final, [key]: value }));
+            });
+        }, TryAsync.success({})) as unknown as Res;
     }
 
     /**

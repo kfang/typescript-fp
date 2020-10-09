@@ -153,3 +153,25 @@ describe("flatten", () => {
         expect(res).toEqual([1, 2, 3]);
     });
 });
+
+describe("all()", () => {
+    it("returns a successful object", async () => {
+        const foo = TryAsync.success("foo");
+        const bar = TryAsync.success(123);
+
+        const result = await TryAsync.all({ foo, bar }).promise();
+
+        expect(result.isSuccess()).toBeTruthy();
+        expect(result.get()).toEqual({ foo: "foo", bar: 123 });
+    });
+    it("returns a failed object", async () => {
+        const foo = TryAsync.success("foo");
+        const bar = TryAsync.failure<number>(new Error());
+
+        const result = await TryAsync.all({ foo, bar }).promise();
+
+        expect(result.isSuccess()).toBeFalsy();
+        expect(result.get).toThrow();
+    });
+})
+
