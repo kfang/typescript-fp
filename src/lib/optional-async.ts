@@ -1,5 +1,7 @@
 import { Optional } from "./optional";
 
+type Inner<T> = T extends OptionalAsync<infer A> ? A : never;
+
 export class OptionalAsync<A> {
     public static of<T>(t: T): OptionalAsync<T> {
         const pOpt = Promise.resolve(Optional.of(t));
@@ -9,6 +11,17 @@ export class OptionalAsync<A> {
     public static empty<T>(): OptionalAsync<T> {
         const pOpt = Promise.resolve(Optional.empty<T>());
         return new OptionalAsync(pOpt);
+    }
+
+    public static all<
+        T extends { [k: string]: OptionalAsync<unknown> },
+        Res extends OptionalAsync<{ [k in keyof T]: Inner<T[k]> }>
+    >(obj: T): Res {
+        return Object.keys(obj).reduce((res, key) => {
+            return res.flatMap((final) => {
+                return obj[key].map((value) => ({ ...final, [key]: value }));
+            });
+        }, OptionalAsync.of({})) as Res;
     }
 
     /**

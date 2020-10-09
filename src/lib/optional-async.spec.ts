@@ -152,4 +152,25 @@ describe("OptionalAsync", () => {
             expect(result).toEqual(["foo", "bar"]);
         });
     });
+
+    describe("all", () => {
+        it("returns an object if everything is defined", async () => {
+            const result = await OptionalAsync.all({
+                foo: OptionalAsync.of("foo"),
+                bar: OptionalAsync.of(123),
+            }).promise();
+
+            expect(result.isEmpty()).toBeFalsy();
+            expect(result.get()).toEqual({ foo: "foo", bar: 123 });
+        });
+        it("returns an empty if everything one is empty", async () => {
+            const result = await OptionalAsync.all({
+                foo: OptionalAsync.of("foo"),
+                bar: OptionalAsync.empty<number>(),
+            }).promise();
+
+            expect(result.isEmpty()).toBeTruthy();
+            expect(result.get).toThrow();
+        });
+    });
 });
