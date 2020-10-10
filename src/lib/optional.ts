@@ -1,3 +1,4 @@
+import { Monad } from "./fantasy";
 import { OptionalAsync } from "./optional-async";
 
 /**
@@ -23,7 +24,7 @@ import { OptionalAsync } from "./optional-async";
  * result3.getOrElse(4)                 // => 4
  * ```
  */
-export abstract class Optional<A> {
+export abstract class Optional<A> implements Monad<A> {
     public static of<B>(v: B | null | undefined): Optional<B> {
         if (v === null) {
             return new None<B>();
@@ -51,6 +52,8 @@ export abstract class Optional<A> {
     public static flatten<B>(arr: Optional<B>[]): B[] {
         return arr.filter((o) => !o.isEmpty()).map((o) => o.get());
     }
+
+    public abstract ap<B>(b: Optional<(a: A) => B>): Optional<B>;
 
     /**
      * applies the function to the inner value if it exists.
@@ -88,6 +91,10 @@ export abstract class Optional<A> {
      * @returns {Optional<B>}
      */
     public abstract flatMap<B>(fn: (a: A) => Optional<B>): Optional<B>;
+
+    public chain<B>(fn: (a: A) => Optional<B>): Optional<B> {
+        return this.flatMap(fn);
+    }
 
     /**
      * returns the inner value
@@ -193,6 +200,10 @@ export class Some<A> extends Optional<A> {
         this.a = v;
     }
 
+    public ap<B>(b: Optional<(a: A) => B>): Optional<B> {
+        return b.map((fn) => fn(this.a));
+    }
+
     public contains(v: A): boolean {
         return v === this.a;
     }
@@ -245,6 +256,10 @@ export class Some<A> extends Optional<A> {
 export class None<A> extends Optional<A> {
     constructor() {
         super();
+    }
+
+    public ap<B>(): Optional<B> {
+        return new None<B>();
     }
 
     public contains(): boolean {
