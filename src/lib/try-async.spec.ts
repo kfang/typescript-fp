@@ -173,5 +173,4 @@ describe("all()", () => {
         expect(result.isSuccess()).toBeFalsy();
         expect(result.get).toThrow();
     });
-})
-
+});

@@ -42,10 +42,9 @@ export abstract class Optional<A> {
         return new None<B>();
     }
 
-    public static all<
-        T extends { [k: string]: Optional<any> },
-        Res extends Optional<{ [k in keyof T]: Inner<T[k]> }>
-    >(obj: T): Res {
+    public static all<T extends { [k: string]: Optional<any> }, Res extends Optional<{ [k in keyof T]: Inner<T[k]> }>>(
+        obj: T,
+    ): Res {
         return Object.keys(obj).reduce((res, key) => {
             return res.flatMap((final) => {
                 return obj[key].map((value) => ({ ...final, [key]: value }));

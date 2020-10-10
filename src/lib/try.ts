@@ -69,15 +69,14 @@ export abstract class Try<A> {
         }
     }
 
-    public static all<
-        T extends { [k: string]: Try<any> },
-        Res extends Try<{ [k in keyof T]: Inner<T[k]> }>
-    >(obj: T): Res {
-        return Object.keys(obj).reduce((res, key) => {
+    public static all<T extends { [k: string]: Try<any> }, Res extends Try<{ [k in keyof T]: Inner<T[k]> }>>(
+        obj: T,
+    ): Res {
+        return (Object.keys(obj).reduce((res, key) => {
             return res.flatMap((final) => {
                 return obj[key].map((value) => ({ ...final, [key]: value }));
             });
-        }, Try.success({})) as unknown as Res;
+        }, Try.success({})) as unknown) as Res;
     }
 
     /**
