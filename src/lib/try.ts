@@ -50,12 +50,12 @@ export abstract class Try<A> implements Monad<A> {
     }
 
     public static of<B>(fn: () => B | B): Try<B> {
-            try {
-                const value = fn();
-                return new Success(value);
-            } catch (error) {
-                return new Failure(error);
-            }
+        try {
+            const value = fn();
+            return new Success(value);
+        } catch (error) {
+            return new Failure(error);
+        }
     }
 
     public static pOf<B>(fn: () => Promise<B>): Promise<Try<B>> {

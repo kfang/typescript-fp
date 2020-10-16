@@ -246,4 +246,4 @@ describe("ap", () => {
         expect(res.isSuccess()).toBeTruthy();
         expect(res.get()).toEqual(908);
     });
-})
+});
