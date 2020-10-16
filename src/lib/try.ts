@@ -1,3 +1,4 @@
+import { Monad } from "./fantasy";
 import { Optional } from "./optional";
 import { TryAsync } from "./try-async";
 
@@ -39,7 +40,7 @@ import { TryAsync } from "./try-async";
  *   .get();                            // => 0.0
  * ```
  */
-export abstract class Try<A> {
+export abstract class Try<A> implements Monad<A> {
     public static isSuccess<B>(t: Try<B>): t is Success<B> {
         return t.isSuccess();
     }
@@ -48,13 +49,13 @@ export abstract class Try<A> {
         return t.isFailure();
     }
 
-    public static of<B>(fn: () => B): Try<B> {
-        try {
-            const value = fn();
-            return new Success(value);
-        } catch (error) {
-            return new Failure(error);
-        }
+    public static of<B>(fn: () => B | B): Try<B> {
+            try {
+                const value = fn();
+                return new Success(value);
+            } catch (error) {
+                return new Failure(error);
+            }
     }
 
     public static pOf<B>(fn: () => Promise<B>): Promise<Try<B>> {
@@ -109,6 +110,8 @@ export abstract class Try<A> {
     public abstract readonly getOrElse: (defaultValue: A) => A;
     public abstract readonly toOptional: () => Optional<A>;
 
+    public abstract ap<B>(b: Try<(a: A) => B>): Try<B>;
+
     /**
      * applies the function to the success value
      * ```
@@ -134,6 +137,11 @@ export abstract class Try<A> {
      * @return {Try<B>}
      */
     public abstract readonly flatMap: <B>(fn: (a: A) => Try<B>) => Try<B>;
+
+    /** @see {@link flatMap} */
+    public chain<B>(fn: (a: A) => Try<B>): Try<B> {
+        return this.flatMap(fn);
+    }
 
     /**
      * simliar to map except the function being applied returns a {@link Promise}.
@@ -206,6 +214,10 @@ export class Failure<A> extends Try<A> {
     public readonly recover = (fn: (e: Error) => A): Try<A> => new Success(fn(this.error));
     public readonly recoverWith = (fn: (e: Error) => Try<A>): Try<A> => fn(this.error);
 
+    public ap<B>(): Try<B> {
+        return new Failure<B>(this.error);
+    }
+
     public readonly map = <B>(): Try<B> => {
         return new Failure<B>(this.error);
     };
@@ -240,6 +252,10 @@ export class Success<A> extends Try<A> {
     public readonly toOptional = (): Optional<A> => Optional.of(this.value);
     public readonly recover = (): Try<A> => this;
     public readonly recoverWith = (): Try<A> => this;
+
+    public ap<B>(b: Try<(a: A) => B>): Try<B> {
+        return b.map((fn) => fn(this.value));
+    }
 
     public readonly map = <B>(fn: (a: A) => B): Try<B> => {
         try {
