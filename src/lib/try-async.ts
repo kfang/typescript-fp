@@ -1,6 +1,7 @@
+import { Monad } from "./fantasy";
 import { Try } from "./try";
 
-export class TryAsync<A> {
+export class TryAsync<A> implements Monad<A> {
     public static of<B>(value: B | Promise<B>): TryAsync<B> {
         const promiseTry = Promise.resolve(value)
             .then(Try.success)
@@ -34,12 +35,19 @@ export class TryAsync<A> {
         this.value = value;
     }
 
+    public ap<B>(b: TryAsync<(a: A) => B>): TryAsync<B> {
+        return b.chain((fn) => {
+            const pTryB = this.value.then((tryA) => tryA.map(fn));
+            return new TryAsync(pTryB);
+        });
+    }
+
     public map<B>(fn: (value: A) => B): TryAsync<B> {
         const pTryB = this.value.then((tryA) => tryA.map(fn)).catch((error) => Try.failure<B>(error));
         return new TryAsync<B>(pTryB);
     }
 
-    public flatMap<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
+    public chain<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
         const pTryB = this.value
             .then((tryA) => {
                 if (tryA.isFailure()) {
@@ -50,6 +58,10 @@ export class TryAsync<A> {
             })
             .catch((error) => Try.failure<B>(error));
         return new TryAsync<B>(pTryB);
+    }
+
+    public flatMap<B>(fn: (value: A) => TryAsync<B>): TryAsync<B> {
+        return this.chain(fn);
     }
 
     public mapAsync<B>(fn: (value: A) => Promise<B>): TryAsync<B> {

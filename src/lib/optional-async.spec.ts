@@ -1,7 +1,6 @@
 import { OptionalAsync } from "./optional-async";
 
 describe("OptionalAsync", () => {
-
     describe("ap", () => {
         it("applies the fn", async () => {
             const fn = OptionalAsync.of((n: number) => n + 1);

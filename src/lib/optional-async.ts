@@ -1,7 +1,7 @@
 import { Monad } from "./fantasy";
 import { Optional } from "./optional";
 
-export class OptionalAsync<A> implements Monad<A>{
+export class OptionalAsync<A> implements Monad<A> {
     public static of<T>(t: T): OptionalAsync<T> {
         const pOpt = Promise.resolve(Optional.of(t));
         return new OptionalAsync(pOpt);
@@ -34,7 +34,7 @@ export class OptionalAsync<A> implements Monad<A>{
         return b.chain((fn) => {
             const pOptB = this.pOptA.then((optA) => optA.map(fn));
             return new OptionalAsync(pOptB);
-        })
+        });
     }
 
     public map<B>(fn: (a: A) => B): OptionalAsync<B> {
@@ -64,7 +64,7 @@ export class OptionalAsync<A> implements Monad<A>{
 
     public flatMap<B>(fn: (a: A) => OptionalAsync<B>): OptionalAsync<B> {
         return this.chain(fn);
-    } 
+    }
 
     public getOrElse(defaultValue: A): Promise<A> {
         return this.pOptA.then((optA) => optA.getOrElse(defaultValue));
