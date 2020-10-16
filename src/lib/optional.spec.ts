@@ -187,3 +187,18 @@ describe("flatten", () => {
         expect(result).toEqual(["foo", "bar"]);
     });
 });
+
+describe("ap", () => {
+    it("returns none", async () => {
+        const oFn = Optional.of((v: number) => v + 1);
+        const result = Optional.empty<number>().ap(oFn);
+        expect(result.isEmpty()).toBeTruthy();
+    });
+
+    it("runs the inner fn", async () => {
+        const oFn = Optional.of((v: number) => v + 1);
+        const result = Optional.of<number>(1088).ap(oFn);
+        expect(result.isEmpty()).toBeFalsy();
+        expect(result.get()).toEqual(1089);
+    });
+});

@@ -232,3 +232,18 @@ describe("flatten()", () => {
         expect(res).toEqual([1, 2, 3]);
     });
 });
+
+describe("ap", () => {
+    it("passes through the failure", () => {
+        const fn = Try.success((v: number) => v + 1);
+        const res = Try.failure<number>(new Error()).ap(fn);
+        expect(res.isFailure()).toBeTruthy();
+    });
+
+    it("runs the inner fn", () => {
+        const fn = Try.success((v: number) => v + 1);
+        const res = Try.success(907).ap(fn);
+        expect(res.isSuccess()).toBeTruthy();
+        expect(res.get()).toEqual(908);
+    });
+});
