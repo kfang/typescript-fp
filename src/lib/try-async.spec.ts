@@ -153,3 +153,21 @@ describe("flatten", () => {
         expect(res).toEqual([1, 2, 3]);
     });
 });
+
+describe("ap", () => {
+    it("applies the fn on success", async () => {
+        const fn = TryAsync.of((v: number) => v + 1);
+        const result = await TryAsync.success(123).ap(fn).promise();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toEqual(124);
+    });
+
+    it("passes through the error", async () => {
+        const fn = TryAsync.of((v: number) => v + 1);
+        const err = new Error("expected error");
+        const result = await TryAsync.failure<number>(err).ap(fn).promise();
+        expect(result.isSuccess()).toEqual(false);
+        expect(result.isFailure()).toEqual(true);
+        expect(result.get).toThrow(err);
+    });
+});

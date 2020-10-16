@@ -1,6 +1,21 @@
 import { OptionalAsync } from "./optional-async";
 
 describe("OptionalAsync", () => {
+    describe("ap", () => {
+        it("applies the fn", async () => {
+            const fn = OptionalAsync.of((n: number) => n + 1);
+            const result = await OptionalAsync.of(128).ap(fn).promise();
+            expect(result.isEmpty()).toEqual(false);
+            expect(result.get()).toEqual(129);
+        });
+
+        it("does not apply the fn", async () => {
+            const fn = OptionalAsync.of((n: number) => n + 1);
+            const result = await OptionalAsync.empty<number>().ap(fn).promise();
+            expect(result.isEmpty()).toEqual(true);
+        });
+    });
+
     describe("map", () => {
         it("runs the map function", async () => {
             const result = await OptionalAsync.of("Hello")

@@ -1,6 +1,7 @@
+import { Monad } from "./fantasy";
 import { Optional } from "./optional";
 
-export class OptionalAsync<A> {
+export class OptionalAsync<A> implements Monad<A> {
     public static of<T>(t: T): OptionalAsync<T> {
         const pOpt = Promise.resolve(Optional.of(t));
         return new OptionalAsync(pOpt);
@@ -29,6 +30,13 @@ export class OptionalAsync<A> {
         this.pOptA = pOpt;
     }
 
+    public ap<B>(b: OptionalAsync<(a: A) => B>): OptionalAsync<B> {
+        return b.chain((fn) => {
+            const pOptB = this.pOptA.then((optA) => optA.map(fn));
+            return new OptionalAsync(pOptB);
+        });
+    }
+
     public map<B>(fn: (a: A) => B): OptionalAsync<B> {
         const pOptB = this.pOptA.then((optA) => optA.map(fn));
         return new OptionalAsync(pOptB);
@@ -44,7 +52,7 @@ export class OptionalAsync<A> {
         return new OptionalAsync(pOptB);
     }
 
-    public flatMap<B>(fn: (a: A) => OptionalAsync<B>): OptionalAsync<B> {
+    public chain<B>(fn: (a: A) => OptionalAsync<B>): OptionalAsync<B> {
         const pOptB: Promise<Optional<B>> = this.pOptA.then((optA) => {
             if (optA.isEmpty()) {
                 return Optional.empty<B>();
@@ -52,6 +60,10 @@ export class OptionalAsync<A> {
             return fn(optA.get()).promise();
         });
         return new OptionalAsync(pOptB);
+    }
+
+    public flatMap<B>(fn: (a: A) => OptionalAsync<B>): OptionalAsync<B> {
+        return this.chain(fn);
     }
 
     public getOrElse(defaultValue: A): Promise<A> {
