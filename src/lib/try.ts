@@ -193,6 +193,8 @@ export abstract class Try<A> implements Monad<A> {
      */
     public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
 
+    public abstract case<B>(predicates: { success: (value: A) => Try<B>; failure: (error: Error) => Try<B> }): Try<B>;
+
     public abstract readonly async: () => TryAsync<A>;
 }
 
@@ -233,6 +235,10 @@ export class Failure<A> extends Try<A> {
     public readonly pFlatMap = <B>(): Promise<Try<B>> => {
         return Promise.resolve(Try.failure(this.error));
     };
+
+    public case<B>(predicates: { success: (value: A) => Try<B>; failure: (error: Error) => Try<B> }): Try<B> {
+        return predicates.failure(this.error);
+    }
 
     public readonly async = (): TryAsync<A> => TryAsync.failure<A>(this.error);
 }
@@ -290,6 +296,10 @@ export class Success<A> extends Try<A> {
             return Promise.resolve(Try.failure(e));
         }
     };
+
+    public case<B>(predicates: { success: (value: A) => Try<B>; failure: (error: Error) => Try<B> }): Try<B> {
+        return predicates.success(this.value);
+    }
 
     public readonly async = (): TryAsync<A> => TryAsync.success<A>(this.value);
 }

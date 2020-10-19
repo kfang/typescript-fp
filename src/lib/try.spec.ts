@@ -247,3 +247,23 @@ describe("ap", () => {
         expect(res.get()).toEqual(908);
     });
 });
+
+describe("case", () => {
+    it("returns the success predicate", () => {
+        const result = Try.success("hello").case({
+            success: (str) => Try.of(() => str + " world"),
+            failure: (error) => Try.failure<string>(error),
+        });
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("returns the failure predicate", () => {
+        const result = Try.failure<string>(new Error("expected error")).case({
+            success: (str) => Try.failure<string>(new Error(str)),
+            failure: (error) => Try.success(error.message),
+        });
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toEqual("expected error");
+    });
+});

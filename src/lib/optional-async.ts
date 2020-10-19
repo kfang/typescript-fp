@@ -97,4 +97,18 @@ export class OptionalAsync<A> implements Monad<A> {
     public promise(): Promise<Optional<A>> {
         return this.pOptA;
     }
+
+    public case<B>(predicates: {
+        some: (value: A) => OptionalAsync<B>;
+        none: () => OptionalAsync<B>;
+    }): OptionalAsync<B> {
+        const pOptB = this.pOptA.then((optA) => {
+            if (optA.isEmpty()) {
+                return predicates.none().promise();
+            } else {
+                return predicates.some(optA.get()).promise();
+            }
+        });
+        return new OptionalAsync(pOptB);
+    }
 }

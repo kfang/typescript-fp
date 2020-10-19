@@ -189,16 +189,36 @@ describe("flatten", () => {
 });
 
 describe("ap", () => {
-    it("returns none", async () => {
+    it("returns none", () => {
         const oFn = Optional.of((v: number) => v + 1);
         const result = Optional.empty<number>().ap(oFn);
         expect(result.isEmpty()).toBeTruthy();
     });
 
-    it("runs the inner fn", async () => {
+    it("runs the inner fn", () => {
         const oFn = Optional.of((v: number) => v + 1);
         const result = Optional.of<number>(1088).ap(oFn);
         expect(result.isEmpty()).toBeFalsy();
         expect(result.get()).toEqual(1089);
+    });
+});
+
+describe("case", () => {
+    it("returns the some predicate", () => {
+        const result = Optional.of("hello").case({
+            some: (str) => Optional.of(str + " world"),
+            none: () => Optional.of("foobar"),
+        });
+        expect(result.isEmpty()).toEqual(false);
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("returns the none predicate", () => {
+        const result = Optional.empty<string>().case({
+            some: (str) => Optional.of(str + " world"),
+            none: () => Optional.of("foobar"),
+        });
+        expect(result.isEmpty()).toEqual(false);
+        expect(result.get()).toEqual("foobar");
     });
 });

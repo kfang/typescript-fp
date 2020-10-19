@@ -87,6 +87,20 @@ export class TryAsync<A> implements Monad<A> {
         return new TryAsync(pTryA);
     }
 
+    public case<B>(predicates: {
+        success: (value: A) => TryAsync<B>,
+        failure: (error: Error) => TryAsync<B>,
+    }): TryAsync<B> {
+        const pOptB = this.value.then((tryA) => {
+            if (tryA.isFailure()) {
+                return predicates.failure(tryA.error).promise();
+            } else {
+                return predicates.success(tryA.get()).promise();
+            }
+        });
+        return new TryAsync(pOptB);
+    }
+
     public promise(): Promise<Try<A>> {
         return this.value;
     }

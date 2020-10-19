@@ -167,4 +167,27 @@ describe("OptionalAsync", () => {
             expect(result).toEqual(["foo", "bar"]);
         });
     });
+
+    describe("case", () => {
+        it("returns the some predicate", async () => {
+            const result = await OptionalAsync.of("hello")
+                .case({
+                    some: (str) => OptionalAsync.of(str + " world"),
+                    none: () => OptionalAsync.of("foobar"),
+                })
+                .promise();
+            expect(result.isEmpty()).toEqual(false);
+            expect(result.get()).toEqual("hello world");
+        });
+        it("returns the none predicate", async () => {
+            const result = await OptionalAsync.empty<string>()
+                .case({
+                    some: (str) => OptionalAsync.of(str + " world"),
+                    none: () => OptionalAsync.of("foobar"),
+                })
+                .promise();
+            expect(result.isEmpty()).toEqual(false);
+            expect(result.get()).toEqual("foobar");
+        });
+    });
 });
