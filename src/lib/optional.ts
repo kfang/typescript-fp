@@ -187,6 +187,8 @@ export abstract class Optional<A> implements Monad<A> {
      * converts this Optional into an OptionalAsync to make it easier to work with async functions.
      */
     public abstract async(): OptionalAsync<A>;
+
+    public abstract case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B>;
 }
 
 export class Some<A> extends Optional<A> {
@@ -251,6 +253,10 @@ export class Some<A> extends Optional<A> {
     public async(): OptionalAsync<A> {
         return OptionalAsync.of(this.a);
     }
+
+    public case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B> {
+        return predicates.some(this.a);
+    }
 }
 
 export class None<A> extends Optional<A> {
@@ -308,5 +314,9 @@ export class None<A> extends Optional<A> {
 
     public async(): OptionalAsync<A> {
         return OptionalAsync.empty<A>();
+    }
+
+    public case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B> {
+        return predicates.none();
     }
 }
