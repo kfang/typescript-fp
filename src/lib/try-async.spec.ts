@@ -171,3 +171,24 @@ describe("ap", () => {
         expect(result.get).toThrow(err);
     });
 });
+
+describe("case", () => {
+    it("applies the success predicate", async () => {
+        const result = await TryAsync.success("hello").case({
+            success: (str) => TryAsync.success(str + " world"),
+            failure: (err) => TryAsync.failure<string>(err),
+        }).promise();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.isFailure()).toEqual(false);
+        expect(result.get()).toEqual("hello world");
+    });
+    it("applies the failure predicate", async () => {
+        const result = await TryAsync.failure<string>(new Error("expected error")).case({
+            success: (str) => TryAsync.failure<string>(new Error(str)),
+            failure: (err) => TryAsync.success(err.message),
+        }).promise();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.isFailure()).toEqual(false);
+        expect(result.get()).toEqual("expected error");
+    });
+});
