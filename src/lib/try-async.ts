@@ -88,8 +88,8 @@ export class TryAsync<A> implements Monad<A> {
     }
 
     public case<B>(predicates: {
-        success: (value: A) => TryAsync<B>,
-        failure: (error: Error) => TryAsync<B>,
+        success: (value: A) => TryAsync<B>;
+        failure: (error: Error) => TryAsync<B>;
     }): TryAsync<B> {
         const pOptB = this.value.then((tryA) => {
             if (tryA.isFailure()) {

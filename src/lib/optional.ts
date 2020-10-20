@@ -67,7 +67,7 @@ export abstract class Optional<A> implements Monad<A> {
      * @param {(A) => B} fn
      * @returns {Optional<B>}
      */
-    public abstract map<B>(fn: (a: A) => B): Optional<B>;
+    public abstract map<B>(fn: (a: A) => B | null | undefined): Optional<B>;
 
     /**
      * applies the async function to the inner value if it exists. Swaps what
@@ -242,7 +242,7 @@ export class Some<A> extends Optional<A> {
         return false;
     }
 
-    public map<B>(fn: (a: A) => B): Optional<B> {
+    public map<B>(fn: (a: A) => B | null | undefined): Optional<B> {
         return Optional.of(fn(this.a));
     }
 
