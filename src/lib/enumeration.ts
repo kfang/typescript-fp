@@ -1,80 +1,76 @@
 import { Optional } from "./optional";
 
-export class EnumEntry<T = unknown> {
-    private readonly _value: T;
-    private _name!: string;
+type Ctor<E extends EnumEntry> = { new (...args: never[]): E };
+type CtorEnum<C> = C extends Ctor<infer E> ? E : never;
+type CtorEnumValue<C> = CtorEnum<C> extends EnumEntry<infer T> ? T : never;
 
-    constructor(value: T) {
-        this._value = value;
-    }
-
-    get value(): T {
-        return this._value;
-    }
-
-    get name(): string {
-        return this._name;
-    }
-
-    set name(name: string) {
-        this._name = name;
-    }
+interface IEnumeration<E extends EnumEntry<T>, T> {
+    entries: E[];
+    values: T[];
+    withName: (name: string) => Optional<E>;
+    withValue: (value: T) => Optional<E>;
 }
 
-export type EnumMap<E extends EnumEntry> = Record<string, E>;
-export type EnumValueType<E> = E extends EnumEntry<infer A> ? A : never;
+export type Enumeration<C, E extends EnumEntry<T>, T> = C & IEnumeration<E, T>;
 
-export class Enumeration<E extends EnumEntry<T>, T> {
-    public static fromEntries<E extends EnumEntry<T>, T = EnumValueType<E>>(
-        enumMap: EnumMap<E>,
-    ): Enumeration<E, T> & EnumMap<E> {
-        // set name and freeze the EnumEntry so it cannot be changed
-        Object.entries(enumMap).forEach(([name, entry]) => {
-            entry.name = name;
-            Object.freeze(entry);
+export abstract class EnumEntry<T = unknown> {
+    public static seal<C extends Ctor<E>, T extends CtorEnumValue<C>, E extends EnumEntry<T> = CtorEnum<C>>(
+        c: C,
+    ): Enumeration<C, E, T> {
+        const entries: E[] = [];
+        const values: T[] = [];
+        const nameValueMap: Record<string, E> = {};
+
+        Object.entries(c).forEach(([name, value]) => {
+            if (value instanceof EnumEntry) {
+                Object.freeze(value);
+                entries.push((value as unknown) as E);
+                values.push(value.value);
+                nameValueMap[name] = value as E;
+            }
         });
 
-        // build out the descriptors that will be attached to the Enumeration instance
-        const descriptorMap: PropertyDescriptorMap = {};
-        Object.entries(enumMap).forEach(([name, entry]) => {
-            descriptorMap[name] = {
+        const withValue = (v: T): Optional<E> => {
+            return Optional.of(entries.find((e) => e.value === v));
+        };
+
+        const withName = (name: string): Optional<E> => {
+            return Optional.of(nameValueMap[name]);
+        };
+
+        const e = Object.defineProperties(c, {
+            entries: {
                 configurable: false,
-                enumerable: true,
-                value: entry,
+                enumerable: false,
+                value: entries,
                 writable: false,
-            };
+            },
+            values: {
+                configurable: false,
+                enumerable: false,
+                value: values,
+                writable: false,
+            },
+            withName: {
+                configurable: false,
+                enumerable: false,
+                value: withName,
+                writable: false,
+            },
+            withValue: {
+                configurable: false,
+                enumerable: false,
+                value: withValue,
+                writable: false,
+            },
         });
 
-        const enumeration = Object.defineProperties(new Enumeration(enumMap), descriptorMap);
-        return Object.freeze(enumeration);
+        return Object.freeze(e);
     }
 
-    private readonly _enumMap: EnumMap<E>;
-    private readonly _enumEntries: E[];
+    public readonly value: T;
 
-    constructor(enumMap: EnumMap<E>) {
-        this._enumMap = enumMap;
-        this._enumEntries = Object.values(enumMap);
-    }
-
-    get entries(): E[] {
-        return this._enumEntries;
-    }
-
-    get values(): T[] {
-        return this._enumEntries.map((entry) => entry.value);
-    }
-
-    get names(): string[] {
-        return this._enumEntries.map((entry) => entry.name);
-    }
-
-    public withName(name: string): Optional<E> {
-        return Optional.of(this._enumMap[name]);
-    }
-
-    public withValue(value: EnumValueType<E>): Optional<E> {
-        const entry = this._enumEntries.find((entry) => entry.value === value);
-        return Optional.of(entry);
+    protected constructor(value: T) {
+        this.value = value;
     }
 }
