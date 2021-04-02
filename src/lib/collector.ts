@@ -2,7 +2,7 @@ import { TryAsync } from "./try-async";
 import { Monad } from "./fantasy";
 import { Try } from "./try";
 
-abstract class Collector<O extends Record<string, unknown>> {
+export abstract class Collector<O extends Record<string, unknown>> {
 
     public static forTry<R extends Record<string, unknown>>(init: R): TryCollector<R> {
         return new TryCollector<R>(Try.of(() => init));
