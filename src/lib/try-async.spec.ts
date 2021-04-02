@@ -196,3 +196,11 @@ describe("case", () => {
         expect(result.get()).toEqual("expected error");
     });
 });
+
+describe("wrap", () => {
+    it("wraps a Promise<Try>", async () => {
+        const pTry = Promise.resolve(Try.success("foo"));
+        const unwrapped = await TryAsync.wrap(pTry).promise();
+        expect(unwrapped.get()).toEqual("foo");
+    });
+});

@@ -17,6 +17,10 @@ export class TryAsync<A> implements Monad<A> {
         return new TryAsync<B>(Promise.resolve(Try.failure(error)));
     }
 
+    public static wrap<B>(pTryB: Promise<Try<B>>): TryAsync<B> {
+        return new TryAsync<B>(pTryB);
+    }
+
     /**
      * returns an array that keeps only the successful values of an array of TryAsync
      * ```
