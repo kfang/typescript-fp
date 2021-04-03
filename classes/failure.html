@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for @kfang/typescript-fp">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -53,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">@kfang/typescript-fp</a>
 				</li>
 				<li>
 					<a href="failure.html">Failure</a>
@@ -78,19 +77,13 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Failure</span>
 							</li>
 						</ul>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="monad.html" class="tsd-signature-type">Monad</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -100,7 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="failure.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="failure.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -141,26 +134,33 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Failure<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="failure.html" class="tsd-signature-type">Failure</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Failure&lt;A&gt;<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L202">lib/try.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L202">lib/try.ts:202</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>A</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>e: <span class="tsd-signature-type">Error</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="failure.html" class="tsd-signature-type">Failure</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -173,7 +173,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Error</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L202">lib/try.ts:202</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L202">lib/try.ts:202</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,14 +184,14 @@
 					<a name="ap" class="tsd-anchor"></a>
 					<h3>ap</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#ap">ap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L219">lib/try.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L219">lib/try.ts:219</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -200,7 +200,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -208,17 +208,17 @@
 					<a name="async" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type" data-tsd-kind="Class">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#async">async</a></p>
+								<p>Overrides Try.async</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L243">lib/try.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L243">lib/try.ts:243</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type" data-tsd-kind="Class">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -226,14 +226,14 @@
 					<a name="case" class="tsd-anchor"></a>
 					<h3>case</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#case">case</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L239">lib/try.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L239">lib/try.ts:239</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -245,14 +245,14 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicates: <span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>predicates: <span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
@@ -262,18 +262,18 @@
 																	<h5>error: <span class="tsd-signature-type">Error</span></h5>
 																</li>
 															</ul>
-															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
 											</ul>
 										</li>
 										<li class="tsd-parameter">
-											<h5>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
@@ -283,7 +283,7 @@
 																	<h5>value: <span class="tsd-signature-type">A</span></h5>
 																</li>
 															</ul>
-															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
@@ -292,7 +292,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -300,14 +300,14 @@
 					<a name="chain" class="tsd-anchor"></a>
 					<h3>chain</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#chain">chain</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L142">lib/try.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L142">lib/try.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,11 +326,11 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -340,14 +340,14 @@
 															<h5>a: <span class="tsd-signature-type">A</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -355,23 +355,36 @@
 					<a name="flatmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> flat<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#flatmap">flatMap</a></p>
+								<p>Overrides Try.flatMap</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L227">lib/try.ts:227</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L227">lib/try.ts:227</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the function that returns a <code>Try</code> to the success value and flattens over
+									the result so you don&#39;t get a <code>Try</code> within a <code>Try</code>.</p>
+								</div>
+								<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot;world&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">flatMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);                    </span><span style="color: #008000">// Success(&quot;hello world&quot;);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">flatMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);        </span><span style="color: #008000">// Failure()</span>
+
+<span style="color: #000000">@</span><span style="color: #001080">param</span><span style="color: #000000"> {(</span><span style="color: #001080">a</span><span style="color: #000000">: </span><span style="color: #267F99">A</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">&lt;</span><span style="color: #0070C1">B</span><span style="color: #000000">&gt;} </span><span style="color: #001080">fn</span><span style="color: #000000"> - </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">to</span><span style="color: #000000"> </span><span style="color: #795E26">apply</span><span style="color: #000000"> </span><span style="color: #795E26">to</span><span style="color: #000000"> </span><span style="color: #795E26">the</span><span style="color: #000000"> </span><span style="color: #795E26">success</span><span style="color: #000000"> </span><span style="color: #795E26">value</span>
+<span style="color: #000000">@</span><span style="color: #795E26">return</span><span style="color: #000000"> {</span><span style="color: #001080">Try</span><span style="color: #000000">&lt;</span><span style="color: #0070C1">B</span><span style="color: #000000">&gt;}</span>
+</code></pre>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -384,9 +397,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#get">get</a></p>
+								<p>Overrides Try.get</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L211">lib/try.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L211">lib/try.ts:211</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
@@ -402,9 +415,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#getorelse">getOrElse</a></p>
+								<p>Overrides Try.getOrElse</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L214">lib/try.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L214">lib/try.ts:214</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -426,9 +439,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#isfailure-1">isFailure</a></p>
+								<p>Overrides Try.isFailure</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L210">lib/try.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L210">lib/try.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -444,9 +457,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#issuccess-1">isSuccess</a></p>
+								<p>Overrides Try.isSuccess</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L209">lib/try.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L209">lib/try.ts:209</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -457,23 +470,32 @@
 					<a name="map" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#map">map</a></p>
+								<p>Overrides Try.map</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L223">lib/try.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L223">lib/try.ts:223</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the function to the success value</p>
+									<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot; world&quot;</span><span style="color: #000000">;</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);                </span><span style="color: #008000">// Success(&quot;hello world&quot;)</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);    </span><span style="color: #008000">// Failure()</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -481,23 +503,29 @@
 					<a name="pflatmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> p<wbr>Flat<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">p<wbr>Flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">p<wbr>Flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#pflatmap">pFlatMap</a></p>
+								<p>Overrides Try.pFlatMap</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L235">lib/try.ts:235</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L235">lib/try.ts:235</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>similar to flatMap except the function being applied returns a Promise<Try>.
+									This is useful if the mapping function returns a Promise<Try>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -505,23 +533,39 @@
 					<a name="pmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> p<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">p<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">p<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#pmap">pMap</a></p>
+								<p>Overrides Try.pMap</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L231">lib/try.ts:231</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L231">lib/try.ts:231</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>simliar to map except the function being applied returns a {@link Promise}.
+									This is useful if you need to return something async inside the mapping function.</p>
+								</div>
+								<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">Promise</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt; </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #267F99">Promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot; world&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">); </span><span style="color: #008000">// Promise&lt;Sucess(&quot;hello world&quot;)&gt;</span>
+</code></pre>
+								<p>If the mapping function throws, the result will automatically converted to a Failure.
+								If the mapping function&#39;s Promise rejects, the result will be converted toa Failure.</p>
+								<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">());        </span><span style="color: #008000">// Promise&lt;Failure&gt;</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #267F99">Promise</span><span style="color: #000000">.</span><span style="color: #795E26">reject</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()));    </span><span style="color: #008000">// Promise&lt;Failure&gt;</span>
+</code></pre>
+								<p>However, most of the time, you should just use {@link Try.async()} in order to deal with
+								asynchronous operations.</p>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -529,16 +573,24 @@
 					<a name="recover" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> recover</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#recover">recover</a></p>
+								<p>Overrides Try.recover</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L216">lib/try.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L216">lib/try.ts:216</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>applies the function to to an error. The function is only called if this is a Failure.
+									This is useful if you want to provide a default value on a failure based on the error.</p>
+									<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">recover</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Hello World!&quot;</span><span style="color: #000000">);  </span><span style="color: #008000">// Success(&quot;Hello World!&quot;)</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -563,7 +615,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -571,24 +623,37 @@
 					<a name="recoverwith" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> recover<wbr>With</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#recoverwith">recoverWith</a></p>
+								<p>Overrides Try.recoverWith</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L217">lib/try.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L217">lib/try.ts:217</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>similar to <a href="try.html#recoverwith">Try.recoverWith</a> except that the function returns a Try.
+										This is useful if you want remap the error into a different error or provide
+									a default value.</p>
+									<p>```
+										const fn = (error: Error) =&gt; {
+										return error.message === &quot;bad bad bad&quot; ? Try.success(&quot;okay&quot;) : Try.failure(new Error(&quot;not okay&quot;));
+									}</p>
+								</div>
+								<p>Try.failure(new Error(&quot;bad bad bad&quot;)).recoverWith(fn);   // Success(&quot;okay&quot;);
+								Try.failure(new Error(&quot;bad&quot;)).recoverWith(fn);           // Failure(new Error(&quot;not okay&quot;));</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -598,14 +663,14 @@
 															<h5>e: <span class="tsd-signature-type">Error</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -613,17 +678,17 @@
 					<a name="tooptional" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> to<wbr>Optional</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Optional<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Optional<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="try.html">Try</a>.<a href="try.html#tooptional">toOptional</a></p>
+								<p>Overrides Try.toOptional</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L215">lib/try.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L215">lib/try.ts:215</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -631,20 +696,21 @@
 					<a name="failure-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> failure</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#failure">failure</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L91">lib/try.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L91">lib/try.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>builds an instance of Failure directly</p>
-									<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>failure(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error(<span class="hljs-string">&quot;error message&quot;</span>)</span>);</code></pre>
+									<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;error message&quot;</span><span style="color: #000000">));</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -659,7 +725,7 @@
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -667,21 +733,22 @@
 					<a name="flatten" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> flatten</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#flatten">flatten</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L79">lib/try.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L79">lib/try.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>returns an array that keeps only the successful values of an array of Try</p>
-									<pre><code><span class="hljs-keyword">const</span> arr = [() =&gt; <span class="hljs-number">1</span>, () =&gt; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()].map(<span class="hljs-keyword">Try</span>.of);
-<span class="hljs-keyword">Try</span>.flatten(arr) <span class="hljs-comment">// =&gt; [1]</span></code></pre>
+									<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">arr</span><span style="color: #000000"> = [() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()].</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #001080">of</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">flatten</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000">) </span><span style="color: #008000">// =&gt; [1]</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -693,7 +760,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>arr: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>arr: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -706,14 +773,14 @@
 					<a name="isfailure-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Failure</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#isfailure-1">isFailure</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L48">lib/try.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L48">lib/try.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -725,10 +792,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>t: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -736,14 +803,14 @@
 					<a name="issuccess-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Success</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Success&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Success&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#issuccess-1">isSuccess</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L44">lib/try.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L44">lib/try.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -755,10 +822,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>t: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -766,14 +833,14 @@
 					<a name="of" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#of">of</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L52">lib/try.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L52">lib/try.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -785,22 +852,22 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -808,14 +875,14 @@
 					<a name="pof" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> p<wbr>Of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">p<wbr>Of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">p<wbr>Of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#pof">pOf</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L61">lib/try.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L61">lib/try.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -842,7 +909,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -850,20 +917,21 @@
 					<a name="success" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> success</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">success&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">success&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="try.html">Try</a>.<a href="try.html#success">success</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L103">lib/try.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L103">lib/try.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>builds an instance of Success directly</p>
-									<pre><code><span class="hljs-selector-tag">Try</span><span class="hljs-selector-class">.success</span>({<span class="hljs-attribute">foo</span>: <span class="hljs-string">&quot;bar&quot;</span>});</code></pre>
+									<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">({</span><span style="color: #001080">foo:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;bar&quot;</span><span style="color: #000000">});</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -878,7 +946,7 @@
 									<h5>b: <span class="tsd-signature-type">B</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -887,8 +955,8 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -903,12 +971,18 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="chain.html" class="tsd-kind-icon">Chain</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="collector.html" class="tsd-kind-icon">Collector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="enumentry.html" class="tsd-kind-icon">Enum<wbr>Entry</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-has-type-parameter">
 						<a href="failure.html" class="tsd-kind-icon">Failure</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 								<a href="failure.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -1011,6 +1085,9 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="tryasync.html" class="tsd-kind-icon">Try<wbr>Async</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#enumeration" class="tsd-kind-icon">Enumeration</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -1021,9 +1098,11 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>

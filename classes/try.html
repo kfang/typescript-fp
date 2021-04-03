@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for @kfang/typescript-fp">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -53,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">@kfang/typescript-fp</a>
 				</li>
 				<li>
 					<a href="try.html">Try</a>
@@ -78,24 +77,27 @@
 						exception wrapped in a Failure type usually to be simply passed on down the chain. Combinators such as
 					<a href="try.html#recover">Try.recover</a> are designed to provide some type of default behavior in the case of failure.</p>
 					<p>lets say you have a function that might return an error:</p>
-					<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foobar</span>(<span class="hljs-params"></span>): <span class="hljs-title">number</span> </span>{
-  <span class="hljs-keyword">const</span> n = <span class="hljs-built_in">Math</span>.random();
-  <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">0.5</span> ? n : <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;you were unlucky&quot;</span>);
-}</code></pre>
+					<pre><code><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">foobar</span><span style="color: #000000">(): </span><span style="color: #267F99">number</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">n</span><span style="color: #000000"> = </span><span style="color: #267F99">Math</span><span style="color: #000000">.</span><span style="color: #795E26">random</span><span style="color: #000000">();</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> &gt; </span><span style="color: #098658">0.5</span><span style="color: #000000"> ? </span><span style="color: #001080">n</span><span style="color: #000000"> : </span><span style="color: #001080">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;you were unlucky&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
 					<p>case 1: foobar() returns 0.7</p>
-					<pre><code><span class="hljs-keyword">const</span> result = Try.of(foobar)        <span class="hljs-comment">// =&gt; Success(0.7)</span>
-  .map(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n + <span class="hljs-number">1</span>)                 <span class="hljs-comment">// =&gt; Success(1.7)</span>
-  .flatMap(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> Try.success(n <span class="hljs-number">-2</span>)) <span class="hljs-comment">// =&gt; Success(-1.7)</span>
-  .recover(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-number">0.0</span>)               <span class="hljs-comment">// =&gt; Success(-1.7)</span>
-  .get();                            <span class="hljs-comment">// =&gt; -1.7</span>
+					<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">of</span><span style="color: #000000">(</span><span style="color: #001080">foobar</span><span style="color: #000000">)        </span><span style="color: #008000">// =&gt; Success(0.7)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">map</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">)                 </span><span style="color: #008000">// =&gt; Success(1.7)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">flatMap</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #001080">n</span><span style="color: #000000"> -</span><span style="color: #098658">2</span><span style="color: #000000">)) </span><span style="color: #008000">// =&gt; Success(-1.7)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">recover</span><span style="color: #000000">((</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #098658">0.0</span><span style="color: #000000">)               </span><span style="color: #008000">// =&gt; Success(-1.7)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">get</span><span style="color: #000000">();                            </span><span style="color: #008000">// =&gt; -1.7</span>
 
-assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
+<span style="color: #795E26">assert</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">, -</span><span style="color: #098658">1.7</span><span style="color: #000000">)</span>
+</code></pre>
 					<p>case 2: foobar() throws an error</p>
-					<pre><code><span class="hljs-keyword">const</span> result = Try.of(foobar)        <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
-  .map(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n + <span class="hljs-number">1</span>)                 <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
-  .flatMap(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> Try.success(n <span class="hljs-number">-2</span>)) <span class="hljs-comment">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
-  .recover(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-number">0.0</span>)               <span class="hljs-comment">// =&gt; Success(0.0)</span>
-  .get();                            <span class="hljs-comment">// =&gt; 0.0</span></code></pre>
+					<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">of</span><span style="color: #000000">(</span><span style="color: #001080">foobar</span><span style="color: #000000">)        </span><span style="color: #008000">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">map</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">)                 </span><span style="color: #008000">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">flatMap</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #001080">n</span><span style="color: #000000"> -</span><span style="color: #098658">2</span><span style="color: #000000">)) </span><span style="color: #008000">// =&gt; Failure(&quot;you were unlucky&quot;)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">recover</span><span style="color: #000000">((</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #098658">0.0</span><span style="color: #000000">)               </span><span style="color: #008000">// =&gt; Success(0.0)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">get</span><span style="color: #000000">();                            </span><span style="color: #008000">// =&gt; 0.0</span>
+</code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -113,10 +115,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 						<span class="target">Try</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="failure.html" class="tsd-signature-type">Failure</a>
+								<a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a>
 							</li>
 							<li>
-								<a href="success.html" class="tsd-signature-type">Success</a>
+								<a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a>
 							</li>
 						</ul>
 					</li>
@@ -125,13 +127,19 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="monad.html" class="tsd-signature-type">Monad</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="monad.html" class="tsd-signature-type" data-tsd-kind="Class">Monad</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter"><a href="try.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
@@ -168,26 +176,49 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Try&lt;A&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>A</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="async" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> async</h3>
-					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="tryasync.html" class="tsd-signature-type" data-tsd-kind="Class">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L198">lib/try.ts:198</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L198">lib/try.ts:198</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tryasync.html" class="tsd-signature-type" data-tsd-kind="Class">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="tryasync.html" class="tsd-signature-type" data-tsd-kind="Class">TryAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -197,10 +228,11 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="flatmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> flat<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Implementation of Monad.flatMap</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L139">lib/try.ts:139</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L139">lib/try.ts:139</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -208,19 +240,20 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<p>applies the function that returns a <code>Try</code> to the success value and flattens over
 							the result so you don&#39;t get a <code>Try</code> within a <code>Try</code>.</p>
 						</div>
-						<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str</span>) =&gt; <span class="hljs-title">Try</span>.<span class="hljs-title">success</span>(<span class="hljs-params">str + <span class="hljs-string">&quot;world&quot;</span></span>)</span>;
-<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).flatMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;                    <span class="hljs-comment">// Success(&quot;hello world&quot;);</span>
-<span class="hljs-keyword">Try</span>.failure&lt;<span class="hljs-keyword">string</span>&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).flatMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;        <span class="hljs-comment">// Failure()</span>
+						<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot;world&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">flatMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);                    </span><span style="color: #008000">// Success(&quot;hello world&quot;);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">flatMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);        </span><span style="color: #008000">// Failure()</span>
 
-@param {(a: A) =&gt; <span class="hljs-keyword">Try</span>&lt;B&gt;} <span class="hljs-function"><span class="hljs-keyword">fn</span> - <span class="hljs-title">function</span> <span class="hljs-title">to</span> <span class="hljs-title">apply</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">success</span> <span class="hljs-title">value</span>
-@<span class="hljs-title">return</span> </span>{<span class="hljs-keyword">Try</span>&lt;B&gt;}</code></pre>
+<span style="color: #000000">@</span><span style="color: #001080">param</span><span style="color: #000000"> {(</span><span style="color: #001080">a</span><span style="color: #000000">: </span><span style="color: #267F99">A</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Try</span><span style="color: #000000">&lt;</span><span style="color: #0070C1">B</span><span style="color: #000000">&gt;} </span><span style="color: #001080">fn</span><span style="color: #000000"> - </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">to</span><span style="color: #000000"> </span><span style="color: #795E26">apply</span><span style="color: #000000"> </span><span style="color: #795E26">to</span><span style="color: #000000"> </span><span style="color: #795E26">the</span><span style="color: #000000"> </span><span style="color: #795E26">success</span><span style="color: #000000"> </span><span style="color: #795E26">value</span>
+<span style="color: #000000">@</span><span style="color: #795E26">return</span><span style="color: #000000"> {</span><span style="color: #001080">Try</span><span style="color: #000000">&lt;</span><span style="color: #0070C1">B</span><span style="color: #000000">&gt;}</span>
+</code></pre>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
-									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -233,11 +266,11 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+												<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												<ul class="tsd-parameters">
 													<li class="tsd-parameter-signature">
 														<ul class="tsd-signatures tsd-kind-type-literal">
-															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 														</ul>
 														<ul class="tsd-descriptions">
 															<li class="tsd-description">
@@ -247,14 +280,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 																		<h5>a: <span class="tsd-signature-type">A</span></h5>
 																	</li>
 																</ul>
-																<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+																<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 															</li>
 														</ul>
 													</li>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -267,14 +300,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L109">lib/try.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L109">lib/try.ts:109</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -292,14 +325,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>OrElse<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L110">lib/try.ts:110</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L110">lib/try.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -320,22 +353,22 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="isfailure" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Failure</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Failure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Failure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L108">lib/try.ts:108</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L108">lib/try.ts:108</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -345,22 +378,22 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="issuccess" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> is<wbr>Success</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L107">lib/try.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L107">lib/try.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -370,18 +403,20 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="map" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> map</h3>
-					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Implementation of Monad.map</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L125">lib/try.ts:125</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L125">lib/try.ts:125</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>applies the function to the success value</p>
-							<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str</span>) =&gt; <span class="hljs-title">str</span> + &quot; <span class="hljs-title">world</span>&quot;</span>;
-<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).map(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;                <span class="hljs-comment">// Success(&quot;hello world&quot;)</span>
-<span class="hljs-keyword">Try</span>.failure&lt;<span class="hljs-keyword">string</span>&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).map(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>;    <span class="hljs-comment">// Failure()</span></code></pre>
+							<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot; world&quot;</span><span style="color: #000000">;</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);                </span><span style="color: #008000">// Success(&quot;hello world&quot;)</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">);    </span><span style="color: #008000">// Failure()</span>
+</code></pre>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -395,8 +430,8 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
-									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -430,7 +465,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -440,10 +475,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="pflatmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> p<wbr>Flat<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">p<wbr>Flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">p<wbr>Flat<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L171">lib/try.ts:171</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L171">lib/try.ts:171</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -456,8 +491,8 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
-									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -470,11 +505,11 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+												<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												<ul class="tsd-parameters">
 													<li class="tsd-parameter-signature">
 														<ul class="tsd-signatures tsd-kind-type-literal">
-															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 														</ul>
 														<ul class="tsd-descriptions">
 															<li class="tsd-description">
@@ -484,14 +519,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 																		<h5>a: <span class="tsd-signature-type">A</span></h5>
 																	</li>
 																</ul>
-																<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+																<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 															</li>
 														</ul>
 													</li>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -501,10 +536,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="pmap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> p<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">p<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">p<wbr>Map<span class="tsd-signature-symbol">:</span> &lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L165">lib/try.ts:165</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L165">lib/try.ts:165</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -512,12 +547,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<p>simliar to map except the function being applied returns a {@link Promise}.
 							This is useful if you need to return something async inside the mapping function.</p>
 						</div>
-						<pre><code><span class="hljs-keyword">const</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> = (<span class="hljs-params">str: <span class="hljs-keyword">string</span></span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">string</span>&gt; =&gt; <span class="hljs-title">Promise</span>.<span class="hljs-title">resolve</span>(<span class="hljs-params">str + <span class="hljs-string">&quot; world&quot;</span></span>)</span>;
-<span class="hljs-keyword">Try</span>.success(<span class="hljs-string">&quot;hello&quot;</span>).pMap(<span class="hljs-function"><span class="hljs-keyword">fn</span>)</span>; <span class="hljs-comment">// Promise&lt;Sucess(&quot;hello world&quot;)&gt;</span></code></pre>
+						<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">fn</span><span style="color: #000000"> = (</span><span style="color: #001080">str</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">Promise</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt; </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #267F99">Promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #001080">str</span><span style="color: #000000"> + </span><span style="color: #A31515">&quot; world&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(</span><span style="color: #001080">fn</span><span style="color: #000000">); </span><span style="color: #008000">// Promise&lt;Sucess(&quot;hello world&quot;)&gt;</span>
+</code></pre>
 						<p>If the mapping function throws, the result will automatically converted to a Failure.
 						If the mapping function&#39;s Promise rejects, the result will be converted toa Failure.</p>
-						<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>success(<span class="hljs-string">&quot;hello&quot;</span>).p<span class="hljs-constructor">Map(<span class="hljs-params">async</span> ()</span> =&gt; throw <span class="hljs-keyword">new</span> <span class="hljs-constructor">Error()</span>);        <span class="hljs-comment">// Promise&lt;Failure&gt;</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>success(<span class="hljs-string">&quot;hello&quot;</span>).p<span class="hljs-constructor">Map(()</span> =&gt; <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error()</span>));    <span class="hljs-comment">// Promise&lt;Failure&gt;</span></code></pre>
+						<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">());        </span><span style="color: #008000">// Promise&lt;Failure&gt;</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;hello&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">pMap</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #267F99">Promise</span><span style="color: #000000">.</span><span style="color: #795E26">reject</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()));    </span><span style="color: #008000">// Promise&lt;Failure&gt;</span>
+</code></pre>
 						<p>However, most of the time, you should just use {@link Try.async()} in order to deal with
 						asynchronous operations.</p>
 					</div>
@@ -525,8 +562,8 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
-									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -560,7 +597,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -570,25 +607,26 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="recover" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> recover</h3>
-					<div class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">recover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L180">lib/try.ts:180</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L180">lib/try.ts:180</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>applies the function to to an error. The function is only called if this is a Failure.
 							This is useful if you want to provide a default value on a failure based on the error.</p>
-							<pre><code>Try.failure(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).recover(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">&quot;Hello World!&quot;</span>);  <span class="hljs-regexp">//</span> Success(<span class="hljs-string">&quot;Hello World!&quot;</span>)</code></pre>
+							<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()).</span><span style="color: #795E26">recover</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Hello World!&quot;</span><span style="color: #000000">);  </span><span style="color: #008000">// Success(&quot;Hello World!&quot;)</span>
+</code></pre>
 						</div>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -616,7 +654,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -626,10 +664,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="recoverwith" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> recover<wbr>With</h3>
-					<div class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">recover<wbr>With<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L194">lib/try.ts:194</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L194">lib/try.ts:194</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -649,19 +687,19 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>fn: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
+												<h5>fn: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												<ul class="tsd-parameters">
 													<li class="tsd-parameter-signature">
 														<ul class="tsd-signatures tsd-kind-type-literal">
-															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 														</ul>
 														<ul class="tsd-descriptions">
 															<li class="tsd-description">
@@ -671,14 +709,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 																		<h5>e: <span class="tsd-signature-type">Error</span></h5>
 																	</li>
 																</ul>
-																<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+																<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 															</li>
 														</ul>
 													</li>
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -688,22 +726,22 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="tooptional" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> to<wbr>Optional</h3>
-					<div class="tsd-signature tsd-kind-icon">to<wbr>Optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>Optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L111">lib/try.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L111">lib/try.ts:111</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -717,13 +755,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="ap" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> ap</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of Monad.ap</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L113">lib/try.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L113">lib/try.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -735,10 +774,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>b: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>b: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -746,13 +785,13 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="case" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> case</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L196">lib/try.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L196">lib/try.ts:196</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -764,14 +803,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicates: <span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>predicates: <span class="tsd-signature-symbol">{ </span>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>failure<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
@@ -781,18 +820,18 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 																	<h5>error: <span class="tsd-signature-type">Error</span></h5>
 																</li>
 															</ul>
-															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
 											</ul>
 										</li>
 										<li class="tsd-parameter">
-											<h5>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
@@ -802,7 +841,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 																	<h5>value: <span class="tsd-signature-type">A</span></h5>
 																</li>
 															</ul>
-															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
@@ -811,7 +850,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -819,13 +858,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="chain" class="tsd-anchor"></a>
 					<h3>chain</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of Monad.chain</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L142">lib/try.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L142">lib/try.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -844,11 +884,11 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -858,14 +898,14 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 															<h5>a: <span class="tsd-signature-type">A</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -873,19 +913,20 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="failure" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> failure</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L91">lib/try.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L91">lib/try.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>builds an instance of Failure directly</p>
-									<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Try</span>.</span></span>failure(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error(<span class="hljs-string">&quot;error message&quot;</span>)</span>);</code></pre>
+									<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">failure</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;error message&quot;</span><span style="color: #000000">));</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -900,7 +941,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -908,20 +949,21 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="flatten" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> flatten</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L79">lib/try.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L79">lib/try.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>returns an array that keeps only the successful values of an array of Try</p>
-									<pre><code><span class="hljs-keyword">const</span> arr = [() =&gt; <span class="hljs-number">1</span>, () =&gt; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()].map(<span class="hljs-keyword">Try</span>.of);
-<span class="hljs-keyword">Try</span>.flatten(arr) <span class="hljs-comment">// =&gt; [1]</span></code></pre>
+									<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">arr</span><span style="color: #000000"> = [() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">()].</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #001080">of</span><span style="color: #000000">);</span>
+<span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">flatten</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000">) </span><span style="color: #008000">// =&gt; [1]</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -933,7 +975,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>arr: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>arr: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -946,13 +988,13 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="isfailure-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Failure</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Failure&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L48">lib/try.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L48">lib/try.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -964,10 +1006,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>t: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Failure</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="failure.html" class="tsd-signature-type" data-tsd-kind="Class">Failure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -975,13 +1017,13 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="issuccess-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Success</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Success&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Success&lt;B&gt;<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L44">lib/try.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L44">lib/try.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -993,10 +1035,10 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>t: <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">Success</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">t</span><span class="tsd-signature-symbol"> is </span><a href="success.html" class="tsd-signature-type" data-tsd-kind="Class">Success</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1004,13 +1046,13 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="of" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L52">lib/try.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L52">lib/try.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1022,22 +1064,22 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">B</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></h4>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">B</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1045,13 +1087,13 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="pof" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> p<wbr>Of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">p<wbr>Of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">p<wbr>Of&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L61">lib/try.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L61">lib/try.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1078,7 +1120,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1086,19 +1128,20 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<a name="success" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> success</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">success&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">success&lt;B&gt;<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/try.ts#L103">lib/try.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/try.ts#L103">lib/try.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>builds an instance of Success directly</p>
-									<pre><code><span class="hljs-selector-tag">Try</span><span class="hljs-selector-class">.success</span>({<span class="hljs-attribute">foo</span>: <span class="hljs-string">&quot;bar&quot;</span>});</code></pre>
+									<pre><code><span style="color: #001080">Try</span><span style="color: #000000">.</span><span style="color: #795E26">success</span><span style="color: #000000">({</span><span style="color: #001080">foo:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;bar&quot;</span><span style="color: #000000">});</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1113,7 +1156,7 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 									<h5>b: <span class="tsd-signature-type">B</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type" data-tsd-kind="Class">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1122,8 +1165,8 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -1137,6 +1180,12 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="chain.html" class="tsd-kind-icon">Chain</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="collector.html" class="tsd-kind-icon">Collector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="enumentry.html" class="tsd-kind-icon">Enum<wbr>Entry</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="failure.html" class="tsd-kind-icon">Failure</a>
@@ -1167,6 +1216,9 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<li class="current tsd-kind-class tsd-has-type-parameter">
 						<a href="try.html" class="tsd-kind-icon">Try</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="try.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="try.html#async" class="tsd-kind-icon">async</a>
 							</li>
@@ -1240,6 +1292,9 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="tryasync.html" class="tsd-kind-icon">Try<wbr>Async</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#enumeration" class="tsd-kind-icon">Enumeration</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -1250,9 +1305,11 @@ assert(result, <span class="hljs-number">-1.7</span>)</code></pre>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>

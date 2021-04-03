@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for @kfang/typescript-fp">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -53,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">@kfang/typescript-fp</a>
 				</li>
 				<li>
 					<a href="none.html">None</a>
@@ -78,19 +77,13 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">None</span>
 							</li>
 						</ul>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="monad.html" class="tsd-signature-type">Monad</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -100,7 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="none.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="none.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -131,20 +124,27 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>None<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="none.html" class="tsd-signature-type">None</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>None&lt;A&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="none.html" class="tsd-signature-type" data-tsd-kind="Class">None</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L262">lib/optional.ts:262</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L262">lib/optional.ts:262</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="none.html" class="tsd-signature-type">None</a></h4>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>A</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="none.html" class="tsd-signature-type" data-tsd-kind="Class">None</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -155,14 +155,14 @@
 					<a name="ap" class="tsd-anchor"></a>
 					<h3>ap</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">ap&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#ap">ap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L267">lib/optional.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L267">lib/optional.ts:267</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -171,7 +171,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -179,17 +179,17 @@
 					<a name="async" class="tsd-anchor"></a>
 					<h3>async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optionalasync.html" class="tsd-signature-type">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optionalasync.html" class="tsd-signature-type" data-tsd-kind="Class">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#async">async</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L315">lib/optional.ts:315</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L315">lib/optional.ts:315</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="optionalasync.html" class="tsd-signature-type">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optionalasync.html" class="tsd-signature-type" data-tsd-kind="Class">OptionalAsync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -197,14 +197,14 @@
 					<a name="case" class="tsd-anchor"></a>
 					<h3>case</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">case&lt;B&gt;<span class="tsd-signature-symbol">(</span>predicates<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#case">case</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L319">lib/optional.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L319">lib/optional.ts:319</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -216,29 +216,29 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicates: <span class="tsd-signature-symbol">{ </span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>predicates: <span class="tsd-signature-symbol">{ </span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
-															<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
 											</ul>
 										</li>
 										<li class="tsd-parameter">
-											<h5>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											<h5>some<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 													</ul>
 													<ul class="tsd-descriptions">
 														<li class="tsd-description">
@@ -248,7 +248,7 @@
 																	<h5>value: <span class="tsd-signature-type">A</span></h5>
 																</li>
 															</ul>
-															<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+															<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 														</li>
 													</ul>
 												</li>
@@ -257,7 +257,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -265,14 +265,14 @@
 					<a name="chain" class="tsd-anchor"></a>
 					<h3>chain</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chain&lt;B&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#chain">chain</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L95">lib/optional.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L95">lib/optional.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -284,11 +284,11 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>fn: <span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -298,14 +298,14 @@
 															<h5>a: <span class="tsd-signature-type">A</span></h5>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -320,7 +320,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L271">lib/optional.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L271">lib/optional.ts:271</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -338,7 +338,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#exists">exists</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L275">lib/optional.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L275">lib/optional.ts:275</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -349,14 +349,14 @@
 					<a name="flatmap" class="tsd-anchor"></a>
 					<h3>flat<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L279">lib/optional.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L279">lib/optional.ts:279</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -365,7 +365,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -380,7 +380,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L283">lib/optional.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L283">lib/optional.ts:283</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span></h4>
@@ -398,7 +398,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorelse">getOrElse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L287">lib/optional.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L287">lib/optional.ts:287</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -415,17 +415,17 @@
 					<a name="getornull" class="tsd-anchor"></a>
 					<h3>get<wbr>OrNull</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>OrNull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>OrNull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">A</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getornull">getOrNull</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L295">lib/optional.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L295">lib/optional.ts:295</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">A</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -440,7 +440,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorthrow">getOrThrow</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L291">lib/optional.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L291">lib/optional.ts:291</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -457,17 +457,17 @@
 					<a name="getorundefined" class="tsd-anchor"></a>
 					<h3>get<wbr>OrUndefined</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>OrUndefined<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>OrUndefined<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">A</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#getorundefined">getOrUndefined</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L299">lib/optional.ts:299</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L299">lib/optional.ts:299</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">A</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -482,7 +482,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L303">lib/optional.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L303">lib/optional.ts:303</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -493,14 +493,14 @@
 					<a name="map" class="tsd-anchor"></a>
 					<h3>map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L307">lib/optional.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L307">lib/optional.ts:307</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -509,7 +509,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -517,14 +517,14 @@
 					<a name="pmap" class="tsd-anchor"></a>
 					<h3>p<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">p<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">p<wbr>Map&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="optional.html">Optional</a>.<a href="optional.html#pmap">pMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L311">lib/optional.ts:311</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L311">lib/optional.ts:311</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -533,7 +533,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -541,14 +541,14 @@
 					<a name="empty" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> empty</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">empty&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">empty&lt;B&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#empty">empty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L40">lib/optional.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L40">lib/optional.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -557,7 +557,7 @@
 									<h4>B</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -565,21 +565,22 @@
 					<a name="flatten" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> flatten</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">flatten&lt;B&gt;<span class="tsd-signature-symbol">(</span>arr<span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#flatten">flatten</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L52">lib/optional.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L52">lib/optional.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>returns an array that keeps only the non empty values of an array of Optionals</p>
-									<pre><code><span class="hljs-string">const</span> <span class="hljs-string">arr</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">undefined</span>, <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">6</span>]<span class="hljs-string">.map(Optional.of);</span>
-<span class="hljs-string">Optional.flatten(arr)</span> <span class="hljs-string">//</span> <span class="hljs-string">=&gt;</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]</code></pre>
+									<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">arr</span><span style="color: #000000"> = [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #0000FF">undefined</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #0000FF">null</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000">].</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">Optional</span><span style="color: #000000">.</span><span style="color: #001080">of</span><span style="color: #000000">);</span>
+<span style="color: #001080">Optional</span><span style="color: #000000">.</span><span style="color: #795E26">flatten</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000">) </span><span style="color: #008000">// =&gt; [1, 2, 4, 6]</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -591,7 +592,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>arr: <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>arr: <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -604,14 +605,14 @@
 					<a name="of" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">of&lt;B&gt;<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="optional.html">Optional</a>.<a href="optional.html#of">of</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/f51d3e7/src/lib/optional.ts#L28">lib/optional.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/kfang/typescript-fp/blob/e10baf1/src/lib/optional.ts#L28">lib/optional.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -623,10 +624,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>v: <span class="tsd-signature-type">B</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<h5>v: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">B</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="optional.html" class="tsd-signature-type" data-tsd-kind="Class">Optional</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -635,8 +636,8 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -652,6 +653,12 @@
 						<a href="chain.html" class="tsd-kind-icon">Chain</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="collector.html" class="tsd-kind-icon">Collector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="enumentry.html" class="tsd-kind-icon">Enum<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="failure.html" class="tsd-kind-icon">Failure</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
@@ -665,7 +672,7 @@
 					<li class="current tsd-kind-class tsd-has-type-parameter">
 						<a href="none.html" class="tsd-kind-icon">None</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 								<a href="none.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
@@ -744,6 +751,9 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="tryasync.html" class="tsd-kind-icon">Try<wbr>Async</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#enumeration" class="tsd-kind-icon">Enumeration</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -754,9 +764,11 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
