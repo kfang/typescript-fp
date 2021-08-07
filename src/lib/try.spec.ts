@@ -268,6 +268,36 @@ describe("case", () => {
     });
 });
 
+describe("chain", () => {
+    it("Success.chain(Success) returns Success", () => {
+        const result = Try.success("hello")
+            .chain((str) => Try.success(str + " world"))
+            .get();
+        expect(result).toEqual("hello world");
+    });
+
+    it("Success.chain(Failure) returns Failure", () => {
+        const result = Try.success("hello")
+            .chain(() => Try.failure(new Error()));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+
+    it("Failure.chain(Success) returns Success", () => {
+        const result = Try.failure<string>(new Error())
+            .chain((str) => Try.success(str + " world"));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+
+    it("Failure.chain(Failure) returns Failure", () => {
+        const result = Try.failure<string>(new Error())
+            .chain(() => Try.failure(new Error()));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+});
+
 describe("mapAsync", () => {
     it("uses the fn to map over the inner value", async () => {
        const result = await Try.success("hello")
