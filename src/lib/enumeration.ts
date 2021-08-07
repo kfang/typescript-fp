@@ -65,7 +65,7 @@ export abstract class EnumEntry<T = unknown> {
             },
         });
 
-        return Object.freeze(e);
+        return Object.freeze(e) as Enumeration<C, E, T>;
     }
 
     public readonly value: T;
