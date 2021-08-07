@@ -82,22 +82,24 @@ test("get() should return inner value", () => {
     expect(opt.get()).toEqual("foobar");
 });
 
-test("flatMap() should return inner", () => {
-    const opt = Optional.of({ a: "foobar" });
-    const res = opt.flatMap((o) => Optional.of(o.a));
-    expect(res.contains("foobar")).toBeTruthy();
-});
+describe("flatMap", () => {
+    it("returns inner", () => {
+        const opt = Optional.of({ a: "foobar" });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.contains("foobar")).toBeTruthy();
+    });
 
-test("flatMap() should return empty", () => {
-    const opt = Optional.of({ a: null });
-    const res = opt.flatMap((o) => Optional.of(o.a));
-    expect(res.isEmpty()).toBeTruthy();
-});
+    it("returns empty", () => {
+        const opt = Optional.of({ a: null });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
 
-test("flatMap() should work over empty", () => {
-    const opt = Optional.of(null);
-    const res = opt.flatMap((a) => Optional.of(a));
-    expect(res.isEmpty()).toBeTruthy();
+    it("works over empty", () => {
+        const opt = Optional.of(null);
+        const res = opt.flatMap((a) => Optional.of(a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
 });
 
 test("exists() should return false on a None", () => {
@@ -221,4 +223,21 @@ describe("case", () => {
         expect(result.isEmpty()).toEqual(false);
         expect(result.get()).toEqual("foobar");
     });
+});
+
+describe("mapAsync", () => {
+    it("maps over a Some", async () => {
+        const result = await Optional.of("hello")
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isEmpty()).toBeFalsy();
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("maps over a None", async () => {
+        const result = await Optional.empty<string>()
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isEmpty()).toBeTruthy();
+    })
 });
