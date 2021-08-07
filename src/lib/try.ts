@@ -161,12 +161,14 @@ export abstract class Try<A> implements Monad<A> {
      *
      * However, most of the time, you should just use {@link Try.async()} in order to deal with
      * asynchronous operations.
+     * @deprecated
      */
     public abstract readonly pMap: <B>(fn: (a: A) => Promise<B>) => Promise<Try<B>>;
 
     /**
      * similar to flatMap except the function being applied returns a Promise<Try>.
      * This is useful if the mapping function returns a Promise<Try>.
+     * @deprecated
      */
     public abstract readonly pFlatMap: <B>(fn: (a: A) => Promise<Try<B>>) => Promise<Try<B>>;
 
@@ -195,7 +197,19 @@ export abstract class Try<A> implements Monad<A> {
 
     public abstract case<B>(predicates: { success: (value: A) => Try<B>; failure: (error: Error) => Try<B> }): Try<B>;
 
+    /**
+     * Converts this Try<A> to a TryAsync<A>.
+     */
     public abstract readonly async: () => TryAsync<A>;
+
+    /**
+     * Applies an async function `(A) => Promise<B>` to the inner value and converts this Try<A> into a TryAsync<B>. This
+     * is an alias for calling {@link async} and then {@link TryAsync.mapAsync}.
+     * @param {(v: A) => Promise<B>} fn
+     */
+    public mapAsync = <B>(fn: (v: A) => Promise<B>): TryAsync<B> => {
+        return this.async().mapAsync(fn);
+    };
 }
 
 export class Failure<A> extends Try<A> {

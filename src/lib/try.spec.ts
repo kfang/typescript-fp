@@ -267,3 +267,27 @@ describe("case", () => {
         expect(result.get()).toEqual("expected error");
     });
 });
+
+describe("mapAsync", () => {
+    it("uses the fn to map over the inner value", async () => {
+       const result = await Try.success("hello")
+           .mapAsync((str) => Promise.resolve(str + " world"))
+           .promise();
+       expect(result.isFailure()).toEqual(false);
+       expect(result.get()).toEqual("hello world");
+    });
+
+    it("catches a failed promise", async () => {
+        const result = await Try.success("hello")
+            .mapAsync(() => Promise.reject(new Error()))
+            .promise();
+        expect(result.isFailure()).toEqual(true);
+    });
+
+    it("does not call the fn if its a failure", async () => {
+        const result = await Try.failure<string>(new Error())
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isFailure()).toEqual(true);
+    });
+});
