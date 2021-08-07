@@ -82,26 +82,6 @@ test("get() should return inner value", () => {
     expect(opt.get()).toEqual("foobar");
 });
 
-describe("flatMap", () => {
-    it("returns inner", () => {
-        const opt = Optional.of({ a: "foobar" });
-        const res = opt.flatMap((o) => Optional.of(o.a));
-        expect(res.contains("foobar")).toBeTruthy();
-    });
-
-    it("returns empty", () => {
-        const opt = Optional.of({ a: null });
-        const res = opt.flatMap((o) => Optional.of(o.a));
-        expect(res.isEmpty()).toBeTruthy();
-    });
-
-    it("works over empty", () => {
-        const opt = Optional.of(null);
-        const res = opt.flatMap((a) => Optional.of(a));
-        expect(res.isEmpty()).toBeTruthy();
-    });
-});
-
 test("exists() should return false on a None", () => {
     const res = Optional.empty().exists(() => true);
     expect(res).toBeFalsy();
@@ -172,24 +152,6 @@ describe("async", () => {
     });
 });
 
-describe("flatten", () => {
-    it("filters out empty optionals", async () => {
-        const opts = [1, 2, undefined].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual([1, 2]);
-    });
-    it("works on empty arrays", async () => {
-        const opts = [].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual([]);
-    });
-    it("keeps non-empty values", async () => {
-        const opts = ["foo", "bar"].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual(["foo", "bar"]);
-    });
-});
-
 describe("ap", () => {
     it("returns none", () => {
         const oFn = Optional.of((v: number) => v + 1);
@@ -245,6 +207,44 @@ describe("chain", () => {
     it("None.chain(None) returns None", () => {
         const result = Optional.empty<string>().chain(() => Optional.empty());
         expect(result.isEmpty()).toBe(true);
+    });
+});
+
+describe("flatMap", () => {
+    it("returns inner", () => {
+        const opt = Optional.of({ a: "foobar" });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.contains("foobar")).toBeTruthy();
+    });
+
+    it("returns empty", () => {
+        const opt = Optional.of({ a: null });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
+
+    it("works over empty", () => {
+        const opt = Optional.of(null);
+        const res = opt.flatMap((a) => Optional.of(a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
+});
+
+describe("flatten", () => {
+    it("filters out empty optionals", () => {
+        const opts = [1, 2, undefined].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual([1, 2]);
+    });
+    it("works on empty arrays", () => {
+        const opts = [].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual([]);
+    });
+    it("keeps non-empty values", () => {
+        const opts = ["foo", "bar"].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual(["foo", "bar"]);
     });
 });
 
