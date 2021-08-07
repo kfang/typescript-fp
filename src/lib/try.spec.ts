@@ -267,3 +267,57 @@ describe("case", () => {
         expect(result.get()).toEqual("expected error");
     });
 });
+
+describe("chain", () => {
+    it("Success.chain(Success) returns Success", () => {
+        const result = Try.success("hello")
+            .chain((str) => Try.success(str + " world"))
+            .get();
+        expect(result).toEqual("hello world");
+    });
+
+    it("Success.chain(Failure) returns Failure", () => {
+        const result = Try.success("hello")
+            .chain(() => Try.failure(new Error()));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+
+    it("Failure.chain(Success) returns Success", () => {
+        const result = Try.failure<string>(new Error())
+            .chain((str) => Try.success(str + " world"));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+
+    it("Failure.chain(Failure) returns Failure", () => {
+        const result = Try.failure<string>(new Error())
+            .chain(() => Try.failure(new Error()));
+        expect(result.isFailure()).toBeTruthy();
+        expect(result.isSuccess()).toBeFalsy();
+    });
+});
+
+describe("mapAsync", () => {
+    it("uses the fn to map over the inner value", async () => {
+       const result = await Try.success("hello")
+           .mapAsync((str) => Promise.resolve(str + " world"))
+           .promise();
+       expect(result.isFailure()).toEqual(false);
+       expect(result.get()).toEqual("hello world");
+    });
+
+    it("catches a failed promise", async () => {
+        const result = await Try.success("hello")
+            .mapAsync(() => Promise.reject(new Error()))
+            .promise();
+        expect(result.isFailure()).toEqual(true);
+    });
+
+    it("does not call the fn if its a failure", async () => {
+        const result = await Try.failure<string>(new Error())
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isFailure()).toEqual(true);
+    });
+});

@@ -82,24 +82,6 @@ test("get() should return inner value", () => {
     expect(opt.get()).toEqual("foobar");
 });
 
-test("flatMap() should return inner", () => {
-    const opt = Optional.of({ a: "foobar" });
-    const res = opt.flatMap((o) => Optional.of(o.a));
-    expect(res.contains("foobar")).toBeTruthy();
-});
-
-test("flatMap() should return empty", () => {
-    const opt = Optional.of({ a: null });
-    const res = opt.flatMap((o) => Optional.of(o.a));
-    expect(res.isEmpty()).toBeTruthy();
-});
-
-test("flatMap() should work over empty", () => {
-    const opt = Optional.of(null);
-    const res = opt.flatMap((a) => Optional.of(a));
-    expect(res.isEmpty()).toBeTruthy();
-});
-
 test("exists() should return false on a None", () => {
     const res = Optional.empty().exists(() => true);
     expect(res).toBeFalsy();
@@ -170,24 +152,6 @@ describe("async", () => {
     });
 });
 
-describe("flatten", () => {
-    it("filters out empty optionals", async () => {
-        const opts = [1, 2, undefined].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual([1, 2]);
-    });
-    it("works on empty arrays", async () => {
-        const opts = [].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual([]);
-    });
-    it("keeps non-empty values", async () => {
-        const opts = ["foo", "bar"].map(Optional.of);
-        const result = await Optional.flatten(opts);
-        expect(result).toEqual(["foo", "bar"]);
-    });
-});
-
 describe("ap", () => {
     it("returns none", () => {
         const oFn = Optional.of((v: number) => v + 1);
@@ -221,4 +185,82 @@ describe("case", () => {
         expect(result.isEmpty()).toEqual(false);
         expect(result.get()).toEqual("foobar");
     });
+});
+
+describe("chain", () => {
+    it("Some.chain(Some) returns Some", () => {
+        const result = Optional.of("hello").chain((str) => Optional.of(str + " world"));
+        expect(result.isEmpty()).toBe(false);
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("Some.chain(None) returns None", () => {
+        const result = Optional.of("hello").chain(() => Optional.empty());
+        expect(result.isEmpty()).toBe(true);
+    });
+
+    it("None.chain(Some) returns None", () => {
+        const result = Optional.empty<string>().chain(() => Optional.of(" world"));
+        expect(result.isEmpty()).toBe(true);
+    });
+
+    it("None.chain(None) returns None", () => {
+        const result = Optional.empty<string>().chain(() => Optional.empty());
+        expect(result.isEmpty()).toBe(true);
+    });
+});
+
+describe("flatMap", () => {
+    it("returns inner", () => {
+        const opt = Optional.of({ a: "foobar" });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.contains("foobar")).toBeTruthy();
+    });
+
+    it("returns empty", () => {
+        const opt = Optional.of({ a: null });
+        const res = opt.flatMap((o) => Optional.of(o.a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
+
+    it("works over empty", () => {
+        const opt = Optional.of(null);
+        const res = opt.flatMap((a) => Optional.of(a));
+        expect(res.isEmpty()).toBeTruthy();
+    });
+});
+
+describe("flatten", () => {
+    it("filters out empty optionals", () => {
+        const opts = [1, 2, undefined].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual([1, 2]);
+    });
+    it("works on empty arrays", () => {
+        const opts = [].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual([]);
+    });
+    it("keeps non-empty values", () => {
+        const opts = ["foo", "bar"].map(Optional.of);
+        const result = Optional.flatten(opts);
+        expect(result).toEqual(["foo", "bar"]);
+    });
+});
+
+describe("mapAsync", () => {
+    it("maps over a Some", async () => {
+        const result = await Optional.of("hello")
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isEmpty()).toBeFalsy();
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("maps over a None", async () => {
+        const result = await Optional.empty<string>()
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isEmpty()).toBeTruthy();
+    })
 });

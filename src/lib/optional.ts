@@ -74,6 +74,7 @@ export abstract class Optional<A> implements Monad<A> {
      * would have been an inner Promise to the outside.
      * @param {(A) => Promise<B>} fn
      * @returns {Promise<Optional<B>>}
+     * @deprecated
      */
     public abstract pMap<B>(fn: (a: A) => Promise<B>): Promise<Optional<B>>;
 
@@ -177,16 +178,25 @@ export abstract class Optional<A> implements Monad<A> {
     public abstract isEmpty(): boolean;
 
     /**
-     * returns true if this Optional is not empty and the function passed in returns true. Otherwise
+     * Returns true if this Optional is not empty and the function passed in returns true. Otherwise
      * returns false
      * @param {(A) => boolean} fn - existance function
      */
     public abstract exists(fn: (v: A) => boolean): boolean;
 
     /**
-     * converts this Optional into an OptionalAsync to make it easier to work with async functions.
+     * Converts this Optional into an OptionalAsync to make it easier to work with async functions.
      */
     public abstract async(): OptionalAsync<A>;
+
+    /**
+     * Applies an async function to the inner value and converts the Optional into an OptionalAsync. This
+     * is an alias for calling {@link async} and then {@link OptionalAsync.mapAsync}.
+     * @param {(v: A) => Promise<B>} fn
+     */
+    public mapAsync = <B>(fn: (v: A) => Promise<B>): OptionalAsync<B> => {
+        return this.async().mapAsync(fn);
+    }
 
     public abstract case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B>;
 }
