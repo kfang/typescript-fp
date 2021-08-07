@@ -225,6 +225,29 @@ describe("case", () => {
     });
 });
 
+describe("chain", () => {
+    it("Some.chain(Some) returns Some", () => {
+        const result = Optional.of("hello").chain((str) => Optional.of(str + " world"));
+        expect(result.isEmpty()).toBe(false);
+        expect(result.get()).toEqual("hello world");
+    });
+
+    it("Some.chain(None) returns None", () => {
+        const result = Optional.of("hello").chain(() => Optional.empty());
+        expect(result.isEmpty()).toBe(true);
+    });
+
+    it("None.chain(Some) returns None", () => {
+        const result = Optional.empty<string>().chain(() => Optional.of(" world"));
+        expect(result.isEmpty()).toBe(true);
+    });
+
+    it("None.chain(None) returns None", () => {
+        const result = Optional.empty<string>().chain(() => Optional.empty());
+        expect(result.isEmpty()).toBe(true);
+    });
+});
+
 describe("mapAsync", () => {
     it("maps over a Some", async () => {
         const result = await Optional.of("hello")
