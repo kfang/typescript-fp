@@ -194,7 +194,7 @@ export abstract class Optional<A> implements Monad<A> {
      * is an alias for calling {@link async} and then {@link OptionalAsync.mapAsync}.
      * @param {(v: A) => Promise<B>} fn
      */
-    public mapAsync = <B>(fn: (v: A) => Promise<B>): OptionalAsync<B> => {
+    public mapAsync<B>(fn: (v: A) => Promise<B>): OptionalAsync<B> {
         return this.async().mapAsync(fn);
     }
 
