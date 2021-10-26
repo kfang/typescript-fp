@@ -68,4 +68,22 @@ describe("TryCollector", () => {
         expect(output).toHaveBeenCalledWith({ input: "hello" });
         expect(foobar).not.toHaveBeenCalled();
     });
+
+    it("defaults to an empty container", () => {
+        const getApple = () => Try.success("apple");
+        const getBanana = () => Try.success("banana");
+        const getPear = () => Try.success("pear");
+
+        const result = Collector.forTry()
+            .fold("apple", getApple)
+            .fold("banana", getBanana)
+            .fold("pear", getPear)
+            .yield();
+
+        expect(result.get()).toEqual({
+            apple: "apple",
+            banana: "banana",
+            pear: "pear",
+        });
+    });
 });
