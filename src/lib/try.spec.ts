@@ -321,3 +321,36 @@ describe("mapAsync", () => {
         expect(result.isFailure()).toEqual(true);
     });
 });
+
+describe("all", () => {
+    it("returns an array of successful values", () => {
+        const result = Try.all([
+            Try.success(1),
+            Try.success(2),
+            Try.success(3),
+        ]);
+
+        expect(result.get()).toEqual([1, 2, 3]);
+    });
+
+    it("returns a failure if one is a failure", () => {
+        const result = Try.all([
+            Try.success(1),
+            Try.failure<number>(new Error("expected failure")),
+            Try.success(3),
+        ]);
+
+        expect(result.get).toThrow("expected failure");
+    });
+
+    it("returns the first failure if multiple are a failures", () => {
+        const result = Try.all([
+            Try.success(1),
+            Try.failure<number>(new Error("expected failure 1")),
+            Try.failure<number>(new Error("expected failure 2")),
+            Try.failure<number>(new Error("expected failure 3")),
+        ]);
+
+        expect(result.get).toThrow("expected failure 1");
+    });
+});
