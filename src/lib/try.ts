@@ -81,6 +81,25 @@ export abstract class Try<A> implements Monad<A> {
     }
 
     /**
+     * Takes an array of Try<B> and returns a single Try containing all the inner values as B[]
+     * if they are all successful.
+     *
+     * @example Try.all([Try.success(1), Try.success(2), Try.success(3)])     => Try.success([1, 2, 3])
+     * @example Try.all([Try.success(1), Try.failure(error), Try.success(3)]  => Try.failure(error)
+     * @param {Try<B>[]>} arr - array of Try
+     */
+    public static all<B>(arr: Try<B>[]): Try<B[]> {
+        return arr.reduce((prev, curr) => {
+            return prev.flatMap((bxs) => {
+                return curr.map((b) => {
+                    bxs.push(b)
+                    return bxs;
+                });
+            });
+        }, Try.success<B[]>([]));
+    }
+
+    /**
      * builds an instance of Failure directly
      * ```
      * Try.failure(new Error("error message"));
