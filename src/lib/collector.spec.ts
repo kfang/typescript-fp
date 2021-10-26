@@ -54,6 +54,25 @@ describe("TryAsyncCollector", () => {
             pear: "pear",
         });
     });
+
+    it("allows interfaces to be passed in", async () => {
+        interface FooBar {
+            apple: string;
+            pear: number;
+            banana: boolean;
+        }
+        const foobar: FooBar = { apple: "apple", banana: false, pear: 1234 };
+        const result = await Collector.forTryAsync(foobar)
+            .fold("zig", () => TryAsync.success("zag"))
+            .yield()
+            .promise();
+        expect(result.get()).toEqual({
+            apple: "apple",
+            banana: false,
+            pear: 1234,
+            zig: "zag",
+        });
+    });
 });
 
 describe("TryCollector", () => {
@@ -103,6 +122,24 @@ describe("TryCollector", () => {
             apple: "apple",
             banana: "banana",
             pear: "pear",
+        });
+    });
+
+    it("allows interfaces to be passed in", () => {
+        interface FooBar {
+            apple: string;
+            pear: number;
+            banana: boolean;
+        }
+        const foobar: FooBar = { apple: "apple", banana: false, pear: 1234 };
+        const result = Collector.forTry(foobar)
+            .fold("zig", () => Try.success("zag"))
+            .yield()
+        expect(result.get()).toEqual({
+            apple: "apple",
+            banana: false,
+            pear: 1234,
+            zig: "zag",
         });
     });
 });
