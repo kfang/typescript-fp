@@ -35,6 +35,25 @@ describe("TryAsyncCollector", () => {
         expect(output).toHaveBeenCalledWith({ input: "hello" });
         expect(foobar).not.toHaveBeenCalled();
     });
+
+    it("defaults to an empty container", async () => {
+        const getApple = () => TryAsync.success("apple");
+        const getBanana = () => TryAsync.success("banana");
+        const getPear = () => TryAsync.success("pear");
+
+        const result = await Collector.forTryAsync()
+            .fold("apple", getApple)
+            .fold("banana", getBanana)
+            .fold("pear", getPear)
+            .yield()
+            .promise();
+
+        expect(result.get()).toEqual({
+            apple: "apple",
+            banana: "banana",
+            pear: "pear",
+        });
+    });
 });
 
 describe("TryCollector", () => {

@@ -44,7 +44,7 @@ export abstract class Collector<O extends Record<string, unknown>> {
         return new TryCollector<R>(Try.of(() => init));
     }
 
-    public static forTryAsync<R extends Record<string, unknown>>(init: R | Promise<R>): TryAsyncCollector<R> {
+    public static forTryAsync<R extends Record<string, unknown>>(init: R | Promise<R> = {} as R): TryAsyncCollector<R> {
         return new TryAsyncCollector<R>(TryAsync.of(init));
     }
 
