@@ -54,7 +54,7 @@ export abstract class Try<A> implements Monad<A> {
             const value = fn();
             return new Success(value);
         } catch (error) {
-            return new Failure(error);
+            return new Failure(error as Error);
         }
     }
 
@@ -64,7 +64,7 @@ export abstract class Try<A> implements Monad<A> {
                 .then((v) => new Success(v))
                 .catch((e) => new Failure(e));
         } catch (e) {
-            return Promise.resolve(new Failure(e));
+            return Promise.resolve(new Failure(e as Error));
         }
     }
 
@@ -281,7 +281,7 @@ export class Success<A> extends Try<A> {
         try {
             return new Success(fn(this.value));
         } catch (e) {
-            return new Failure(e);
+            return new Failure(e as Error);
         }
     };
 
@@ -289,7 +289,7 @@ export class Success<A> extends Try<A> {
         try {
             return fn(this.value);
         } catch (e) {
-            return new Failure(e);
+            return new Failure(e as Error);
         }
     };
 
@@ -299,7 +299,7 @@ export class Success<A> extends Try<A> {
                 .then((b) => Try.success(b))
                 .catch((e) => Try.failure(e));
         } catch (e) {
-            return Promise.resolve(Try.failure(e));
+            return Promise.resolve(Try.failure(e as Error));
         }
     };
 
@@ -307,7 +307,7 @@ export class Success<A> extends Try<A> {
         try {
             return fn(this.value).catch((e) => Try.failure(e));
         } catch (e) {
-            return Promise.resolve(Try.failure(e));
+            return Promise.resolve(Try.failure(e as Error));
         }
     };
 
