@@ -33,6 +33,25 @@ export class TryAsync<A> implements Monad<A> {
         return Promise.all(arr.map((t) => t.promise())).then(Try.flatten);
     }
 
+    /**
+     * Takes an array of TryAsync<B> and returns a single TryAsync containing all the inner values as B[]
+     * if they are all successful.
+     *
+     * @example TryAsync.all([TryAsync.success(1), TryAsync.success(2), TryAsync.success(3)])     => TryAsync.success([1, 2, 3])
+     * @example TryAsync.all([TryAsync.success(1), TryAsync.failure(error), TryAsync.success(3)]  => TryAsync.failure(error)
+     * @param {TryAsync<B>[]>} arr - array of TryAsync
+     */
+    public static all<B>(arr: TryAsync<B>[]): TryAsync<B[]> {
+        return arr.reduce((prev, curr) => {
+            return prev.flatMap((bxs) => {
+                return curr.map((b) => {
+                    bxs.push(b);
+                    return bxs;
+                });
+            });
+        }, TryAsync.success<B[]>([]));
+    }
+
     private readonly value: Promise<Try<A>>;
 
     private constructor(value: Promise<Try<A>>) {

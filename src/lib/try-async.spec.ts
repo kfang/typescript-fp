@@ -204,3 +204,35 @@ describe("wrap", () => {
         expect(unwrapped.get()).toEqual("foo");
     });
 });
+
+describe("all", () => {
+    it("returns a success if all are successful", async () => {
+        const result = await TryAsync.all([
+            TryAsync.success(1),
+            TryAsync.success(2),
+            TryAsync.success(3),
+            TryAsync.success(4),
+        ]).promise();
+        expect(result.get()).toEqual([1,2,3,4]);
+    });
+
+    it("returns a failure if one is a failure", async () => {
+        const result = await TryAsync.all([
+            TryAsync.success(1),
+            TryAsync.failure<number>(new Error("expected failure 1")),
+            TryAsync.success(3),
+            TryAsync.success(4),
+        ]).promise();
+        expect(result.get).toThrow("expected failure 1");
+    });
+
+    it("return the first failure if several are failures", async () => {
+        const result = await TryAsync.all([
+            TryAsync.success(1),
+            TryAsync.failure<number>(new Error("expected failure 1")),
+            TryAsync.failure<number>(new Error("expected failure 2")),
+            TryAsync.failure<number>(new Error("expected failure 3")),
+        ]).promise();
+        expect(result.get).toThrow("expected failure 1");
+    });
+});
