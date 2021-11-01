@@ -24,6 +24,17 @@ export class OptionalAsync<A> implements Monad<A> {
         return Promise.all(arr.map((opt) => opt.promise())).then(Optional.flatten);
     }
 
+    public static all<T>(optxs: OptionalAsync<T>[]): OptionalAsync<T[]> {
+        return optxs.reduce((prev, curr) => {
+            return curr.flatMap((t) => {
+                return prev.map((arr) => {
+                    arr.push(t);
+                    return arr;
+                });
+            });
+        }, OptionalAsync.of<T[]>([]));
+    }
+
     private readonly pOptA: Promise<Optional<A>>;
 
     private constructor(pOpt: Promise<Optional<A>>) {

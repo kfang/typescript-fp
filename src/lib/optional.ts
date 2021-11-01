@@ -41,6 +41,15 @@ export abstract class Optional<A> implements Monad<A> {
         return new None<B>();
     }
 
+    public static all<B>(optxs: Optional<B>[]): Optional<B[]> {
+        return optxs.reduce((prev, curr) => {
+            return curr.flatMap((b) => prev.map((arr) => {
+                arr.push(b);
+                return arr;
+            }));
+        }, Optional.of<B[]>([]));
+    }
+
     /**
      * returns an array that keeps only the non empty values of an array of Optionals
      * ```

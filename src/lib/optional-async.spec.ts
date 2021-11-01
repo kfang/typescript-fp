@@ -190,4 +190,28 @@ describe("OptionalAsync", () => {
             expect(result.get()).toEqual("foobar");
         });
     });
+
+    describe("all", () => {
+        it("returns all values in an array", async () => {
+            const result = await OptionalAsync.all([
+                OptionalAsync.of(1),
+                OptionalAsync.of(2),
+                OptionalAsync.of(3),
+                OptionalAsync.of(4),
+            ]).promise();
+
+            expect(result.get()).toEqual([1, 2, 3, 4]);
+        });
+
+        it("returns none if one in the array is empty", async () => {
+            const result = await OptionalAsync.all([
+                OptionalAsync.of(1),
+                OptionalAsync.empty<number>(),
+                OptionalAsync.of(3),
+                OptionalAsync.of(4),
+            ]).promise();
+
+            expect(result.isEmpty()).toEqual(true);
+        });
+    });
 });
