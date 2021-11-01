@@ -264,3 +264,25 @@ describe("mapAsync", () => {
         expect(result.isEmpty()).toBeTruthy();
     })
 });
+
+describe("all", () => {
+    it("returns an array with all the values", () => {
+        const result = Optional.all([
+            Optional.of(1),
+            Optional.of(2),
+            Optional.of(3),
+            Optional.of(4),
+        ]);
+        expect(result.get()).toEqual([1, 2, 3, 4]);
+    });
+
+    it("returns empty if one of them is empty", () => {
+        const result = Optional.all([
+            Optional.of(1),
+            Optional.empty<number>(),
+            Optional.of(3),
+            Optional.of(4),
+        ]);
+        expect(result.isEmpty()).toEqual(true);
+    });
+});
