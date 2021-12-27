@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor"
+  ],
+  "commitMessagePrefix": "chore(deps):",
+  "packageRules": [
+    {
+      "packageNames": ["circleci", "node"],
+      "enabled": false
+    }
+  ],
+  "rangeStrategy": "bump"
+}
