@@ -6,7 +6,7 @@
   "commitMessagePrefix": "chore(deps):",
   "packageRules": [
     {
-      "packageNames": ["node"],
+      "packageNames": ["circleci", "node"],
       "enabled": false
     }
   ],
