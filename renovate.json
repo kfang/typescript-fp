@@ -1,15 +1,8 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    "group:allNonMajor"
   ],
   "commitMessagePrefix": "chore(deps):",
-  "packageRules": [
-    {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch"
-    }
-  ],
   "rangeStrategy": "bump"
 }
