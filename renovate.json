@@ -10,5 +10,6 @@
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
     }
-  ]
+  ],
+  "rangeStrategy": "bump"
 }
