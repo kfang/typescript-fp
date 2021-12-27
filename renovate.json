@@ -4,5 +4,11 @@
     "group:allNonMajor"
   ],
   "commitMessagePrefix": "chore(deps):",
+  "packageRules": [
+    {
+      "packageNames": ["node"],
+      "enabled": false
+    }
+  ],
   "rangeStrategy": "bump"
 }
