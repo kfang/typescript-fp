@@ -1,4 +1,4 @@
-import { OptionalAsync } from "./optional-async";
+import { OptAsync, OptionalAsync } from "./optional-async";
 
 describe("OptionalAsync", () => {
     describe("ap", () => {
@@ -215,3 +215,12 @@ describe("OptionalAsync", () => {
         });
     });
 });
+
+describe("OptAsync", () => {
+    it("is just an alias for OptionalAsync", async () => {
+        const opt = await OptAsync.of("foobar").promise();
+        expect(opt.get()).toEqual("foobar");
+        expect(opt.contains("foobar")).toBeTruthy();
+        expect(opt.exists((s) => s === "foobar")).toBeTruthy();
+    });
+})

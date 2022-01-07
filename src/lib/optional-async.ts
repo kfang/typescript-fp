@@ -123,3 +123,5 @@ export class OptionalAsync<A> implements Monad<A> {
         return new OptionalAsync(pOptB);
     }
 }
+
+export const OptAsync: typeof OptionalAsync = OptionalAsync;
