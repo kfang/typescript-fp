@@ -1,6 +1,8 @@
 import { Monad } from "./fantasy";
 import { OptionalAsync } from "./optional-async";
 
+export type Nil = undefined | null;
+
 /**
  * A container object which may or may not contain a non-null value.
  * If a value is present, isEmpty() will return true and get() will return the value.
@@ -25,16 +27,13 @@ import { OptionalAsync } from "./optional-async";
  * ```
  */
 export abstract class Optional<A> implements Monad<A> {
+
+    public static isNil<T>(t: T | null | undefined): t is Nil {
+        return t === null || t === undefined;
+    }
+
     public static of<B>(v: B | null | undefined): Optional<B> {
-        if (v === null) {
-            return new None<B>();
-        }
-
-        if (v === undefined) {
-            return new None<B>();
-        }
-
-        return new Some<B>(v);
+        return Optional.isNil(v) ? new None<B>() : new Some<B>(v);
     }
 
     public static empty<B>(): Optional<B> {
@@ -215,7 +214,7 @@ export class Some<A> extends Optional<A> {
 
     constructor(v: A) {
         super();
-        if (v === null || v === undefined) {
+        if (Optional.isNil(v)) {
             throw new Error("can't construct a 'Some' with an empty value");
         }
         this.a = v;
@@ -339,3 +338,6 @@ export class None<A> extends Optional<A> {
         return predicates.none();
     }
 }
+
+/** Alias for Optional */
+export const Opt: typeof Optional = Optional;

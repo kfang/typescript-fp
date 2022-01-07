@@ -1,4 +1,4 @@
-import { Optional, Some } from "./optional";
+import { Opt, Optional, Some } from "./optional";
 
 test("isEmpty() should return true for undefined", () => {
     const opt = Optional.of(undefined);
@@ -284,5 +284,14 @@ describe("all", () => {
             Optional.of(4),
         ]);
         expect(result.isEmpty()).toEqual(true);
+    });
+});
+
+describe("Opt", () => {
+    it("is just an alias for Optional", () => {
+        const opt = Opt.of("foobar");
+        expect(opt.get()).toEqual("foobar");
+        expect(opt.contains("foobar")).toBeTruthy();
+        expect(opt.exists((s) => s === "foobar")).toBeTruthy();
     });
 });
