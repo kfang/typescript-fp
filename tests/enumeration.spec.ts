@@ -1,4 +1,4 @@
-import { EnumEntry } from "../index";
+import { EnumEntry } from "../src";
 
 class Color extends EnumEntry<string> {
     public static red = "RED";

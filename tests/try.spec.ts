@@ -1,4 +1,4 @@
-import { Try } from "./try";
+import { Try } from "../src/lib/try";
 
 test("isSuccess() should return true on non error", () => {
     const res = Try.of(() => "foobar");
