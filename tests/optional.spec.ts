@@ -1,4 +1,4 @@
-import { Opt, Optional, Some } from "./optional";
+import { Opt, Optional, Some } from "../src/lib/optional";
 
 test("isEmpty() should return true for undefined", () => {
     const opt = Optional.of(undefined);

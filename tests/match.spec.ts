@@ -1,4 +1,4 @@
-import { Match } from "../index";
+import { Match } from "../src";
 
 describe("Match", () => {
     it("matches on a constant", () => {

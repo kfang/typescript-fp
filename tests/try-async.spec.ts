@@ -1,5 +1,5 @@
-import { Try } from "./try";
-import { TryAsync } from "./try-async";
+import { Try } from "../src/lib/try";
+import { TryAsync } from "../src/lib/try-async";
 
 test("map() runs fn on inner try", async () => {
     const tryA = "HELLO";
