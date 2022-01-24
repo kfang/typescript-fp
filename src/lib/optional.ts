@@ -61,6 +61,16 @@ export abstract class Optional<A> implements Monad<A> {
         return arr.filter((o) => !o.isEmpty()).map((o) => o.get());
     }
 
+    public static contains<A>(value: A): (opt: Optional<A>) => boolean;
+    public static contains<A>(value: A, opt: Optional<A>): boolean;
+    public static contains<A>(v: A, o?: Optional<A>): ((opt: Optional<A>) => boolean) | boolean {
+        return Optional.isNil(o) ? (opt: Optional<A>) => opt.contains(v) : o.contains(v);
+    }
+
+    public static isEmpty<A>(opt: Optional<A>): boolean {
+        return opt.isEmpty();
+    }
+
     public abstract ap<B>(b: Optional<(a: A) => B>): Optional<B>;
 
     /**
