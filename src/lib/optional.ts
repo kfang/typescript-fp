@@ -221,6 +221,8 @@ export abstract class Optional<A> implements Monad<A> {
 
     /**
      * Converts this Optional into a Try. If empty, returns failure with given error. Otherwise, returns success
+     * @example Optional.of("foo").toTry(new MissingFoo()) => Try.success("foo")
+     * @example Optional.of(null).toTry(new MissingFoo()) => Try.failure(new MissingFoo())
      * @param {Error} error
      */
     public abstract toTry(error: Error): Try<A>;
