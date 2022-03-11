@@ -1,5 +1,6 @@
 import { Monad } from "./fantasy";
 import { OptionalAsync } from "./optional-async";
+import { Try } from "./try";
 
 export type Nil = undefined | null;
 
@@ -217,6 +218,14 @@ export abstract class Optional<A> implements Monad<A> {
     }
 
     public abstract case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B>;
+
+    /**
+     * Converts this Optional into a Try. If empty, returns failure with given error. Otherwise, returns success
+     * @example Optional.of("foo").toTry(new MissingFoo()) => Try.success("foo")
+     * @example Optional.of(null).toTry(new MissingFoo()) => Try.failure(new MissingFoo())
+     * @param {Error} error
+     */
+    public abstract toTry(error: Error): Try<A>;
 }
 
 export class Some<A> extends Optional<A> {
@@ -285,6 +294,10 @@ export class Some<A> extends Optional<A> {
     public case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B> {
         return predicates.some(this.a);
     }
+
+    public toTry(): Try<A> {
+        return Try.success<A>(this.a);
+    }
 }
 
 export class None<A> extends Optional<A> {
@@ -346,6 +359,10 @@ export class None<A> extends Optional<A> {
 
     public case<B>(predicates: { some: (value: A) => Optional<B>; none: () => Optional<B> }): Optional<B> {
         return predicates.none();
+    }
+
+    public toTry(error: Error): Try<A> {
+        return Try.failure<A>(error);
     }
 }
 
