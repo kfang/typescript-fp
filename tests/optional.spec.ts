@@ -339,20 +339,3 @@ describe("Opt", () => {
         expect(opt.exists((s) => s === "foobar")).toBeTruthy();
     });
 });
-
-describe("toTry", () => {
-    it("returns a success if not empty", () => {
-        const error = new Error("expected");
-        const result = Optional.of("foobar").toTry(error);
-        expect(result.isSuccess()).toEqual(true);
-        expect(result.get()).toEqual("foobar");
-    });
-
-    it("returns a failure if not empty", () => {
-        const error = new Error("expected");
-        const result = Optional.of(undefined).toTry(error);
-        expect(result.isFailure()).toEqual(true);
-        expect(result.get).toThrow("expected");
-    });
-});
-
