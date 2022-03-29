@@ -1,4 +1,4 @@
-import { Match } from "../src";
+import { Match, Optional } from "../src";
 
 describe("Match", () => {
     it("matches on a constant", () => {
@@ -45,4 +45,18 @@ describe("Match", () => {
         expect(t2).not.toHaveBeenCalled();
         expect(f2).not.toHaveBeenCalled();
     })
+
+    it("matches on a constant and returns an Optional", () => {
+        const m = Match
+            .case("hello", "world")
+            .toOptional();
+        expect(m("hello")).toEqual(Optional.of("world"));
+    });
+
+    it("returns Optional.empty if no match", () => {
+        const m = Match
+            .case("hello", "world")
+            .toOptional();
+        expect(m("goodbye")).toEqual(Optional.empty());
+    });
 });
