@@ -50,7 +50,7 @@ describe("Match", () => {
         const m = Match
             .case("hello", "world")
             .toOptional();
-        expect(m("hello").get()).toEqual("world");
+        expect(m("hello")).toEqual(Optional.of("world"));
     });
 
     it("returns Optional.empty if no match", () => {
