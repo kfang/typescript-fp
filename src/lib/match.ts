@@ -1,3 +1,4 @@
+import { Optional } from "./optional";
 
 type Predicate<In> = In | ((i: In) => boolean);
 type Evaluation<In, Out> = Out | ((i: In) => Out);
@@ -52,8 +53,8 @@ interface Case<In, Out> {
  * The upsides:
  * 1. no mutating variables
  * 2. no need for `break` statements
- * 3. the `default` is enforced
- * 4. you can pass functions to match agains
+ * 3. the `default` or `toOptional` is enforced
+ * 4. you can pass functions to match against
  * 5. typed inputs and outputs to the function (if you're using typescript)
  * 6. reusable matching function
  *
@@ -109,6 +110,22 @@ export class Match<In, Out> {
                 }
             }
             return value;
+        }
+    }
+
+    /**
+     * Assigns Optional.of(result) to the Match function.
+     * Assigns an empty Optional to the Match function if none of the predicates match.
+     * Calling `toOptional` returns the function that uses this match instance.
+     */
+    public toOptional(): (input: In) => Optional<Out> {
+        return (input: In) => {
+            for (const c of this.cases) {
+                if (c.predicate(input)) {
+                    return Optional.of(c.evaluation(input));
+                }
+            }
+            return Optional.empty();
         }
     }
 }
