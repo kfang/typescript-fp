@@ -1,6 +1,14 @@
 import { OptAsync, OptionalAsync } from "../src/lib/optional-async";
 
 describe("OptionalAsync", () => {
+    describe("OptionalAsync.of", () => {
+        it("throws if promise is rejected", async () => {
+            const error = new Error("expected failure");
+            const result = OptionalAsync.of(Promise.reject(error)).get();
+            await expect(result).rejects.toThrow(error);
+        });
+    });
+
     describe("ap", () => {
         it("applies the fn", async () => {
             const fn = OptionalAsync.of((n: number) => n + 1);
