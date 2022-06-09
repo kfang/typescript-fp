@@ -2,8 +2,8 @@ import { Monad } from "./fantasy";
 import { Optional } from "./optional";
 
 export class OptionalAsync<A> implements Monad<A> {
-    public static of<T>(t: T | null | undefined): OptionalAsync<T> {
-        const pOpt = Promise.resolve(Optional.of(t));
+    public static of<T>(t: T | null | undefined | Promise<T | null | undefined>): OptionalAsync<T> {
+        const pOpt = Promise.resolve(t).then(Optional.of);
         return new OptionalAsync(pOpt);
     }
 
