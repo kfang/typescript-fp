@@ -240,6 +240,6 @@ describe("void", () => {
     it("returns a success of undefined with void type", async () => {
         const result = await TryAsync.void().promise();
         expect(result.isSuccess()).toEqual(true);
-        expect(result.map((r) => r)).toBeUndefined();
+        expect(result.get()).toBeUndefined();
     });
 });

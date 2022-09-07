@@ -359,6 +359,6 @@ describe("void", () => {
     it("returns a success of undefined with void type", () => {
         const result = Try.void();
         expect(result.isSuccess()).toEqual(true);
-        expect(result.map((r) => r)).toBeUndefined();
+        expect(result.get()).toBeUndefined();
     });
 });
