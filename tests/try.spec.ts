@@ -1,4 +1,4 @@
-import { Try } from "../src/lib/try";
+import { Try } from "../src";
 
 test("isSuccess() should return true on non error", () => {
     const res = Try.of(() => "foobar");
@@ -352,5 +352,13 @@ describe("all", () => {
         ]);
 
         expect(result.get).toThrow("expected failure 1");
+    });
+});
+
+describe("void", () => {
+    it("returns a success of undefined with void type", () => {
+        const result = Try.void();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toBeUndefined();
     });
 });

@@ -1,4 +1,4 @@
-import { OptAsync, OptionalAsync } from "../src/lib/optional-async";
+import { OptAsync, OptionalAsync } from "../src";
 
 describe("OptionalAsync", () => {
     describe("OptionalAsync.of", () => {

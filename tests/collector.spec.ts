@@ -1,6 +1,4 @@
-import { Collector } from "../src/lib/collector";
-import { TryAsync } from "../src/lib/try-async";
-import { Try } from "../src/lib/try";
+import { Collector, Try, TryAsync } from "../src";
 
 describe("TryAsyncCollector", () => {
     it("collects items together in a Record", async () => {

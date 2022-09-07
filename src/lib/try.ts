@@ -49,7 +49,7 @@ export abstract class Try<A> implements Monad<A> {
         return t.isFailure();
     }
 
-    public static of<B>(fn: () => B | B): Try<B> {
+    public static of<B>(fn: () => B): Try<B> {
         try {
             const value = fn();
             return new Success(value);
@@ -121,6 +121,17 @@ export abstract class Try<A> implements Monad<A> {
      */
     public static success<B>(b: B): Try<B> {
         return new Success(b);
+    }
+
+    /**
+     * utility for Try.success<void>(undefined)
+     * ```
+     * Try.void();
+     * ```
+     * @return {Try<void>}
+     */
+    public static void(): Try<void> {
+        return new Success<void>(undefined);
     }
 
     public abstract readonly isSuccess: () => this is Success<A>;

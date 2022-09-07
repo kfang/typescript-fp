@@ -1,5 +1,4 @@
-import { Try } from "../src/lib/try";
-import { TryAsync } from "../src/lib/try-async";
+import { Try, TryAsync } from "../src";
 
 test("map() runs fn on inner try", async () => {
     const tryA = "HELLO";
@@ -234,5 +233,13 @@ describe("all", () => {
             TryAsync.failure<number>(new Error("expected failure 3")),
         ]).promise();
         expect(result.get).toThrow("expected failure 1");
+    });
+});
+
+describe("void", () => {
+    it("returns a success of undefined with void type", async () => {
+        const result = await TryAsync.void().promise();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toBeUndefined();
     });
 });
