@@ -52,6 +52,17 @@ export class TryAsync<A> implements Monad<A> {
         }, TryAsync.success<B[]>([]));
     }
 
+    /**
+     * utility for TryAsync.success<void>(undefined)
+     * ```
+     * TryAsync.void();
+     * ```
+     * @return {TryAsync<void>}
+     */
+    public static void(): TryAsync<void> {
+        return new TryAsync(Promise.resolve(Try.success<void>(undefined)));
+    }
+
     private readonly value: Promise<Try<A>>;
 
     private constructor(value: Promise<Try<A>>) {
