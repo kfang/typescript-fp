@@ -21,7 +21,7 @@
     "doc:json": "typedoc src/index.ts --json build/docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "reset": "git clean -dfx && git reset --hard && yarn",
-    "clean": "trash build test",
+    "clean": "trash build coverage",
     "all": "run-s reset test doc:html",
     "prepare-release": "run-s all doc:publish"
   },
