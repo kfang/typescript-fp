@@ -4,7 +4,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    environment: production
+    environment: release
     steps:
       - uses: actions/checkout@v3
       - name: Use NodeJs 16.x
@@ -14,5 +14,8 @@ jobs:
           cache: yarn
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - name: Install Dependencies
+      - name: Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn semantic-release
