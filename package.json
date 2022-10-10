@@ -10,9 +10,9 @@
   "keywords": [],
   "access": "public",
   "scripts": {
-    "build": "run-s clean && run-p build:*",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
+    "prepack": "run-s clean prepack:*",
+    "prepack:main": "tsc -p tsconfig.json",
+    "prepack:module": "tsc -p tsconfig.module.json",
     "fix": "eslint src --fix",
     "test": "jest",
     "test:lint": "eslint src",
