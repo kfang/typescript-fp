@@ -1,7 +1,6 @@
 {
   "extends": "@tsconfig/node14",
   "compilerOptions": {
-    "target": "es2017",
     "outDir": "build/main",
     "rootDir": "src",
     "module": "commonjs",
