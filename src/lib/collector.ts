@@ -72,7 +72,7 @@ export abstract class Collector<O extends Record<string, unknown>> {
 
 class TryAsyncCollector<O extends Record<string, unknown>> extends Collector<O> {
     public fold<K extends string, V, R extends O & Record<K, V>>(key: K, fn: (o: O) => TryAsync<V>): TryAsyncCollector<R> {
-        const out = this.monadicFold(key, fn) as TryAsync<R>;
+        const out = this.monadicFold(key, fn) as unknown as TryAsync<R>;
         return new TryAsyncCollector<R>(out);
     }
 
@@ -83,7 +83,7 @@ class TryAsyncCollector<O extends Record<string, unknown>> extends Collector<O> 
 
 class TryCollector<O extends Record<string, unknown>> extends Collector<O> {
     public fold<K extends string, V, R extends O & Record<K, V>>(key: K, fn: (o: O) => Try<V>): TryCollector<R> {
-        const out = this.monadicFold(key, fn) as Try<R>;
+        const out = this.monadicFold(key, fn) as unknown as Try<R>;
         return new TryCollector<R>(out);
     }
 
