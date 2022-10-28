@@ -1,3 +1,4 @@
+export * from "./lib/either";
 export * from "./lib/enumeration";
 export * from "./lib/optional";
 export * from "./lib/try";
