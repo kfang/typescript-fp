@@ -212,7 +212,7 @@ describe("all", () => {
             TryAsync.success(3),
             TryAsync.success(4),
         ]).promise();
-        expect(result.get()).toEqual([1,2,3,4]);
+        expect(result.get()).toEqual([1, 2, 3, 4]);
     });
 
     it("returns a failure if one is a failure", async () => {

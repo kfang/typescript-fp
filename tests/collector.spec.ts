@@ -132,7 +132,7 @@ describe("TryCollector", () => {
         const foobar: FooBar = { apple: "apple", banana: false, pear: 1234 };
         const result = Collector.forTry(foobar)
             .fold("zig", () => Try.success("zag"))
-            .yield()
+            .yield();
         expect(result.get()).toEqual({
             apple: "apple",
             banana: false,

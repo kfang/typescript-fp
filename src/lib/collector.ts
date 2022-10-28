@@ -39,7 +39,6 @@ import { Try } from "./try";
  * ```
  */
 export abstract class Collector<O extends Record<string, unknown>> {
-
     // use of 'any' in typing is a known issue: https://github.com/microsoft/TypeScript/issues/15300
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static forTry<R extends Record<string, any>>(init: R = {} as R): TryCollector<R> {
@@ -71,7 +70,10 @@ export abstract class Collector<O extends Record<string, unknown>> {
 }
 
 class TryAsyncCollector<O extends Record<string, unknown>> extends Collector<O> {
-    public fold<K extends string, V, R extends O & Record<K, V>>(key: K, fn: (o: O) => TryAsync<V>): TryAsyncCollector<R> {
+    public fold<K extends string, V, R extends O & Record<K, V>>(
+        key: K,
+        fn: (o: O) => TryAsync<V>,
+    ): TryAsyncCollector<R> {
         const out = this.monadicFold(key, fn) as unknown as TryAsync<R>;
         return new TryAsyncCollector<R>(out);
     }
