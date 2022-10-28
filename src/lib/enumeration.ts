@@ -24,7 +24,7 @@ export abstract class EnumEntry<T = unknown> {
         Object.entries(c).forEach(([name, value]) => {
             if (value instanceof EnumEntry) {
                 Object.freeze(value);
-                entries.push((value as unknown) as E);
+                entries.push(value as unknown as E);
                 values.push(value.value);
                 nameValueMap[name] = value as E;
             }
