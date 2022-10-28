@@ -27,7 +27,6 @@ export type Nil = undefined | null;
  * ```
  */
 export abstract class Optional<A> implements Monad<A> {
-
     public static isNil<T>(t: T | null | undefined): t is Nil {
         return t === null || t === undefined;
     }
@@ -42,10 +41,12 @@ export abstract class Optional<A> implements Monad<A> {
 
     public static all<B>(optxs: Optional<B>[]): Optional<B[]> {
         return optxs.reduce((prev, curr) => {
-            return curr.flatMap((b) => prev.map((arr) => {
-                arr.push(b);
-                return arr;
-            }));
+            return curr.flatMap((b) =>
+                prev.map((arr) => {
+                    arr.push(b);
+                    return arr;
+                }),
+            );
         }, Optional.of<B[]>([]));
     }
 

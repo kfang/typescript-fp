@@ -277,22 +277,19 @@ describe("chain", () => {
     });
 
     it("Success.chain(Failure) returns Failure", () => {
-        const result = Try.success("hello")
-            .chain(() => Try.failure(new Error()));
+        const result = Try.success("hello").chain(() => Try.failure(new Error()));
         expect(result.isFailure()).toBeTruthy();
         expect(result.isSuccess()).toBeFalsy();
     });
 
     it("Failure.chain(Success) returns Success", () => {
-        const result = Try.failure<string>(new Error())
-            .chain((str) => Try.success(str + " world"));
+        const result = Try.failure<string>(new Error()).chain((str) => Try.success(str + " world"));
         expect(result.isFailure()).toBeTruthy();
         expect(result.isSuccess()).toBeFalsy();
     });
 
     it("Failure.chain(Failure) returns Failure", () => {
-        const result = Try.failure<string>(new Error())
-            .chain(() => Try.failure(new Error()));
+        const result = Try.failure<string>(new Error()).chain(() => Try.failure(new Error()));
         expect(result.isFailure()).toBeTruthy();
         expect(result.isSuccess()).toBeFalsy();
     });
@@ -300,11 +297,11 @@ describe("chain", () => {
 
 describe("mapAsync", () => {
     it("uses the fn to map over the inner value", async () => {
-       const result = await Try.success("hello")
-           .mapAsync((str) => Promise.resolve(str + " world"))
-           .promise();
-       expect(result.isFailure()).toEqual(false);
-       expect(result.get()).toEqual("hello world");
+        const result = await Try.success("hello")
+            .mapAsync((str) => Promise.resolve(str + " world"))
+            .promise();
+        expect(result.isFailure()).toEqual(false);
+        expect(result.get()).toEqual("hello world");
     });
 
     it("catches a failed promise", async () => {
@@ -324,21 +321,13 @@ describe("mapAsync", () => {
 
 describe("all", () => {
     it("returns an array of successful values", () => {
-        const result = Try.all([
-            Try.success(1),
-            Try.success(2),
-            Try.success(3),
-        ]);
+        const result = Try.all([Try.success(1), Try.success(2), Try.success(3)]);
 
         expect(result.get()).toEqual([1, 2, 3]);
     });
 
     it("returns a failure if one is a failure", () => {
-        const result = Try.all([
-            Try.success(1),
-            Try.failure<number>(new Error("expected failure")),
-            Try.success(3),
-        ]);
+        const result = Try.all([Try.success(1), Try.failure<number>(new Error("expected failure")), Try.success(3)]);
 
         expect(result.get).toThrow("expected failure");
     });

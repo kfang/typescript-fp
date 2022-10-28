@@ -1,8 +1,5 @@
 interface IEither<L1, R1> {
-    case<T1>(predicates: {
-        left: (value: L1) => T1,
-        right: (value: R1) => T1,
-    }): T1;
+    case<T1>(predicates: { left: (value: L1) => T1; right: (value: R1) => T1 }): T1;
     flatMap<R2>(fn: (r: R1) => IEither<L1, R2>): IEither<L1, R2>;
     isLeft(): boolean;
     isRight(): boolean;
@@ -21,7 +18,7 @@ class Right<L1, R1> implements IEither<L1, R1> {
     }
 
     public isLeft(): boolean {
-        return false
+        return false;
     }
 
     public isRight(): boolean {
@@ -46,8 +43,7 @@ class Right<L1, R1> implements IEither<L1, R1> {
 }
 
 class Left<L1, R1> implements IEither<L1, R1> {
-    constructor(private readonly value: L1) {
-    }
+    constructor(private readonly value: L1) {}
 
     public flatMap<R2>(): IEither<L1, R2> {
         return this as unknown as IEither<L1, R2>;
@@ -76,7 +72,6 @@ class Left<L1, R1> implements IEither<L1, R1> {
     public case<T1>(predicates: { left: (value: L1) => T1; right: (value: R1) => T1 }): T1 {
         return predicates.left(this.value);
     }
-
 }
 
 export abstract class Either<L1, R1> implements IEither<L1, R1> {

@@ -92,7 +92,7 @@ export abstract class Try<A> implements Monad<A> {
         return arr.reduce((prev, curr) => {
             return prev.flatMap((bxs) => {
                 return curr.map((b) => {
-                    bxs.push(b)
+                    bxs.push(b);
                     return bxs;
                 });
             });

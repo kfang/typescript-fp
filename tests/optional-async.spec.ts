@@ -231,4 +231,4 @@ describe("OptAsync", () => {
         expect(opt.contains("foobar")).toBeTruthy();
         expect(opt.exists((s) => s === "foobar")).toBeTruthy();
     });
-})
+});

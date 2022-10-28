@@ -60,7 +60,6 @@ interface Case<In, Out> {
  *
  */
 export class Match<In, Out> {
-
     /**
      * Creates a new instance of a `Match`.
      * @param {Predicate} input
@@ -110,7 +109,7 @@ export class Match<In, Out> {
                 }
             }
             return value;
-        }
+        };
     }
 
     /**
@@ -126,6 +125,6 @@ export class Match<In, Out> {
                 }
             }
             return Optional.empty();
-        }
+        };
     }
 }

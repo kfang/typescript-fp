@@ -19,7 +19,7 @@ describe("isEmpty", () => {
     it("static isEmpty() calls internal isEmpty", () => {
         const opt = Optional.of("foobar");
         jest.spyOn(opt, "isEmpty");
-        expect(Optional.isEmpty(opt)).toEqual(false)
+        expect(Optional.isEmpty(opt)).toEqual(false);
         expect(opt.isEmpty).toHaveBeenCalledTimes(1);
     });
 });
@@ -53,7 +53,7 @@ describe("contains", () => {
 
         const res2 = Optional.contains("foobar", Optional.of("blahblah"));
         expect(res2).toEqual(false);
-    })
+    });
 });
 
 describe("getOrElse", () => {
@@ -135,7 +135,7 @@ describe("exists", () => {
 
 describe("new Some()", () => {
     it("constructing a Some with null throws", () => {
-        const fn = () => new Some<string>((null as unknown) as string);
+        const fn = () => new Some<string>(null as unknown as string);
         expect(fn).toThrow();
     });
 });
@@ -306,27 +306,17 @@ describe("mapAsync", () => {
             .mapAsync((str) => Promise.resolve(str + " world"))
             .promise();
         expect(result.isEmpty()).toBeTruthy();
-    })
+    });
 });
 
 describe("all", () => {
     it("returns an array with all the values", () => {
-        const result = Optional.all([
-            Optional.of(1),
-            Optional.of(2),
-            Optional.of(3),
-            Optional.of(4),
-        ]);
+        const result = Optional.all([Optional.of(1), Optional.of(2), Optional.of(3), Optional.of(4)]);
         expect(result.get()).toEqual([1, 2, 3, 4]);
     });
 
     it("returns empty if one of them is empty", () => {
-        const result = Optional.all([
-            Optional.of(1),
-            Optional.empty<number>(),
-            Optional.of(3),
-            Optional.of(4),
-        ]);
+        const result = Optional.all([Optional.of(1), Optional.empty<number>(), Optional.of(3), Optional.of(4)]);
         expect(result.isEmpty()).toEqual(true);
     });
 });
