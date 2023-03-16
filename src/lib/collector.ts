@@ -1,3 +1,4 @@
+import { Optional } from "./optional";
 import { TryAsync } from "./try-async";
 import { Monad } from "./fantasy";
 import { Try } from "./try";
@@ -51,6 +52,12 @@ export abstract class Collector<O extends Record<string, unknown>> {
         return new TryAsyncCollector<R>(TryAsync.of(init));
     }
 
+    // use of 'any' in typing is a known issue: https://github.com/microsoft/TypeScript/issues/15300
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public static forOptional<R extends Record<string, any>>(init: R = {} as R): OptionalCollector<R> {
+        return new OptionalCollector<R>(Optional.of(init));
+    }
+
     protected readonly output: Monad<O>;
 
     protected constructor(init: Monad<O>) {
@@ -91,5 +98,19 @@ class TryCollector<O extends Record<string, unknown>> extends Collector<O> {
 
     public yield(): Try<O> {
         return this.output as Try<O>;
+    }
+}
+
+class OptionalCollector<O extends Record<string, unknown>> extends Collector<O> {
+    public fold<K extends string, V, R extends O & Record<K, V>>(
+        key: K,
+        fn: (o: O) => Optional<V>,
+    ): OptionalCollector<R> {
+        const out = this.monadicFold(key, fn) as unknown as Optional<R>;
+        return new OptionalCollector<R>(out);
+    }
+
+    public yield(): Optional<O> {
+        return this.output as Optional<O>;
     }
 }
