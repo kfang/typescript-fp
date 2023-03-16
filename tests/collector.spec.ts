@@ -1,4 +1,4 @@
-import { Collector, Try, TryAsync } from "../src";
+import { Collector, Optional, Try, TryAsync } from "../src";
 
 describe("TryAsyncCollector", () => {
     it("collects items together in a Record", async () => {
@@ -138,6 +138,44 @@ describe("TryCollector", () => {
             banana: false,
             pear: 1234,
             zig: "zag",
+        });
+    });
+});
+
+describe("OptionalCollector", () => {
+    it("collects field together", () => {
+        const result = Collector.forOptional()
+            .fold("foo", () => Optional.of("bar"))
+            .fold("bar", () => Optional.of("baz"))
+            .yield();
+
+        expect(result.get()).toEqual({
+            foo: "bar",
+            bar: "baz",
+        });
+    });
+
+    it("returns empty if any one of them are empty", () => {
+        const result = Collector.forOptional()
+            .fold("foo", () => Optional.of("bar"))
+            .fold("_", Optional.empty)
+            .fold("bar", () => Optional.of("baz"))
+            .yield();
+
+        expect(result.isEmpty()).toEqual(true);
+    });
+
+    it("passes values along", () => {
+        const result = Collector.forOptional()
+            .fold("a", () => Optional.of(1))
+            .fold("b", ({ a }) => Optional.of(a + 1))
+            .fold("c", ({ b }) => Optional.of(b * 2))
+            .yield();
+
+        expect(result.get()).toEqual({
+            a: 1,
+            b: 2,
+            c: 4,
         });
     });
 });
