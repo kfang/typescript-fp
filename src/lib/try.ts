@@ -203,7 +203,7 @@ export abstract class Try<A> implements Monad<A> {
     public abstract readonly pFlatMap: <B>(fn: (a: A) => Promise<Try<B>>) => Promise<Try<B>>;
 
     /**
-     * applies the function to to an error. The function is only called if this is a Failure.
+     * applies the function to an error. The function is only called if this is a Failure.
      * This is useful if you want to provide a default value on a failure based on the error.
      * ```
      * Try.failure(new Error()).recover(() => "Hello World!");  // Success("Hello World!")
@@ -225,6 +225,13 @@ export abstract class Try<A> implements Monad<A> {
      */
     public abstract readonly recoverWith: (fn: (e: Error) => Try<A>) => Try<A>;
 
+    /**
+     * Maps the resolved value to `void` (undefined in this case). In other words, basically just throws away the
+     * resolved value. If this is a {@link Failure}, then it will continue to pass along the failure.
+     */
+    public void = (): Try<void> => {
+        return this.map<void>(() => undefined);
+    };
     public abstract case<B>(predicates: { success: (value: A) => Try<B>; failure: (error: Error) => Try<B> }): Try<B>;
 
     /**

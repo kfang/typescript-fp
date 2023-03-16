@@ -138,4 +138,8 @@ export class TryAsync<A> implements Monad<A> {
     public promise(): Promise<Try<A>> {
         return this.value;
     }
+
+    public void(): TryAsync<void> {
+        return this.map<void>(() => undefined);
+    }
 }
