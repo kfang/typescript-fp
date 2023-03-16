@@ -138,4 +138,12 @@ export class TryAsync<A> implements Monad<A> {
     public promise(): Promise<Try<A>> {
         return this.value;
     }
+
+    /**
+     * Maps the resolved value to `void` (undefined in this case). In other words, basically just throws away the
+     * resolved value. If this is a {@link Failure}, then it will continue to pass along the failure.
+     */
+    public void(): TryAsync<void> {
+        return this.map<void>(() => undefined);
+    }
 }

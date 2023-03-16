@@ -350,4 +350,16 @@ describe("void", () => {
         expect(result.isSuccess()).toEqual(true);
         expect(result.get()).toBeUndefined();
     });
+
+    it("converts a success to a void", () => {
+        const result = Try.success("foobar").void();
+        expect(result.isSuccess()).toEqual(true);
+        expect(result.get()).toBeUndefined();
+    });
+
+    it("passes along the failure", () => {
+        const result = Try.failure(new Error("expected failure")).void();
+        expect(result.isFailure()).toEqual(true);
+        expect(result.get).toThrow("expected failure");
+    });
 });
