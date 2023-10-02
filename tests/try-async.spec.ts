@@ -255,3 +255,15 @@ describe("void", () => {
         expect(result.get).toThrow("expected failure");
     });
 });
+
+describe("get", () => {
+    it("awaits and returns the value of a success", async () => {
+        const result = await TryAsync.success("success").get();
+        expect(result).toEqual("success");
+    });
+
+    it("awaits and throws the error of a failure", async () => {
+        const result = TryAsync.failure(new Error("expected failure")).get();
+        await expect(result).rejects.toThrow("expected failure");
+    });
+});
