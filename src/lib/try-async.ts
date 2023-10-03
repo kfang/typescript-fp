@@ -146,4 +146,8 @@ export class TryAsync<A> implements Monad<A> {
     public void(): TryAsync<void> {
         return this.map<void>(() => undefined);
     }
+
+    public get(): Promise<A> {
+        return this.promise().then((result) => result.get());
+    }
 }
