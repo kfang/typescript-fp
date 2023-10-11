@@ -11,6 +11,8 @@ module.exports = {
     plugins: ['@typescript-eslint'],
     root: true,
     rules: {
+      'indent': ['error', 4],
+      'quotes': ['error', 'double'],
       '@typescript-eslint/restrict-plus-operands': 'warn',
       '@typescript-eslint/unbound-method': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
