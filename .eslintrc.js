@@ -1,17 +1,22 @@
+/* eslint-env node */
 module.exports = {
-    parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-    parserOptions: {
-        ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-        sourceType: 'module', // Allows for the use of imports
-    },
-    plugins: ['@typescript-eslint', 'prettier'],
     extends: [
         'eslint:recommended',
-        'plugin:@typescript-eslint/eslint-recommended',
-        'plugin:@typescript-eslint/recommended',
-        'prettier',
+        'plugin:@typescript-eslint/recommended-type-checked',
     ],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: './tsconfig.eslint.json',
+    },
+    plugins: ['@typescript-eslint'],
+    root: true,
     rules: {
-        'prettier/prettier': 'error',
+      'indent': ['error', 4],
+      'quotes': ['error', 'double'],
+      '@typescript-eslint/restrict-plus-operands': 'warn',
+      '@typescript-eslint/unbound-method': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-return': 'warn',
     },
 };
