@@ -4,7 +4,7 @@ import { Try } from "./try";
 export class TryAsync<A> implements Monad<A> {
     public static of<B>(value: B | Promise<B>): TryAsync<B> {
         const promiseTry = Promise.resolve(value)
-            .then(Try.success)
+            .then((v) => Try.success<B>(v))
             .catch((e) => Try.failure<B>(e));
         return new TryAsync<B>(promiseTry);
     }
