@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: release
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use NodeJs 16.x
         uses: actions/setup-node@v3
         with:
