@@ -10,7 +10,7 @@ jobs:
       - name: Use NodeJs 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 24.21.0
           cache: yarn
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
